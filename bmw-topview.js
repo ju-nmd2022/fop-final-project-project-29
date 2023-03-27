@@ -90,3 +90,12 @@ vertex(400, 83);
 bezierVertex(406, 108, 406, 153, 400, 186);
 vertex(378, 187);
 endShape();
+
+//Windows
+beginShape();
+vertex(143, 80);
+vertex(179, 89);
+bezierVertex(171, 111, 171, 154, 179, 177);
+vertex(150, 186);
+bezierVertex(124, 180, 129, 81, 143, 80);
+endShape();
