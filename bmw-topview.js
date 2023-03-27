@@ -99,3 +99,6 @@ bezierVertex(171, 111, 171, 154, 179, 177);
 vertex(150, 186);
 bezierVertex(124, 180, 129, 81, 143, 80);
 endShape();
+
+//the back fenders not so pointy
+//the windshield bigger
