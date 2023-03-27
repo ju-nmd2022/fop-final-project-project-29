@@ -59,10 +59,34 @@ bezierVertex(33, 121, 33, 141, 35, 159);
 vertex(40, 163);
 vertex(45, 191);
 bezierVertex(46, 197, 49, 198, 59, 198);
-bezierVertex(131, 201, 243, 201, 339, 198);
+bezierVertex(131, 201, 243, 201, 339, 201);
 endShape();
 
 //Detail of Hood
+line(40, 103, 125, 93);
+line(40, 163, 125, 173);
+
+//Backlights
 beginShape();
-vertex();
+vertex(391, 68);
+vertex(391, 90);
+vertex(395, 90);
+vertex(395, 75);
+bezierVertex(395, 69, 393, 69, 391, 68);
+endShape();
+
+beginShape();
+vertex(391, 201);
+vertex(391, 179);
+vertex(395, 179);
+vertex(395, 194);
+bezierVertex(395, 200, 393, 200, 391, 201);
+endShape();
+
+//Trunk
+beginShape();
+vertex(378, 82);
+vertex(400, 83);
+bezierVertex(406, 108, 406, 153, 400, 186);
+vertex(378, 187);
 endShape();
