@@ -9,18 +9,18 @@ vertex(50, 61);
 vertex(55, 55);
 vertex(120, 56);
 vertex(135, 60);
-vertex(230, 60);
-vertex(280, 53);
-vertex(340, 51);
+vertex(238, 60);
+vertex(283, 53);
+vertex(340, 53);
 vertex(364, 63);
 vertex(388, 66);
 bezierVertex(392, 69, 395, 70, 395, 78);
 vertex(395, 190);
 bezierVertex(395, 198, 392, 201, 388, 201);
 vertex(364, 204);
-vertex(340, 216);
-vertex(280, 213);
-vertex(230, 207);
+vertex(340, 213);
+vertex(283, 213);
+vertex(238, 207);
 vertex(135, 207);
 vertex(120, 211);
 vertex(55, 212);
@@ -91,14 +91,58 @@ bezierVertex(406, 108, 406, 153, 400, 186);
 vertex(378, 187);
 endShape();
 
-//Windows
+//Windshield
 beginShape();
-vertex(143, 80);
-vertex(179, 89);
-bezierVertex(171, 111, 171, 154, 179, 177);
-vertex(150, 186);
-bezierVertex(124, 180, 129, 81, 143, 80);
+vertex(135, 76);
+vertex(179, 86);
+bezierVertex(174, 111, 174, 154, 179, 180);
+vertex(135, 190);
+bezierVertex(120, 170, 120, 89, 135, 76);
 endShape();
 
-//the back fenders not so pointy
-//the windshield bigger
+//long window right
+beginShape();
+vertex(193, 84);
+vertex(291, 86);
+vertex(320, 75);
+vertex(159, 71);
+vertex(193, 84);
+endShape();
+
+//long window left
+beginShape();
+vertex(193, 182);
+vertex(291, 180);
+vertex(320, 191);
+vertex(159, 195);
+vertex(193, 182);
+endShape();
+
+//Backwindow
+beginShape();
+vertex(298, 98);
+vertex(342, 85);
+bezierVertex(356, 110, 356, 161, 342, 181);
+vertex(298, 168);
+bezierVertex(301, 158, 301, 107, 298, 98);
+endShape();
+
+//mirror right
+beginShape();
+vertex(159, 76);
+vertex(160, 65);
+vertex(165, 67);
+vertex(167, 52);
+bezierVertex(153, 53, 151, 65, 151, 72);
+bezierVertex(151, 75, 155, 77, 159, 76);
+endShape();
+
+//mirror left
+beginShape();
+vertex(159, 190);
+vertex(160, 201);
+vertex(165, 199);
+vertex(167, 214);
+bezierVertex(153, 213, 151, 201, 151, 194);
+bezierVertex(151, 191, 155, 189, 159, 190);
+endShape();
