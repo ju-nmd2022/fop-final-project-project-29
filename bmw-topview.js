@@ -1,6 +1,7 @@
 background(255);
 
 //Base Body
+fill(217, 109, 37);
 beginShape();
 vertex(30, 94);
 vertex(34, 90);
@@ -32,21 +33,24 @@ bezierVertex(25, 155, 25, 116, 30, 94);
 endShape();
 
 //Headlights
+push();
+fill(255, 242, 215);
 beginShape();
-vertex(50, 61);
+vertex(52, 59);
 vertex(40, 68);
 vertex(36, 84);
 vertex(50, 83);
-vertex(50, 61);
+vertex(52, 59);
 endShape();
 
 beginShape();
-vertex(50, 207);
+vertex(52, 209);
 vertex(40, 200);
 vertex(36, 185);
 vertex(50, 185);
-vertex(50, 207);
+vertex(52, 209);
 endShape();
+pop();
 
 //Hood
 beginShape();
@@ -67,6 +71,8 @@ line(40, 103, 125, 93);
 line(40, 163, 125, 173);
 
 //Backlights
+push();
+fill(255, 0, 0);
 beginShape();
 vertex(391, 68);
 vertex(391, 90);
@@ -82,6 +88,7 @@ vertex(395, 179);
 vertex(395, 194);
 bezierVertex(395, 200, 393, 200, 391, 201);
 endShape();
+pop();
 
 //Trunk
 beginShape();
@@ -92,6 +99,7 @@ vertex(378, 187);
 endShape();
 
 //Windshield
+fill(35, 31, 32);
 beginShape();
 vertex(135, 76);
 vertex(179, 86);
@@ -128,6 +136,7 @@ bezierVertex(301, 158, 301, 107, 298, 98);
 endShape();
 
 //mirror right
+fill(217, 109, 37);
 beginShape();
 vertex(159, 76);
 vertex(160, 65);
