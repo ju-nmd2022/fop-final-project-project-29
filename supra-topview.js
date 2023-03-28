@@ -6,6 +6,8 @@ background (255);
 line(300, 107, 300, 293);
 line(65, 200, 535, 200); 
 
+//outline
+
 beginShape();
 
 /* fill(0,255,0); */
@@ -34,3 +36,5 @@ bezierVertex(100, 270, 114, 270, 100, 260);
 bezierVertex(90, 250, 85, 230, 85, 200);
 
 endShape();
+
+//window
