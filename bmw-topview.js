@@ -1,7 +1,10 @@
 let carX = 260;
 let carY = 180;
+let carScale = 1.0;
 background(255);
+//use array with all the colors
 
+strokeWeight(1 * carScale);
 //Base Body
 fill(217, 109, 37);
 beginShape();
@@ -17,23 +20,9 @@ vertex(carX + 69, carY - 78);
 vertex(carX + 126, carY - 78);
 vertex(carX + 150, carY - 68);
 vertex(carX + 174, carY - 65);
-bezierVertex(
-  carX + 178,
-  carY - 62,
-  carX + 182,
-  carY - 61,
-  carX + 181,
-  carY - 53
-);
+bezierVertex(carX + 178, carY - 62, carX + 182, carY - 61, carX + 181, carY - 53);
 vertex(carX + 181, carY + 59);
-bezierVertex(
-  carX + 181,
-  carY + 67,
-  carX + 178,
-  carY + 70,
-  carX + 174,
-  carY + 70
-);
+bezierVertex(carX + 181, carY + 67, carX + 178, carY + 70, carX + 174, carY + 70);
 vertex(carX + 150, carY + 73);
 vertex(carX + 126, carY + 82);
 vertex(carX + 69, carY + 82);
@@ -45,14 +34,7 @@ vertex(carX - 164, carY + 76);
 vertex(carX - 174, carY + 69);
 vertex(carX - 180, carY + 49);
 vertex(carX - 184, carY + 45);
-bezierVertex(
-  carX - 189,
-  carY + 24,
-  carX - 189,
-  carY - 15,
-  carX - 184,
-  carY - 37
-);
+bezierVertex(carX - 189, carY + 24, carX - 189, carY - 15, carX - 184, carY - 37);
 endShape();
 
 //Headlights
@@ -79,34 +61,13 @@ pop();
 beginShape();
 vertex(carX + 125, carY - 63);
 bezierVertex(carX - 29, carY - 66, carX - 83, carY - 66, carX - 155, carY - 63);
-bezierVertex(
-  carX - 165,
-  carY - 63,
-  carX - 168,
-  carY - 62,
-  carX - 169,
-  carY - 52
-);
+bezierVertex(carX - 165, carY - 63, carX - 168, carY - 62, carX - 169, carY - 52);
 vertex(carX - 174, carY - 28);
 vertex(carX - 179, carY - 24);
-bezierVertex(
-  carX - 181,
-  carY - 10,
-  carX - 181,
-  carY + 10,
-  carX - 179,
-  carY + 29
-);
+bezierVertex(carX - 181, carY - 10, carX - 181, carY + 10, carX - 179, carY + 29);
 vertex(carX - 174, carY + 32);
 vertex(carX - 169, carY + 60);
-bezierVertex(
-  carX - 168,
-  carY + 66,
-  carX - 165,
-  carY + 67,
-  carX - 155,
-  carY + 67
-);
+bezierVertex(carX - 168, carY + 66, carX - 165, carY + 67, carX - 155, carY + 67);
 bezierVertex(carX - 83, carY + 70, carX + 29, carY + 70, carX + 125, carY + 70);
 endShape();
 
@@ -122,14 +83,7 @@ vertex(carX + 177, carY - 63);
 vertex(carX + 177, carY - 41);
 vertex(carX + 181, carY - 41);
 vertex(carX + 181, carY - 56);
-bezierVertex(
-  carX + 181,
-  carY - 62,
-  carX + 179,
-  carY - 62,
-  carX + 177,
-  carY - 63
-);
+bezierVertex(carX + 181, carY - 62, carX + 179, carY - 62, carX + 177, carY - 63);
 endShape();
 
 beginShape();
@@ -137,14 +91,7 @@ vertex(carX + 177, carY + 70);
 vertex(carX + 177, carY + 48);
 vertex(carX + 181, carY + 48);
 vertex(carX + 181, carY + 63);
-bezierVertex(
-  carX + 181,
-  carY + 69,
-  carX + 179,
-  carY + 69,
-  carX + 177,
-  carY + 70
-);
+bezierVertex(carX + 181, carY + 69, carX + 179, carY + 69, carX + 177, carY + 70);
 endShape();
 pop();
 
@@ -152,14 +99,7 @@ pop();
 beginShape();
 vertex(carX + 164, carY - 49);
 vertex(carX + 186, carY - 48);
-bezierVertex(
-  carX + 192,
-  carY - 23,
-  carX + 192,
-  carY + 22,
-  carX + 186,
-  carY + 55
-);
+bezierVertex(carX + 192, carY - 23, carX + 192, carY + 22, carX + 186, carY + 55);
 vertex(carX + 164, carY + 56);
 endShape();
 
@@ -196,14 +136,7 @@ endShape();
 beginShape();
 vertex(carX + 84, carY - 33);
 vertex(carX + 128, carY - 46);
-bezierVertex(
-  carX + 142,
-  carY - 21,
-  carX + 142,
-  carY + 30,
-  carX + 128,
-  carY + 50
-);
+bezierVertex(carX + 142, carY - 21, carX + 142, carY + 30, carX + 128, carY + 50);
 vertex(carX + 84, carY + 37);
 bezierVertex(carX + 87, carY + 27, carX + 87, carY - 24, carX + 84, carY - 33);
 endShape();
