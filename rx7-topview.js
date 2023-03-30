@@ -1,6 +1,6 @@
 let carX = 350;
 let carY = 250;
-let carScale = 0.6;
+let carScale = 1;
 background(255);
 
 strokeWeight(1 * carScale);
@@ -84,6 +84,54 @@ bezierVertex(
 );
 endShape();
 
+//mirror right
+beginShape();
+vertex(carX - 68 * carScale, carY - 70 * carScale);
+bezierVertex(
+  carX - 67 * carScale,
+  carY - 81 * carScale,
+  carX - 60 * carScale,
+  carY - 87 * carScale,
+  carX - 53 * carScale,
+  carY - 91 * carScale
+);
+vertex(carX - 57 * carScale, carY - 75 * carScale);
+vertex(carX - 59 * carScale, carY - 75 * carScale);
+vertex(carX - 60 * carScale, carY - 67 * carScale);
+bezierVertex(
+  carX - 65 * carScale,
+  carY - 68 * carScale,
+  carX - 66 * carScale,
+  carY - 68 * carScale,
+  carX - 68 * carScale,
+  carY - 70 * carScale
+);
+endShape();
+
+//mirror left
+beginShape();
+vertex(carX - 68 * carScale, carY + 70 * carScale);
+bezierVertex(
+  carX - 67 * carScale,
+  carY + 81 * carScale,
+  carX - 60 * carScale,
+  carY + 87 * carScale,
+  carX - 53 * carScale,
+  carY + 91 * carScale
+);
+vertex(carX - 57 * carScale, carY + 75 * carScale);
+vertex(carX - 59 * carScale, carY + 75 * carScale);
+vertex(carX - 60 * carScale, carY + 67 * carScale);
+bezierVertex(
+  carX - 65 * carScale,
+  carY + 68 * carScale,
+  carX - 66 * carScale,
+  carY + 68 * carScale,
+  carX - 68 * carScale,
+  carY + 70 * carScale
+);
+endShape();
+
 //spoiler
 beginShape();
 vertex(carX + 205 * carScale, carY - 57 * carScale);
@@ -129,19 +177,19 @@ line(
   carY + 41 * carScale
 );
 line(
-  carX - 158 * carScale,
+  carX - 156 * carScale,
   carY - 63 * carScale,
   carX - 68 * carScale,
   carY - 61 * carScale
 );
 line(
-  carX - 158 * carScale,
+  carX - 156 * carScale,
   carY + 63 * carScale,
   carX - 68 * carScale,
   carY + 61 * carScale
 );
 
-//details in teh back
+//details in the back
 push();
 noFill();
 beginShape();
@@ -170,7 +218,8 @@ endShape();
 pop();
 
 //headlights
-fill(179, 11, 123);
+
+fill(0, 0, 0, 80);
 beginShape();
 vertex(carX - 155 * carScale, carY - 67 * carScale);
 vertex(carX - 156 * carScale, carY - 42 * carScale);
