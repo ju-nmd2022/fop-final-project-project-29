@@ -30,7 +30,7 @@ rect(boostX - 5 * boostScale, boostY - 75 * boostScale,
     10 * boostScale, 10 * boostScale);
 
 // knob
-fill(0, 70, 200);
+fill(20/* 0, 70, 200 */);
 
 ellipse(boostX, boostY - 94 * boostScale,    
     8 * boostScale);
@@ -47,7 +47,7 @@ ellipse(boostX + 2 * boostScale, boostY - 84 * boostScale,
 ellipse(boostX + 4 * boostScale, boostY - 90 * boostScale,    
     8 * boostScale);
 
-fill(0, 40, 180);
+fill(10/* 0, 40, 180 */);
 ellipse(boostX, boostY - 89 * boostScale,
     8 * boostScale);
 
@@ -57,7 +57,7 @@ stroke(255);
 rect(boostX - 15 * boostScale, boostY - 53 * boostScale,
     30 * boostScale, 40 * boostScale, 5 * boostScale);
 
-//Power
+//Power symbol
 beginShape();
 stroke(250, 195, 42);
 strokeWeight(0.5 * boostScale);
