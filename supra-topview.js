@@ -2,8 +2,6 @@ let carX = 300;
 let carY = 300;
 let carScale = 1;
 
-background (255);
-
 //outline
 beginShape();
 stroke(0);
