@@ -95,26 +95,69 @@ vertex(475, 149);
 bezierVertex(486, 180, 486, 220, 475, 251);
 endShape();
 
-//headlights
-beginShape();
-vertex(119, 132);
-bezierVertex();
-endShape();
-
 //hood
 beginShape();
+noFill();
 vertex(223, 126);
 bezierVertex(100, 105, 95, 167, 95, 200);
 bezierVertex(95, 233, 95, 295, 223, 274);
 endShape();
 
-/* beginShape();
-vertex(203, 140);
-bezierVertex();
-endShape(); */
+beginShape();
+vertex(196, 155);
+bezierVertex(178, 156, 130, 160, 118, 164); 
+endShape();
 
+beginShape();
+vertex(196, 245);
+bezierVertex(178, 244, 130, 240, 118, 236);
+endShape();
 
+//headlights
+beginShape();
+fill(255, 242, 215);
+vertex(119, 132);
+bezierVertex(105, 142, 99, 152, 94, 164);
+bezierVertex(93, 167, 93, 175, 111, 165);
+bezierVertex(116, 154, 119, 143, 121, 141);
+bezierVertex(123, 136, 122, 134, 119, 132);
+endShape();
 
+beginShape();
+vertex(119, 268);
+bezierVertex(105, 258, 99, 248, 94, 236);
+bezierVertex(93, 233, 93, 225, 111, 235);
+bezierVertex(116, 246, 119, 257, 121, 259);
+bezierVertex(123, 264, 122, 264, 119, 268);
+endShape();
 
-line(300, 107, 300, 293);
-line(65, 200, 535, 200); 
+//side-mirrors
+beginShape();
+fill(0,255,0);
+vertex(230, 119);
+bezierVertex(235, 122, 235, 122,238,119);
+vertex(244, 119);
+vertex(252, 97);
+bezierVertex(246,90, 235, 108, 230, 119);
+endShape();
+
+beginShape();
+vertex(230, 281);
+bezierVertex(235, 278, 235, 278, 238, 281);
+vertex(244, 281);
+vertex(252, 303);
+bezierVertex(246, 310, 235, 292, 230, 281);
+endShape();
+
+//backdetails
+beginShape();
+noFill();
+vertex(379, 123);
+bezierVertex(401, 120, 428, 122, 448, 129);
+endShape();
+
+beginShape();
+noFill();
+vertex(379, 277);
+bezierVertex(401, 280, 428, 278, 448, 271);
+endShape();
