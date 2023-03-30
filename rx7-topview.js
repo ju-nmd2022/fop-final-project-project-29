@@ -1,8 +1,9 @@
 let carX = 350;
 let carY = 250;
-let carScale = 1.1;
+let carScale = 0.6;
 background(255);
 
+strokeWeight(1 * carScale);
 //BaseBody
 fill("#ed11a4");
 beginShape();
