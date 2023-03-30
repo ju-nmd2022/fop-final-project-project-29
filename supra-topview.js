@@ -207,7 +207,7 @@ endShape();
 //hood
 beginShape();
 noFill();
-vertex(carX - 77 * carScale, carY - 74 * carScale);
+vertex(carX - 77* carScale, carY - 72 * carScale);
 bezierVertex(
     carX - 205 * carScale, carY - 95 * carScale,
     carX - 205 * carScale, carY - 33 * carScale,
