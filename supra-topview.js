@@ -232,6 +232,14 @@ bezierVertex(
     carX - 182 * carScale, carY + 36 * carScale);
 endShape();
 
+beginShape();
+vertex(carX - 116 * carScale, carY - 18 * carScale);
+vertex(carX - 116 * carScale, carY + 18 * carScale);
+vertex(carX - 156 * carScale, carY + 21 * carScale);
+vertex(carX - 156 * carScale, carY - 21 * carScale);
+vertex(carX - 116 * carScale, carY - 18 * carScale);
+endShape();
+
 //headlights
  beginShape();
 fill(255, 242, 215);
