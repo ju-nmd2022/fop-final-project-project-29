@@ -1,5 +1,5 @@
-let carX = 350;
-let carY = 250;
+let carX = 250;
+let carY = 150;
 let carScale = 1;
 background(255);
 
@@ -189,9 +189,24 @@ line(
   carY + 61 * carScale
 );
 
-//details in the back
+//details on hood
 push();
 noFill();
+beginShape();
+vertex(carX - 110 * carScale, carY - 33 * carScale);
+vertex(carX - 150 * carScale, carY - 31 * carScale);
+vertex(carX - 151 * carScale, carY - 10 * carScale);
+vertex(carX - 107 * carScale, carY - 8 * carScale);
+endShape();
+
+beginShape();
+vertex(carX - 107 * carScale, carY + 8 * carScale);
+vertex(carX - 151 * carScale, carY + 10 * carScale);
+vertex(carX - 150 * carScale, carY + 31 * carScale);
+vertex(carX - 110 * carScale, carY + 33 * carScale);
+endShape();
+
+//details in the back
 beginShape();
 vertex(carX + 91 * carScale, carY + 62 * carScale);
 bezierVertex(
