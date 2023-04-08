@@ -1,6 +1,7 @@
 let boostX = 100;
 let boostY = 300;
 let boostScale = 3;
+//tanslate for the correct postition of the pulse
 
 //metal neck
 noStroke();
