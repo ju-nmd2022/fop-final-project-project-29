@@ -1,4 +1,4 @@
-let bg = loadImage("./TrackyTokyo.png");
+let bg = loadImage("./preview.png");
 
 createCanvas(1200, 900);
 
@@ -6,7 +6,7 @@ function startButton() {
   let button;
   button = createButton("START");
   button.size(200, 80);
-  button.position(540, 800);
+  button.position(540, 600);
   button.style("font-family", "Verdana");
   button.style("font-size", "30px");
   button.style("color: #ffffff");
