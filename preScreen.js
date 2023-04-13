@@ -6,7 +6,7 @@ function startButton() {
   let button;
   button = createButton("START");
   button.size(160, 80);
-  button.position(width / 2 - 80, 800);
+  button.position(560, 800);
   button.style("font-family", "Verdana");
   button.style("font-size", "30px");
   button.style("color: #ffffff");
