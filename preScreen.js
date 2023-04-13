@@ -5,8 +5,8 @@ createCanvas(1200, 900);
 function startButton() {
   let button;
   button = createButton("START");
-  button.size(160, 80);
-  button.position(560, 800);
+  button.size(200, 80);
+  button.position(540, 800);
   button.style("font-family", "Verdana");
   button.style("font-size", "30px");
   button.style("color: #ffffff");
