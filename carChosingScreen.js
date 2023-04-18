@@ -1,8 +1,8 @@
-let bgCHoseScreen = loadImage("./garage.png");
+let bgChooseScreen = loadImage("./garage.png");
 //bmw
 let blueBmw = loadImage("bmw-45view/bmw-blue.png");
 let greenBmw = loadImage("bmw-45view/bmw-green.png");
-let greyBmw = loadImage("bmw-45view/bmw-grey.png");
+let blackBmw = loadImage("bmw-45view/bmw-grey.png");
 let orangeBmw = loadImage("bmw-45view/bmw-orange.png");
 let pinkBmw = loadImage("bmw-45view/bmw-pink.png");
 let purpleBmw = loadImage("bmw-45view/bmw-purple.png");
@@ -12,7 +12,7 @@ let yellowBmw = loadImage("bmw-45view/bmw-yellow.png");
 //rx7
 let blueRx7 = loadImage("rx7-45view/rx7-blue.png");
 let greenRx7 = loadImage("rx7-45view/rx7-green.png");
-let greyRx7 = loadImage("rx7-45view/rx7-grey.png");
+let blackRx7 = loadImage("rx7-45view/rx7-grey.png");
 let orangeRx7 = loadImage("rx7-45view/rx7-orange.png");
 let pinkRx7 = loadImage("rx7-45view/rx7-pink.png");
 let purpleRx7 = loadImage("rx7-45view/rx7-purple.png");
@@ -22,7 +22,7 @@ let yellowRx7 = loadImage("rx7-45view/rx7-yellow.png");
 //supra
 let blueSupra = loadImage("supra-45view/Supra-light-blue.png");
 let greenSupra = loadImage("supra-45view/Supra-green.png");
-let greySupra = loadImage("supra-45view/Supra-black.png");
+let blackSupra = loadImage("supra-45view/Supra-black.png");
 let orangeSupra = loadImage("supra-45view/Supra-orange.png");
 let pinkSupra = loadImage("supra-45view/Supra-pink.png");
 let purpleSupra = loadImage("supra-45view/Supra-purple.png");
@@ -110,10 +110,81 @@ function selectCar(currentCar) {
   }
 }
 
-function draw() {
-  background(bgCHoseScreen);
-  headline();
+function selectColor(currentCar, currentColor) {
+  if (currentCar === "bmw") {
+    if (currentColor === "red") {
+      image(redBmw, 80, 340, 647, 276);
+    } else if (currentColor === "green") {
+      image(greenBmw, 80, 340, 647, 276);
+    } else if (currentColor === "blue") {
+      image(blueBmw, 80, 340, 647, 276);
+    } else if (currentColor === "black") {
+      image(blackBmw, 80, 340, 647, 276);
+    } else if (currentColor === "yellow") {
+      image(yellowBmw, 80, 340, 647, 276);
+    } else if (currentColor === "pink") {
+      image(pinkBmw, 80, 340, 647, 276);
+    } else if (currentColor === "purple") {
+      image(purpleBmw, 80, 340, 647, 276);
+    } else if (currentColor === "white") {
+      image(whiteBmw, 80, 340, 647, 276);
+    } else if (currentColor === "orange") {
+      image(orangeBmw, 80, 340, 647, 276);
+    } else if (currentColor === "random") {
+      image(whiteBmw, 80, 340, 647, 276);
+    }
+  } else if (currentCar === "rx7") {
+    if (currentColor === "red") {
+      image(redRx7, 80, 340, 647, 276);
+    } else if (currentColor === "green") {
+      image(greenRx7, 80, 340, 647, 276);
+    } else if (currentColor === "blue") {
+      image(blueRx7, 80, 340, 647, 276);
+    } else if (currentColor === "black") {
+      image(blackRx7, 80, 340, 647, 276);
+    } else if (currentColor === "yellow") {
+      image(yellowRx7, 80, 340, 647, 276);
+    } else if (currentColor === "pink") {
+      image(pinkRx7, 80, 340, 647, 276);
+    } else if (currentColor === "purple") {
+      image(purpleRx7, 80, 340, 647, 276);
+    } else if (currentColor === "white") {
+      image(whiteRx7, 80, 340, 647, 276);
+    } else if (currentColor === "orange") {
+      image(orangeRx7, 80, 340, 647, 276);
+    } else if (currentColor === "random") {
+      image(whiteRx7, 80, 340, 647, 276);
+    }
+  } else if (currentCar === "supra") {
+    if (currentColor === "red") {
+      image(redSupra, 80, 340, 647, 276);
+    } else if (currentColor === "green") {
+      image(greenSupra, 80, 340, 647, 276);
+    } else if (currentColor === "blue") {
+      image(blueSupra, 80, 340, 647, 276);
+    } else if (currentColor === "black") {
+      image(blackSupra, 80, 340, 647, 276);
+    } else if (currentColor === "yellow") {
+      image(yellowSupra, 80, 340, 647, 276);
+    } else if (currentColor === "pink") {
+      image(pinkSupra, 80, 340, 647, 276);
+    } else if (currentColor === "purple") {
+      image(purpleSupra, 80, 340, 647, 276);
+    } else if (currentColor === "white") {
+      image(whiteSupra, 80, 340, 647, 276);
+    } else if (currentColor === "orange") {
+      image(orangeSupra, 80, 340, 647, 276);
+    } else if (currentColor === "random") {
+      image(whiteSupra, 80, 340, 647, 276);
+    }
+  }
+}
 
+function draw() {
+  background(bgChooseScreen);
+  headline();
+  colorBoxes();
+  //section for choosing car
   if (
     mouseIsPressed &&
     mouseX > 861 &&
@@ -122,7 +193,6 @@ function draw() {
     mouseY < 339
   ) {
     currentCar = "bmw";
-    console.log(currentCar);
   } else if (
     mouseIsPressed &&
     mouseX > 849 &&
@@ -131,7 +201,6 @@ function draw() {
     mouseY < 518
   ) {
     currentCar = "rx7";
-    console.log(currentCar);
   } else if (
     mouseIsPressed &&
     mouseX > 853 &&
@@ -140,11 +209,90 @@ function draw() {
     mouseY < 701
   ) {
     currentCar = "supra";
-    console.log(currentCar);
   }
   selectCar(currentCar);
-  colorBoxes();
+  //section for choosing color
+  if (
+    mouseIsPressed &&
+    mouseX > 210 &&
+    mouseX < 260 &&
+    mouseY > 700 &&
+    mouseY < 750
+  ) {
+    currentColor = "red";
+  } else if (
+    mouseIsPressed &&
+    mouseX > 290 &&
+    mouseX < 340 &&
+    mouseY > 700 &&
+    mouseY < 750
+  ) {
+    currentColor = "green";
+  } else if (
+    mouseIsPressed &&
+    mouseX > 370 &&
+    mouseX < 420 &&
+    mouseY > 700 &&
+    mouseY < 750
+  ) {
+    currentColor = "blue";
+  } else if (
+    mouseIsPressed &&
+    mouseX > 450 &&
+    mouseX < 500 &&
+    mouseY > 700 &&
+    mouseY < 750
+  ) {
+    currentColor = "black";
+  } else if (
+    mouseIsPressed &&
+    mouseX > 530 &&
+    mouseX < 580 &&
+    mouseY > 700 &&
+    mouseY < 750
+  ) {
+    currentColor = "yellow";
+  } else if (
+    mouseIsPressed &&
+    mouseX > 210 &&
+    mouseX < 260 &&
+    mouseY > 780 &&
+    mouseY < 830
+  ) {
+    currentColor = "pink";
+  } else if (
+    mouseIsPressed &&
+    mouseX > 290 &&
+    mouseX < 340 &&
+    mouseY > 780 &&
+    mouseY < 830
+  ) {
+    currentColor = "purple";
+  } else if (
+    mouseIsPressed &&
+    mouseX > 370 &&
+    mouseX < 420 &&
+    mouseY > 780 &&
+    mouseY < 830
+  ) {
+    currentColor = "white";
+  } else if (
+    mouseIsPressed &&
+    mouseX > 450 &&
+    mouseX < 500 &&
+    mouseY > 780 &&
+    mouseY < 830
+  ) {
+    currentColor = "orange";
+  } else if (
+    mouseIsPressed &&
+    mouseX > 530 &&
+    mouseX < 580 &&
+    mouseY > 780 &&
+    mouseY < 830
+  ) {
+    currentColor = "random";
+  }
+
+  selectColor(currentCar, currentColor);
 }
-/* function mouseClicked() {
-  console.log("click for bmw");
-} */
