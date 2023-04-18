@@ -53,7 +53,7 @@ function headline() {
   textFont("verdana");
   textStyle(BOLD);
   textSize(55);
-  text("Chose Your Car", 480, 75);
+  text("Chose Your Car", 420, 75);
 }
 
 function colorBoxes() {
@@ -91,19 +91,60 @@ function colorBoxes() {
   pop();
 }
 
-function selectCar() {
+let currentCar = "bmw";
+let currentColor = "white";
+
+function selectCar(currentCar) {
   fill(0, 0, 0, 80);
   rect(817, 176, 355, 590);
   image(whiteBmw, 855, 222, 277, 118);
   image(whiteRx7, 855, 400, 289, 123);
   image(whiteSupra, 855, 575, 289, 123);
   //big car
-  image(whiteBmw, 80, 340, 647, 276);
+  if (currentCar === "bmw") {
+    image(whiteBmw, 80, 340, 647, 276);
+  } else if (currentCar === "rx7") {
+    image(whiteRx7, 80, 340, 647, 276);
+  } else if (currentCar === "supra") {
+    image(whiteSupra, 80, 340, 647, 276);
+  }
 }
 
 function draw() {
   background(bgCHoseScreen);
   headline();
-  selectCar();
+
+  if (
+    mouseIsPressed &&
+    mouseX > 861 &&
+    mouseX < 1133 &&
+    mouseY > 222 &&
+    mouseY < 339
+  ) {
+    currentCar = "bmw";
+    console.log(currentCar);
+  } else if (
+    mouseIsPressed &&
+    mouseX > 849 &&
+    mouseY < 1147 &&
+    mouseY > 395 &&
+    mouseY < 518
+  ) {
+    currentCar = "rx7";
+    console.log(currentCar);
+  } else if (
+    mouseIsPressed &&
+    mouseX > 853 &&
+    mouseX < 1148 &&
+    mouseY > 569 &&
+    mouseY < 701
+  ) {
+    currentCar = "supra";
+    console.log(currentCar);
+  }
+  selectCar(currentCar);
   colorBoxes();
 }
+/* function mouseClicked() {
+  console.log("click for bmw");
+} */
