@@ -32,6 +32,14 @@ let yellowSupra = loadImage("supra-45view/Supra-yellow.png");
 
 createCanvas(1200, 900);
 
+function headline() {
+  fill(255);
+  textFont("verdana");
+  textStyle(BOLD);
+  textSize(55);
+  text("Chose Your Car", 420, 75);
+}
+
 let carColors = {
   green: color("#00FF00"),
   blue: color("#00FFFF"),
@@ -43,18 +51,6 @@ let carColors = {
   white: color("#e5e5e5"),
   orange: color("#d96d25"),
 };
-
-/* let coloredCar = {
-    green: 
-} */
-
-function headline() {
-  fill(255);
-  textFont("verdana");
-  textStyle(BOLD);
-  textSize(55);
-  text("Chose Your Car", 420, 75);
-}
 
 function colorBoxes() {
   push();
@@ -110,6 +106,11 @@ function selectCar(currentCar) {
   }
 }
 
+function selectRandomColor(obj) {
+  let keys = Object.keys(obj);
+  return keys[Math.floor(Math.random() * keys.length)];
+}
+
 function selectColor(currentCar, currentColor) {
   if (currentCar === "bmw") {
     if (currentColor === "red") {
@@ -130,8 +131,6 @@ function selectColor(currentCar, currentColor) {
       image(whiteBmw, 80, 340, 647, 276);
     } else if (currentColor === "orange") {
       image(orangeBmw, 80, 340, 647, 276);
-    } else if (currentColor === "random") {
-      image(whiteBmw, 80, 340, 647, 276);
     }
   } else if (currentCar === "rx7") {
     if (currentColor === "red") {
@@ -152,8 +151,6 @@ function selectColor(currentCar, currentColor) {
       image(whiteRx7, 80, 340, 647, 276);
     } else if (currentColor === "orange") {
       image(orangeRx7, 80, 340, 647, 276);
-    } else if (currentColor === "random") {
-      image(whiteRx7, 80, 340, 647, 276);
     }
   } else if (currentCar === "supra") {
     if (currentColor === "red") {
@@ -174,8 +171,6 @@ function selectColor(currentCar, currentColor) {
       image(whiteSupra, 80, 340, 647, 276);
     } else if (currentColor === "orange") {
       image(orangeSupra, 80, 340, 647, 276);
-    } else if (currentColor === "random") {
-      image(whiteSupra, 80, 340, 647, 276);
     }
   }
 }
@@ -291,7 +286,11 @@ function draw() {
     mouseY > 780 &&
     mouseY < 830
   ) {
-    currentColor = "random";
+    selectRandomColor(carColors);
+    let randomColor = selectRandomColor(carColors);
+    let randomColorStr = String(randomColor);
+    currentColor = randomColorStr;
+    console.log(randomColorStr);
   }
 
   selectColor(currentCar, currentColor);
