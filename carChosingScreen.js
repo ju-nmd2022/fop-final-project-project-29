@@ -30,16 +30,6 @@ let redSupra = loadImage("supra-45view/Supra-red.png");
 let whiteSupra = loadImage("supra-45view/Supra-white.png");
 let yellowSupra = loadImage("supra-45view/Supra-yellow.png");
 
-createCanvas(1200, 900);
-
-function headline() {
-  fill(255);
-  textFont("verdana");
-  textStyle(BOLD);
-  textSize(55);
-  text("Chose Your Car", 420, 75);
-}
-
 let carColors = {
   green: color("#00FF00"),
   blue: color("#00FFFF"),
@@ -51,6 +41,30 @@ let carColors = {
   white: color("#e5e5e5"),
   orange: color("#d96d25"),
 };
+createCanvas(1200, 900);
+
+function headline() {
+  fill(255);
+  textFont("verdana");
+  textStyle(BOLD);
+  textSize(55);
+  text("Chose Your Car", 410, 75);
+}
+
+function backButton() {
+  let button;
+  button = createButton("BACK");
+  button.size(130, 60);
+  button.position(40, 40);
+  button.style("font-family", "Verdana");
+  button.style("font-size", "27px");
+  button.style("color: #ffffff");
+  button.style("border-radius: 30px");
+  button.style("border: 5px outset");
+  button.style("border-color: #FFFFFF");
+  button.style("background-color: #bd0271");
+}
+
 
 function colorBoxes() {
   push();
@@ -106,6 +120,7 @@ function selectCar(currentCar) {
   }
 }
 
+//the following 4 lines of code were done with the help of ChatGPT
 function selectRandomColor(obj) {
   let keys = Object.keys(obj);
   return keys[Math.floor(Math.random() * keys.length)];
@@ -178,6 +193,7 @@ function selectColor(currentCar, currentColor) {
 function draw() {
   background(bgChooseScreen);
   headline();
+  backButton();
   colorBoxes();
   //section for choosing car
   if (
@@ -287,6 +303,7 @@ function draw() {
     mouseY < 830
   ) {
     selectRandomColor(carColors);
+    //the following 2 lines of code were done with the help of ChatGPT 
     let randomColor = selectRandomColor(carColors);
     let randomColorStr = String(randomColor);
     currentColor = randomColorStr;
