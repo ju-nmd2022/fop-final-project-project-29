@@ -12,7 +12,7 @@ let cityMapSection10 = loadImage("map-city/cityMap10.png");
 let whichBackground = 1;
 
 
-//functin that checks for wheels crossing white line -> stop game
+//function that checks for wheels crossing white line -> stop game
 let isGameActive = false;
 let rightWheel = "something";
 let leftWheel = "something else";
@@ -29,7 +29,7 @@ if(whichBackground === "city1" && leftWheel > 335){
 createCanvas(1200, 900);
 
 function cityMap() {
-    background(cityMapSection10);
+    background(cityMapSection1);
     isGameActive = true;
     if(whichBackground === "city1" && 335 < carY < 560 && carX === 1200) {
         whichBackground = 2;

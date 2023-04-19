@@ -1,6 +1,8 @@
 let bg = loadImage('asphalt.jpeg');
 let tokyoCityImg = "url('logo.png')";
 
+let mapIsChosen = false;
+
 function preload() {
     bg = loadImage('asphalt.jpeg');
     logo = loadImage('logo.png');
@@ -19,7 +21,15 @@ function cityMapButton() {
     button.style("border-color", "#ffffff");
     button.style("color", "#ffffff");
     button.style("border-style", "outset");
-    button.mouseOver(function() {
+    if(mouseIsPressed &&
+      mouseX > 130 &&
+      mouseX < 527 &&
+      mouseY > 230 &&
+      mouseY < 525 ){
+      mapIsChosen = true;
+      console.log("ok");
+    }
+    /* button.mouseOver(function() {
         button.style("background-color", "");
         button.style("background-img", "url('logo.png')");
         button.style("background-repeat", "no-repeat");
@@ -27,7 +37,7 @@ function cityMapButton() {
       });
     button.mouseOut(function() {
         button.style("background-color", "#ec008c");
-      }); 
+      });  */
   }
 
   function suburbanMapButton() {
@@ -45,8 +55,15 @@ function cityMapButton() {
     button.style("border-color", "#ffffff");
     button.style("color", "#ffffff");
     button.style("border-style", "outset");
-
-      button.mouseOver(function() {
+    if(mouseIsPressed &&
+      mouseX > 660 &&
+      mouseX < 1080 &&
+      mouseY > 230 &&
+      mouseY < 525 ){
+      mapIsChosen = true;
+      console.log("ok");
+    }
+      /* button.mouseOver(function() {
         button.style("background-color", "");
         button.style("background-img", "url('logo.png')");
         button.style("background-repeat", "no-repeat");
@@ -54,17 +71,83 @@ function cityMapButton() {
       });
     button.mouseOut(function() {
         button.style("background-color", "#ec008c");
-      }); 
+      });  */
 
   }
 
+function selectButton(){
+  let button;
+    button = createButton("Done");
+    button.style("borderRadius", "30px");
+    button.position(420, 680);
+    button.style("font-family", "Verdana");
+    button.style("font-size", "42px");
+    button.style("background-color", "#ec008c");
+    button.style("width", "400px");
+    button.style("height", "100px");
+    button.style("border-width", "5px");
+    button.style("border-color", "#ffffff");
+    button.style("color", "#ffffff");
+    button.style("border-style", "outset");
+}
+
+let currentMap = "";
+
+/* function selectMap(){
+  if(
+    mouseIsPressed &&
+    mouseX > 660 &&
+    mouseX < 1080 &&
+    mouseY < 220 &&
+    mouseY < 525 
+  ){
+currentMap = "suburbs";
+mapIsChosen = true;
+}
+else if(
+  mouseIsPressed &&
+  mouseX > 680 &&
+  mouseX < 1080 &&
+  mouseY < 250 &&
+  mouseY < 550 
+){
+currentMap = "city";
+mapIsChosen = true;
+}
+}
+ */
 createCanvas(1200,900);
 function draw(){
-    background(bg);
+  background(bg);
     
-
-    //selectButton();
-    cityMapButton();
-    suburbanMapButton();
-
+  cityMapButton();
+  suburbanMapButton();
+  
+  /* function selectMap(mapIsChosen){
+    if(
+      mouseIsPressed &&
+      mouseX > 660 &&
+      mouseX < 1080 &&
+      mouseY < 220 &&
+      mouseY < 525 
+    ){
+  //currentMap = "suburbs";
+  mapIsChosen = true;
+  }
+  else if(
+    mouseIsPressed &&
+    mouseX > 680 &&
+    mouseX < 1080 &&
+    mouseY < 250 &&
+    mouseY < 550 
+  ){
+  //currentMap = "city";
+  mapIsChosen = true;
+  }
+  } */
+  function selectMap(){
+  if(mapIsChosen === true){
+    selectButton();
+  } }
+  selectMap();
 }
