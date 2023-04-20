@@ -12,46 +12,102 @@ let subMapSection11 = loadImage("suburbanMap/SuburbanMap-1.png");
 let subMapSection12 = loadImage("suburbanMap/SuburbanMap-5.png");
 
 //add borders to the road
-//the position of the car has to be updated/changed when entering the next screen
+//the position of the car has to be updated/changed when entering the necarXt screen
 
-let whichSectionOnMap = 2;
-let carY = 100;
-let carX = 100;
-createCanvas(1200, 900);
-
-function car() {
-  //here car or import of code (oop)
+function car(carX, carY, rotation) {
+  translate(carX, carY);
+  rotate(rotation);
+  fill("#f4ab78");
+  rect(-50, -30, 60, 30);
+  fill(0);
+  rect(-5, -25, 10, 20);
 }
 
-function suburbanMap() {
-  background(subMapSection12);
+let carX = 700;
+let carY = 380;
+let rotation = 0;
+let speed = 0;
+let acceleration = 0.3;
+//let nr = 1;
+
+let gameStart = true;
+//let whichSectionOnMap = 0;
+createCanvas(1200, 900);
+let whichSectionOnMap = 0;
+console.log(whichSectionOnMap);
+function checkCarPosition(whichSectionOnMap) {
+  if (whichSectionOnMap === 1 && carX >= 1200 && (254 < carY && carY < 552)) {
+    whichSectionOnMap += 1;
+    carX = 5;
+    carY = 400;
+  } else if (whichSectionOnMap === 2 && carX > 463 && carX < 767) {
+    whichSectionOnMap += 1;
+    background(subMapSection3);
+  }
+  /*else if (whichSectionOnMap === 3 && carY > 194 && carY < 504) {
+    whichSectionOnMap = 4;
+    background(subMapSection4);
+  } else if (whichSectionOnMap === 4 && carX > 483 && carX < 783) {
+    whichSectionOnMap = 5;
+    background(subMapSection5);
+  } else if (whichSectionOnMap === 5 && carY > 404 && carY < 724) {
+    whichSectionOnMap = 6;
+    background(subMapSection6);
+  } else if (whichSectionOnMap === 6 && carX > 821 && carX < 1130) {
+    whichSectionOnMap = 7;
+    background(subMapSection7);
+  } else if (whichSectionOnMap === 7 && carX > 269 && carX < 575) {
+    whichSectionOnMap = 8;
+    background(subMapSection8);
+  } else if (whichSectionOnMap === 8 && carY > 87 && carY < 395) {
+    whichSectionOnMap = 9;
+    background(subMapSection9);
+  } else if (whichSectionOnMap === 9 && carY > 448 && carY < 753) {
+    whichSectionOnMap = 10;
+    background(subMapSection10);
+  } else if (whichSectionOnMap === 10 && carY > 48 && carY < 360) {
+    whichSectionOnMap = 11;
+    background(subMapSection11);
+  } else if (whichSectionOnMap === 11 && carX > 266 && carX < 574) {
+    whichSectionOnMap = 12;
+    background(subMapSection12);
+  } else if (whichSectionOnMap === 12 && carY > 319 && carY < 625) {
+    whichSectionOnMap = 1;
+    background(subMapSection1);
+  }  */
+}
+function updateScreen(whichSectionOnMap) {
+  if (whichSectionOnMap === 0) {
+    whichSectionOnMap = 1;
+  } else if (whichSectionOnMap === 1) {
+    background(subMapSection1);
+  } else if (whichSectionOnMap === 2) {
+    background(subMapSection2);
+  }
 }
 
 function draw() {
-  suburbanMap();
-  if (whichSectionOnMap === 1 && 254 > carY && carY < 552) {
-    whichSectionOnMap = 2;
-  } else if (whichSectionOnMap === 2 && carX > 463 && carX < 767) {
-    whichSectionOnMap = 3;
-  } else if (whichSectionOnMap === 3 && carY > 194 && carY < 504) {
-    whichSectionOnMap = 4;
-  } else if (whichSectionOnMap === 4 && carX > 483 && carX < 783) {
-    whichSectionOnMap = 5;
-  } else if (whichSectionOnMap === 5 && carY > 404 && carY < 724) {
-    whichSectionOnMap = 6;
-  } else if (whichSectionOnMap === 6 && carX > 821 && carX < 1130) {
-    whichSectionOnMap = 7;
-  } else if (whichSectionOnMap === 7 && carX > 269 && carX < 575) {
-    whichSectionOnMap = 8;
-  } else if (whichSectionOnMap === 8 && carY > 87 && carY < 395) {
-    whichSectionOnMap = 9;
-  } else if (whichSectionOnMap === 9 && carY > 448 && carY < 753) {
-    whichSectionOnMap = 10;
-  } else if (whichSectionOnMap === 10 && carY > 48 && carY < 360) {
-    whichSectionOnMap = 11;
-  } else if (whichSectionOnMap === 11 && carX > 266 && carX < 574) {
-    whichSectionOnMap = 12;
-  } else if (whichSectionOnMap === 12 && carX > 319 && carY < 625) {
-    whichSectionOnMap = 1;
+  //console.log(carX + " - " + carY);
+  checkCarPosition(whichSectionOnMap);
+  updateScreen(whichSectionOnMap);
+  car(carX, carY, rotation);
+
+  speed = speed + acceleration;
+
+  carX = carX + Math.cos(rotation) * speed;
+  carY = carY + Math.sin(rotation) * speed;
+
+  if (keyIsDown(38)) {
+    speed = 5;
+  } else if (keyIsDown(40)) {
+    speed = -5;
+  } else {
+    speed = 0;
+  }
+
+  if (keyIsDown(37)) {
+    rotation = rotation - 0.05;
+  } else if (keyIsDown(39)) {
+    rotation = rotation + 0.05;
   }
 }

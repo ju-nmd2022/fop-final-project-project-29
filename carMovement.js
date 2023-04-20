@@ -2,14 +2,16 @@ let carX = 200;
 let carY = 200;
 let rotation = 0;
 let speed = 0;
+
 function bmw(carX, carY, carScale, rotation) {
   push();
+  //translate(carX, carY); //this doesn't do anything
   rotate(rotation);
   strokeWeight(1 * carScale);
   //Base Body
   fill(217, 109, 37);
   beginShape();
-  vertex(carX - 184 * carScale, carY - 37 * carScale);
+  vertex(carX - 184 * carScale, carY - 37 * carScale); 
   vertex(carX - 180 * carScale, carY - 41 * carScale);
   vertex(carX - 174 * carScale, carY - 63 * carScale);
   vertex(carX - 164 * carScale, carY - 70 * carScale);
@@ -323,8 +325,9 @@ function draw() {
     speed = 0;
   }
   if (keyIsDown(37)) {
-    rotation = rotation + 0.02;
+    rotation = rotation - 0.05;
   } else if (keyIsDown(39)) {
-    rotation = rotation - 0.02;
+    rotation = rotation + 0.05;
   }
 }
+ 
