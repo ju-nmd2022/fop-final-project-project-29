@@ -10,7 +10,7 @@ let cityMapSection9 = loadImage("map-city/cityMap9.png");
 let cityMapSection10 = loadImage("map-city/cityMap10.png");
 
 
-let whichBackground = 1;
+let whichBackground = 10;
 
 function car(carX, carY, rotation) {
     translate(carX, carY);
@@ -45,7 +45,7 @@ if(whichBackground === "city1" && leftWheel > 335){
 createCanvas(1200, 900);
 function preload() {
         // Load the initial background image
-        backgroundImage = loadImage("map-city/cityMap1.png");
+        backgroundImage = loadImage("map-city/cityMap10.png");
       }
 
 function cityMap() {
@@ -57,35 +57,53 @@ function cityMap() {
         whichBackground += 1;
         backgroundImage = loadImage("map-city/cityMap2.png");
         carX = 5;
-     } else if(whichBackground === 2 && 335 < carY && carY < 560 && carX >= 1200) {
+     } else if(whichBackground === 2 && 39 < carY && carY < 267 && carX >= 1200) {
         whichBackground += 1;
         backgroundImage = loadImage("map-city/cityMap3.png");
         carX = 5;
-    } /*else if(whichBackground === "city3" && carY === 900 && 451 < carX < 898) {
-        whichBackground = 4;
-    } else if(whichBackground === "city4" && 689 < carY < 719 && carX === 1200) {
-        whichBackground = 5;
-    } else if(whichBackground === "city5" && carY === 0 && 516 < carX < 744) {
-        whichBackground = 6;
-    } else if(whichBackground === "city6" && carY === 0 && 516 < carX < 744) {
-        whichBackground = 7;
-    } else if(whichBackground === "city7" && 252 < carY < 479 && carX === 1200) {
-        whichBackground = 8;
-    } else if(whichBackground === "city8" && carY === 900 && 531 < carX < 755) {
-        whichBackground = 9;
-    } else if(whichBackground === "city9" && 320 < carY < 545 && carX === 1200) {
-        whichBackground = 10;
-    }else if(whichBackground === "city10" && 320 < carY < 545 && carX === 830) {
-        //win
-    } */
+    } else if(whichBackground === 3 && 448 < carX && carX < 670 && carY >= 900) {
+        whichBackground += 1;
+        backgroundImage = loadImage("map-city/cityMap4.png");
+        carY = 5;
+    } else if(whichBackground === 4 && 256 < carY && carY < 482 && carX >= 1200) {
+        whichBackground += 1;
+        backgroundImage = loadImage("map-city/cityMap5.png");
+        carX = 5;
+    } else if(whichBackground === 5 && 517 < carX && carX < 745 && carY <= 0) {
+        whichBackground += 1;
+        backgroundImage = loadImage("map-city/cityMap6.png");
+        carY = 900;
+    } else if(whichBackground === 6 && 517 < carX && carX < 745 && carY <= 0) {
+        whichBackground += 1;
+        backgroundImage = loadImage("map-city/cityMap7.png");
+        carY = 900;
+    } else if(whichBackground === 7 && 254 < carY && carY < 479 && carX >= 1200) {
+        whichBackground += 1;
+        backgroundImage = loadImage("map-city/cityMap8.png");
+        carX = 5;
+    } else if(whichBackground === 8 && 530 < carX && carX < 755 && carY >= 900) {
+        whichBackground += 1;
+        backgroundImage = loadImage("map-city/cityMap9.png");
+        carY = 5;
+    } else if(whichBackground === 9 && 320 < carY && carY < 544 && carX >= 1200) {
+        whichBackground += 1;
+        backgroundImage = loadImage("map-city/cityMap10.png");
+        carX = 5;
+    } else if(whichBackground === 10 && 320 < carY && carY < 544 && carX >= 890) {
+        whichBackground += 1;
+        backgroundImage = loadImage("map-city/cityMap10.png");
+        isGameActive = false;
+    } 
   }
   
   function draw() {
   
     background(backgroundImage);
   cityMap();
-    car(carX, carY, rotation);
 
+  
+    car(carX, carY, rotation);
+if (isGameActive === true){
   speed = speed + acceleration;
 
   carX = carX + Math.cos(rotation) * speed;
@@ -104,5 +122,26 @@ function cityMap() {
   } else if (keyIsDown(39)) {
     rotation = rotation + 0.05;
   }
+  } else if (isGameActive === false){
+    speed = 0;
+    acceleration = 0;
+    carX = carX + Math.cos(rotation) * speed;
+  carY = carY + Math.sin(rotation) * speed;
+  if (keyIsDown(38)) {
+    speed = 0;
+  } else if (keyIsDown(40)) {
+    speed = 0;
+  } else {
+    speed = 0;
   }
+
+  if (keyIsDown(37)) {
+    rotation = 0;
+  } else if (keyIsDown(39)) {
+    rotation = 0;
+  }
+console.log(isGameActive);
+  }
+  
+}
 
