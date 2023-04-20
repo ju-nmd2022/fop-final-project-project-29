@@ -10,7 +10,7 @@ let cityMapSection9 = loadImage("map-city/cityMap9.png");
 let cityMapSection10 = loadImage("map-city/cityMap10.png");
 
 
-let whichBackground = 10;
+let whichBackground = 1;
 
 function car(carX, carY, rotation) {
     translate(carX, carY);
@@ -45,12 +45,10 @@ if(whichBackground === "city1" && leftWheel > 335){
 createCanvas(1200, 900);
 function preload() {
         // Load the initial background image
-        backgroundImage = loadImage("map-city/cityMap10.png");
+        backgroundImage = loadImage("map-city/cityMap1.png");
       }
 
 function cityMap() {
-    
-    //background(backgroundImage);
 
     isGameActive = true;
     if(whichBackground === 1 && 335 < carY && carY < 560 && carX >= 1200) {
