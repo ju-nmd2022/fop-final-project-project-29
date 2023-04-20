@@ -2,11 +2,14 @@ let bg = loadImage('asphalt.jpeg');
 let tokyoCityImg = "url('logo.png')";
 
 let mapIsChosen = false;
+let doneGoBack = false;
 
 function preload() {
     bg = loadImage('asphalt.jpeg');
     logo = loadImage('logo.png');
   }
+
+// button City map
 
 function cityMapButton() {
     let button;
@@ -29,17 +32,19 @@ function cityMapButton() {
       mapIsChosen = true;
       console.log("ok");
     }
-    /* button.mouseOver(function() {
-        button.style("background-color", "");
-        button.style("background-img", "url('logo.png')");
+     button.mouseOver(function() {
+        button.style("background-color", "transparent");
+        //button.style.backgroundImage = "url('logo.png')";
+        button.style("background-image", "url('logo.png')");
         button.style("background-repeat", "no-repeat");
         button.style("background-size", "cover");
       });
     button.mouseOut(function() {
         button.style("background-color", "#ec008c");
-      });  */
+      });
   }
 
+  //button Suburban map
   function suburbanMapButton() {
     let button;
     button = createButton("Suburbs");
@@ -75,6 +80,7 @@ function cityMapButton() {
 
   }
 
+//Button done
 function selectButton(){
   let button;
     button = createButton("Done");
@@ -89,65 +95,38 @@ function selectButton(){
     button.style("border-color", "#ffffff");
     button.style("color", "#ffffff");
     button.style("border-style", "outset");
+    if(mouseIsPressed &&
+      mouseX > 420 &&
+      mouseX < 820 &&
+      mouseY > 680 &&
+      mouseY < 780 ){
+      doneGoBack = true;
+      console.log("done");
+      }
 }
 
 let currentMap = "";
 
-/* function selectMap(){
-  if(
-    mouseIsPressed &&
-    mouseX > 660 &&
-    mouseX < 1080 &&
-    mouseY < 220 &&
-    mouseY < 525 
-  ){
-currentMap = "suburbs";
-mapIsChosen = true;
+//canvas
+function setup(){
+  createCanvas(1200,900);
+  cityMapButton();
 }
-else if(
-  mouseIsPressed &&
-  mouseX > 680 &&
-  mouseX < 1080 &&
-  mouseY < 250 &&
-  mouseY < 550 
-){
-currentMap = "city";
-mapIsChosen = true;
-}
-}
- */
-createCanvas(1200,900);
+
 function draw(){
   background(bg);
     
-  cityMapButton();
+ 
   suburbanMapButton();
   
-  /* function selectMap(mapIsChosen){
-    if(
-      mouseIsPressed &&
-      mouseX > 660 &&
-      mouseX < 1080 &&
-      mouseY < 220 &&
-      mouseY < 525 
-    ){
-  //currentMap = "suburbs";
-  mapIsChosen = true;
-  }
-  else if(
-    mouseIsPressed &&
-    mouseX > 680 &&
-    mouseX < 1080 &&
-    mouseY < 250 &&
-    mouseY < 550 
-  ){
-  //currentMap = "city";
-  mapIsChosen = true;
-  }
-  } */
   function selectMap(){
   if(mapIsChosen === true){
     selectButton();
   } }
   selectMap();
+
+  if(doneGoBack === true){
+    //switch screen
+  }
+
 }
