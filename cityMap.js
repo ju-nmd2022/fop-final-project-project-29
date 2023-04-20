@@ -9,6 +9,7 @@ let cityMapSection8 = loadImage("map-city/cityMap8.png");
 let cityMapSection9 = loadImage("map-city/cityMap9.png");
 let cityMapSection10 = loadImage("map-city/cityMap10.png");
 
+
 let whichBackground = 1;
 
 function car(carX, carY, rotation) {
@@ -42,17 +43,25 @@ if(whichBackground === "city1" && leftWheel > 335){
 //function that checks for car passing by border -> change background
 
 createCanvas(1200, 900);
+function preload() {
+        // Load the initial background image
+        backgroundImage = loadImage("map-city/cityMap1.png");
+      }
 
 function cityMap() {
-    background(cityMapSection1);
+    
+    //background(backgroundImage);
+
     isGameActive = true;
-    if(whichBackground === "city1" && 335 < carY && carY < 560 && carX === 1200) {
-        whichBackground = 2;
-        background(cityMapSection2);
-        carX= 5;
-    } else if(whichBackground === "city2" && 37 < carY < 265 && carX >= 1200) {
-        whichBackground = 3;
-    } else if(whichBackground === "city3" && carY === 900 && 451 < carX < 898) {
+    if(whichBackground === 1 && 335 < carY && carY < 560 && carX >= 1200) {
+        whichBackground += 1;
+        backgroundImage = loadImage("map-city/cityMap2.png");
+        carX = 5;
+     } else if(whichBackground === 2 && 335 < carY && carY < 560 && carX >= 1200) {
+        whichBackground += 1;
+        backgroundImage = loadImage("map-city/cityMap3.png");
+        carX = 5;
+    } /*else if(whichBackground === "city3" && carY === 900 && 451 < carX < 898) {
         whichBackground = 4;
     } else if(whichBackground === "city4" && 689 < carY < 719 && carX === 1200) {
         whichBackground = 5;
@@ -68,12 +77,13 @@ function cityMap() {
         whichBackground = 10;
     }else if(whichBackground === "city10" && 320 < carY < 545 && carX === 830) {
         //win
-    }
+    } */
   }
   
   function draw() {
-    cityMap();
-
+  
+    background(backgroundImage);
+  cityMap();
     car(carX, carY, rotation);
 
   speed = speed + acceleration;
