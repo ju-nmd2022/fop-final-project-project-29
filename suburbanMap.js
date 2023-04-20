@@ -14,6 +14,11 @@ let subMapSection12 = loadImage("suburbanMap/SuburbanMap-5.png");
 //add borders to the road
 //the position of the car has to be updated/changed when entering the necarXt screen
 
+function preload() {
+  // Load the initial background image
+  backgroundImage = loadImage("suburbanMap/SuburbanMap-9.png");
+}
+
 function car(carX, carY, rotation) {
   translate(carX, carY);
   rotate(rotation);
@@ -32,17 +37,17 @@ let acceleration = 0.3;
 
 let gameStart = true;
 createCanvas(1200, 900);
-//console.log(whichSectionOnMap);
-let whichSectionOnMap = 0;
+let whichSectionOnMap = 1;
 
-function checkCarPosition(whichSectionOnMap) {
+function checkCarPosition() {
   if (whichSectionOnMap === 1 && carX >= 1200 && (254 < carY && carY < 552)) {
     whichSectionOnMap += 1;
     carX = 5;
     carY = 400;
+    backgroundImage = loadImage("suburbanMap/SuburbanMap-10.png");
   } else if (whichSectionOnMap === 2 && carY <= 0 && carX > 463 && carX < 767) {
     whichSectionOnMap += 1;
-    background(subMapSection3);
+    backgroundImage = loadImage("suburbanMap/SuburbanMap-6.png");
   }
   /*else if (whichSectionOnMap === 3 && carY > 194 && carY < 504) {
     whichSectionOnMap = 4;
@@ -76,26 +81,15 @@ function checkCarPosition(whichSectionOnMap) {
     background(subMapSection1);
   }  */
 }
-function updateScreen(whichSectionOnMap) {
-  if (whichSectionOnMap === 0) {
-    whichSectionOnMap += 1;
-    console.log(whichSectionOnMap);
-  } else if (whichSectionOnMap === 1) {
-    background(subMapSection1);
-    console.log("HELLOO");
-  } else if (whichSectionOnMap === 2) {
-    background(subMapSection2);
-  }
-}
+
 
 function draw() {
+  background(backgroundImage);
   checkCarPosition();
-  updateScreen();
 
   car(carX, carY, rotation);
 
   speed = speed + acceleration;
-
   carX = carX + Math.cos(rotation) * speed;
   carY = carY + Math.sin(rotation) * speed;
 
