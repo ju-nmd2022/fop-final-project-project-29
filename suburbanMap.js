@@ -31,16 +31,16 @@ let acceleration = 0.3;
 //let nr = 1;
 
 let gameStart = true;
-//let whichSectionOnMap = 0;
 createCanvas(1200, 900);
+//console.log(whichSectionOnMap);
 let whichSectionOnMap = 0;
-console.log(whichSectionOnMap);
+
 function checkCarPosition(whichSectionOnMap) {
   if (whichSectionOnMap === 1 && carX >= 1200 && (254 < carY && carY < 552)) {
     whichSectionOnMap += 1;
     carX = 5;
     carY = 400;
-  } else if (whichSectionOnMap === 2 && carX > 463 && carX < 767) {
+  } else if (whichSectionOnMap === 2 && carY <= 0 && carX > 463 && carX < 767) {
     whichSectionOnMap += 1;
     background(subMapSection3);
   }
@@ -78,18 +78,20 @@ function checkCarPosition(whichSectionOnMap) {
 }
 function updateScreen(whichSectionOnMap) {
   if (whichSectionOnMap === 0) {
-    whichSectionOnMap = 1;
+    whichSectionOnMap += 1;
+    console.log(whichSectionOnMap);
   } else if (whichSectionOnMap === 1) {
     background(subMapSection1);
+    console.log("HELLOO");
   } else if (whichSectionOnMap === 2) {
     background(subMapSection2);
   }
 }
 
 function draw() {
-  //console.log(carX + " - " + carY);
-  checkCarPosition(whichSectionOnMap);
-  updateScreen(whichSectionOnMap);
+  checkCarPosition();
+  updateScreen();
+
   car(carX, carY, rotation);
 
   speed = speed + acceleration;
