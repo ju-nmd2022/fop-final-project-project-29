@@ -42,46 +42,54 @@ let whichSectionOnMap = 1;
 function checkCarPosition() {
   if (whichSectionOnMap === 1 && carX >= 1200 && (254 < carY && carY < 552)) {
     whichSectionOnMap += 1;
-    carX = 5;
-    carY = 400;
+    carX = 0;
     backgroundImage = loadImage("suburbanMap/SuburbanMap-10.png");
   } else if (whichSectionOnMap === 2 && carY <= 0 && carX > 463 && carX < 767) {
     whichSectionOnMap += 1;
+    carY = 900;
     backgroundImage = loadImage("suburbanMap/SuburbanMap-6.png");
+  } else if (whichSectionOnMap === 3 && carX >= 1200 && carY > 194 && carY < 504) {
+    whichSectionOnMap += 1;
+    carX =0;
+    backgroundImage = loadImage("suburbanMap/SuburbanMap-7.png");
+  } else if (whichSectionOnMap === 4 && carY >= 900 && carX > 483 && carX < 783) {
+    whichSectionOnMap += 1;
+    carY = 0;
+    backgroundImage = loadImage("suburbanMap/SuburbanMap-11.png");
+  } else if (whichSectionOnMap === 5 && carX >= 1200 && carY > 404 && carY < 724) {
+    whichSectionOnMap += 1;
+    carX = 0;
+    backgroundImage = loadImage("suburbanMap/SuburbanMap-12.png");
+  } else if (whichSectionOnMap === 6 && carY <= 0 && carX > 821 && carX < 1130) {
+    whichSectionOnMap += 1;
+    carY = 900;
+    backgroundImage = loadImage("suburbanMap/SuburbanMap-8.png");
+  } else if (whichSectionOnMap === 7 && carY <= 0 && carX > 269 && carX < 575) {
+    whichSectionOnMap += 1;
+    carY = 900;
+    backgroundImage = loadImage("suburbanMap/SuburbanMap-4.png");
+  } else if (whichSectionOnMap === 8 && carX <= 0 && carY > 87 && carY < 395) {
+    whichSectionOnMap += 1;
+    carX = 1200;
+    backgroundImage = loadImage("suburbanMap/SuburbanMap-3.png");
+  } else if (whichSectionOnMap === 9 && carX <= 0 && carY > 448 && carY < 753) {
+    whichSectionOnMap += 1;
+    carX = 1200;
+    backgroundImage = loadImage("suburbanMap/SuburbanMap-2.png");
+  } else if (whichSectionOnMap === 10 && carX <= 0 && carY > 48 && carY < 360) {
+    whichSectionOnMap += 1;
+    carX = 1200;
+    backgroundImage = loadImage("suburbanMap/SuburbanMap-1.png");
+  } else if (whichSectionOnMap === 11 && carY >= 900 && carX > 266 && carX < 574) {
+    whichSectionOnMap += 1;
+    carY = 0;
+    backgroundImage = loadImage("suburbanMap/SuburbanMap-5.png");
+  } else if (whichSectionOnMap === 12 && carY >= 900 && carX > 319 && carX < 625) {
+    whichSectionOnMap += 1;
+    carY = 0;
+    backgroundImage = loadImage("suburbanMap/SuburbanMap-9.png");
   }
-  /*else if (whichSectionOnMap === 3 && carY > 194 && carY < 504) {
-    whichSectionOnMap = 4;
-    background(subMapSection4);
-  } else if (whichSectionOnMap === 4 && carX > 483 && carX < 783) {
-    whichSectionOnMap = 5;
-    background(subMapSection5);
-  } else if (whichSectionOnMap === 5 && carY > 404 && carY < 724) {
-    whichSectionOnMap = 6;
-    background(subMapSection6);
-  } else if (whichSectionOnMap === 6 && carX > 821 && carX < 1130) {
-    whichSectionOnMap = 7;
-    background(subMapSection7);
-  } else if (whichSectionOnMap === 7 && carX > 269 && carX < 575) {
-    whichSectionOnMap = 8;
-    background(subMapSection8);
-  } else if (whichSectionOnMap === 8 && carY > 87 && carY < 395) {
-    whichSectionOnMap = 9;
-    background(subMapSection9);
-  } else if (whichSectionOnMap === 9 && carY > 448 && carY < 753) {
-    whichSectionOnMap = 10;
-    background(subMapSection10);
-  } else if (whichSectionOnMap === 10 && carY > 48 && carY < 360) {
-    whichSectionOnMap = 11;
-    background(subMapSection11);
-  } else if (whichSectionOnMap === 11 && carX > 266 && carX < 574) {
-    whichSectionOnMap = 12;
-    background(subMapSection12);
-  } else if (whichSectionOnMap === 12 && carY > 319 && carY < 625) {
-    whichSectionOnMap = 1;
-    background(subMapSection1);
-  }  */
 }
-
 
 function draw() {
   background(backgroundImage);
@@ -94,9 +102,9 @@ function draw() {
   carY = carY + Math.sin(rotation) * speed;
 
   if (keyIsDown(38)) {
-    speed = 5;
+    speed = 10;
   } else if (keyIsDown(40)) {
-    speed = -5;
+    speed = -10;
   } else {
     speed = 0;
   }
