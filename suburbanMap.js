@@ -12,7 +12,6 @@ let subMapSection11 = loadImage("suburbanMap/SuburbanMap-1.png");
 let subMapSection12 = loadImage("suburbanMap/SuburbanMap-5.png");
 
 //add borders to the road
-//the position of the car has to be updated/changed when entering the necarXt screen
 
 function preload() {
   // Load the initial background image
@@ -33,13 +32,21 @@ let carY = 380;
 let rotation = 0;
 let speed = 0;
 let acceleration = 0.3;
-//let nr = 1;
 
-let gameStart = true;
+
+let isGameActive = false;
 createCanvas(1200, 900);
 let whichSectionOnMap = 1;
 
 function checkCarPosition() {
+   if (keyIsDown(32) && isGameActive === false) {
+    isGameActive = true;
+    console.log("hello?");
+  } else if (whichSectionOnMap === 1 && isGameActive === true && carX > 640 && carX < 700 && carY > 258 && carY < 552) {
+    isGameActive = false;
+    console.log("win");
+  } 
+
   if (whichSectionOnMap === 1 && carX >= 1200 && (254 < carY && carY < 552)) {
     whichSectionOnMap += 1;
     carX = 0;
@@ -50,7 +57,7 @@ function checkCarPosition() {
     backgroundImage = loadImage("suburbanMap/SuburbanMap-6.png");
   } else if (whichSectionOnMap === 3 && carX >= 1200 && carY > 194 && carY < 504) {
     whichSectionOnMap += 1;
-    carX =0;
+    carX = 0;
     backgroundImage = loadImage("suburbanMap/SuburbanMap-7.png");
   } else if (whichSectionOnMap === 4 && carY >= 900 && carX > 483 && carX < 783) {
     whichSectionOnMap += 1;
@@ -97,21 +104,26 @@ function draw() {
 
   car(carX, carY, rotation);
 
-  speed = speed + acceleration;
-  carX = carX + Math.cos(rotation) * speed;
-  carY = carY + Math.sin(rotation) * speed;
+  if (isGameActive === false) {
+    acceleration = 0;
+  } else if (isGameActive === true) {
+    acceleration = 0.3;
+    speed = speed + acceleration;
+    carX = carX + Math.cos(rotation) * speed;
+    carY = carY + Math.sin(rotation) * speed;
 
-  if (keyIsDown(38)) {
-    speed = 10;
-  } else if (keyIsDown(40)) {
-    speed = -10;
-  } else {
-    speed = 0;
-  }
+    if (keyIsDown(38)) {
+      speed = 10;
+    } else if (keyIsDown(40)) {
+      speed = -10;
+    } else {
+      speed = 0;
+    }
 
-  if (keyIsDown(37)) {
-    rotation = rotation - 0.05;
-  } else if (keyIsDown(39)) {
-    rotation = rotation + 0.05;
+    if (keyIsDown(37)) {
+      rotation = rotation - 0.05;
+    } else if (keyIsDown(39)) {
+      rotation = rotation + 0.05;
+    }
   }
 }
