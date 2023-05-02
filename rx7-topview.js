@@ -1,7 +1,7 @@
 let carX = 250;
 let carY = 150;
 let carScale = 1;
-background(255);
+
 
 strokeWeight(1 * carScale);
 //BaseBody

@@ -1,8 +1,6 @@
 let carX = 260;
 let carY = 180;
 let carScale = 1;
-background(255);
-//use array with all the colors
 
 strokeWeight(1 * carScale);
 //Base Body

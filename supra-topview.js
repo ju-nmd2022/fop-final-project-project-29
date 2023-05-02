@@ -1,12 +1,11 @@
 let carX = 300;
 let carY = 300;
 let carScale = 1;
-let carColor = color(0,255,0);
 
 //outline
 beginShape();
 stroke(0);
-fill(carColor);
+fill(0,255,0);
 strokeWeight(1);
 vertex(carX - 215 * carScale, carY);
 bezierVertex(
