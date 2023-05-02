@@ -1,5 +1,9 @@
-createCanvas(1200, 900);
-let currentScreen = "suburbanMap";
+function setup() {
+  window.createCanvas(1200, 900);
+  frameRate(30);
+}
+
+let currentScreen = "preScreen";
 
 /* content of pre screen */
 let bg = loadImage("./preview.png");
@@ -17,7 +21,7 @@ function startButton() {
   button.style("background-color: #ec008c");
 }
 function preScreen() {
-  background(bg);
+  background("preview.png");
   startButton();
 }
 
