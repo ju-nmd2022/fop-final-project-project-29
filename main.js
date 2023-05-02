@@ -1,5 +1,5 @@
 createCanvas(1200, 900);
-let currentScreen = "mapSelection";
+let currentScreen = "suburbanMap";
 
 /* content of pre screen */
 let bg = loadImage("./preview.png");
@@ -393,7 +393,6 @@ let tokyoCityImg = "url('logo.png')";
 let mapIsChosen = false;
 let doneGoBack = false;
 
-// button City map
 function cityMapButton() {
   let button;
   button = createButton("Tokyo City");
@@ -428,7 +427,6 @@ function cityMapButton() {
     button.style("background-color", "#ec008c");
   });
 }
-//button Suburban map
 function suburbanMapButton() {
   let button;
   button = createButton("Suburbs");
@@ -464,7 +462,6 @@ function suburbanMapButton() {
         button.style("background-color", "#ec008c");
       });  */
 }
-//Button done
 function selectButton() {
   let button;
   button = createButton("Done");
@@ -804,7 +801,6 @@ function bmw() {
   );
   endShape();
 }
-
 function rx7() {
   strokeWeight(1 * carScale);
   //BaseBody
@@ -1204,7 +1200,6 @@ function rx7() {
   );
   endShape();
 }
-
 function supra() {
   //outline
   beginShape();
@@ -1750,6 +1745,7 @@ function supra() {
   );
   endShape();
 }
+
 /* content of boost */
 let boostX = 100;
 let boostY = 300;
@@ -1843,95 +1839,123 @@ function nosBoost() {
   vertex(boostX - 8 * boostScale, boostY - 32 * boostScale);
   endShape();
 }
+
 /* content of city map */
-let whichBackground = 1;
+let whichBackgroundCity = 1;
 let isGameActive = false;
 function preloadCity() {
   // Load the initial background image
-  backgroundImage = loadImage("map-city/cityMap1.png");
+  backgroundImageCity = loadImage("map-city/cityMap1.png");
 }
 function cityConditions() {
   isGameActive = true;
-  if (whichBackground === 1 && 335 < carY && carY < 560 && carX >= 1200) {
-    whichBackground += 1;
-    backgroundImage = loadImage("map-city/cityMap2.png");
+  if (whichBackgroundCity === 1 && 335 < carY && carY < 560 && carX >= 1200) {
+    whichBackgroundCity += 1;
+    backgroundImageCity = loadImage("map-city/cityMap2.png");
     carX = 5;
-  } else if (whichBackground === 2 && 39 < carY && carY < 267 && carX >= 1200) {
-    whichBackground += 1;
-    backgroundImage = loadImage("map-city/cityMap3.png");
+  } else if (
+    whichBackgroundCity === 2 &&
+    39 < carY &&
+    carY < 267 &&
+    carX >= 1200
+  ) {
+    whichBackgroundCity += 1;
+    backgroundImageCity = loadImage("map-city/cityMap3.png");
     carX = 5;
-  } else if (whichBackground === 3 && 448 < carX && carX < 670 && carY >= 900) {
-    whichBackground += 1;
-    backgroundImage = loadImage("map-city/cityMap4.png");
+  } else if (
+    whichBackgroundCity === 3 &&
+    448 < carX &&
+    carX < 670 &&
+    carY >= 900
+  ) {
+    whichBackgroundCity += 1;
+    backgroundImageCity = loadImage("map-city/cityMap4.png");
     carY = 5;
   } else if (
-    whichBackground === 4 &&
+    whichBackgroundCity === 4 &&
     256 < carY &&
     carY < 482 &&
     carX >= 1200
   ) {
-    whichBackground += 1;
-    backgroundImage = loadImage("map-city/cityMap5.png");
+    whichBackgroundCity += 1;
+    backgroundImageCity = loadImage("map-city/cityMap5.png");
     carX = 5;
-  } else if (whichBackground === 5 && 517 < carX && carX < 745 && carY <= 0) {
-    whichBackground += 1;
-    backgroundImage = loadImage("map-city/cityMap6.png");
-    carY = 900;
-  } else if (whichBackground === 6 && 517 < carX && carX < 745 && carY <= 0) {
-    whichBackground += 1;
-    backgroundImage = loadImage("map-city/cityMap7.png");
+  } else if (
+    whichBackgroundCity === 5 &&
+    517 < carX &&
+    carX < 745 &&
+    carY <= 0
+  ) {
+    whichBackgroundCity += 1;
+    backgroundImageCity = loadImage("map-city/cityMap6.png");
     carY = 900;
   } else if (
-    whichBackground === 7 &&
+    whichBackgroundCity === 6 &&
+    517 < carX &&
+    carX < 745 &&
+    carY <= 0
+  ) {
+    whichBackgroundCity += 1;
+    backgroundImageCity = loadImage("map-city/cityMap7.png");
+    carY = 900;
+  } else if (
+    whichBackgroundCity === 7 &&
     254 < carY &&
     carY < 479 &&
     carX >= 1200
   ) {
-    whichBackground += 1;
-    backgroundImage = loadImage("map-city/cityMap8.png");
+    whichBackgroundCity += 1;
+    backgroundImageCity = loadImage("map-city/cityMap8.png");
     carX = 5;
-  } else if (whichBackground === 8 && 530 < carX && carX < 755 && carY >= 900) {
-    whichBackground += 1;
-    backgroundImage = loadImage("map-city/cityMap9.png");
+  } else if (
+    whichBackgroundCity === 8 &&
+    530 < carX &&
+    carX < 755 &&
+    carY >= 900
+  ) {
+    whichBackgroundCity += 1;
+    backgroundImageCity = loadImage("map-city/cityMap9.png");
     carY = 5;
   } else if (
-    whichBackground === 9 &&
+    whichBackgroundCity === 9 &&
     320 < carY &&
     carY < 544 &&
     carX >= 1200
   ) {
-    whichBackground += 1;
-    backgroundImage = loadImage("map-city/cityMap10.png");
+    whichBackgroundCity += 1;
+    backgroundImageCity = loadImage("map-city/cityMap10.png");
     carX = 5;
   } else if (
-    whichBackground === 10 &&
+    whichBackgroundCity === 10 &&
     320 < carY &&
     carY < 544 &&
     carX >= 890
   ) {
-    whichBackground += 1;
-    backgroundImage = loadImage("map-city/cityMap10.png");
+    whichBackgroundCity += 1;
+    backgroundImageCity = loadImage("map-city/cityMap10.png");
     isGameActive = false;
   }
 }
-function cityMap() {
-  background(backgroundImage);
+function cityMap(backgroundImageCity) {
+  background(backgroundImageCity);
   cityConditions();
 }
+
 /* content of suburban map */
-function preloadSuburban() {
+let whichSectionOnMap = 1;
+function preloadSuburban(backgroundImageSub) {
   // Load the initial background image
-  backgroundImage = loadImage("suburbanMap/SuburbanMap-9.png");
+  backgroundImageSub = loadImage("suburbanMap/SuburbanMap-9.png");
 }
-function suburbanConditions() {
+function suburbanConditions(backgroundImageSub) {
   if (whichSectionOnMap === 1 && carX >= 1200 && 254 < carY && carY < 552) {
     whichSectionOnMap += 1;
     carX = 0;
-    backgroundImage = loadImage("suburbanMap/SuburbanMap-10.png");
+    backgroundImageSub = loadImage("suburbanMap/SuburbanMap-10.png");
   } else if (whichSectionOnMap === 2 && carY <= 0 && carX > 463 && carX < 767) {
     whichSectionOnMap += 1;
     carY = 900;
-    backgroundImage = loadImage("suburbanMap/SuburbanMap-6.png");
+    backgroundImageSub = loadImage("suburbanMap/SuburbanMap-6.png");
   } else if (
     whichSectionOnMap === 3 &&
     carX >= 1200 &&
@@ -1940,7 +1964,7 @@ function suburbanConditions() {
   ) {
     whichSectionOnMap += 1;
     carX = 0;
-    backgroundImage = loadImage("suburbanMap/SuburbanMap-7.png");
+    backgroundImageSub = loadImage("suburbanMap/SuburbanMap-7.png");
   } else if (
     whichSectionOnMap === 4 &&
     carY >= 900 &&
@@ -1949,7 +1973,7 @@ function suburbanConditions() {
   ) {
     whichSectionOnMap += 1;
     carY = 0;
-    backgroundImage = loadImage("suburbanMap/SuburbanMap-11.png");
+    backgroundImageSub = loadImage("suburbanMap/SuburbanMap-11.png");
   } else if (
     whichSectionOnMap === 5 &&
     carX >= 1200 &&
@@ -1958,7 +1982,7 @@ function suburbanConditions() {
   ) {
     whichSectionOnMap += 1;
     carX = 0;
-    backgroundImage = loadImage("suburbanMap/SuburbanMap-12.png");
+    backgroundImageSub = loadImage("suburbanMap/SuburbanMap-12.png");
   } else if (
     whichSectionOnMap === 6 &&
     carY <= 0 &&
@@ -1967,23 +1991,23 @@ function suburbanConditions() {
   ) {
     whichSectionOnMap += 1;
     carY = 900;
-    backgroundImage = loadImage("suburbanMap/SuburbanMap-8.png");
+    backgroundImageSub = loadImage("suburbanMap/SuburbanMap-8.png");
   } else if (whichSectionOnMap === 7 && carY <= 0 && carX > 269 && carX < 575) {
     whichSectionOnMap += 1;
     carY = 900;
-    backgroundImage = loadImage("suburbanMap/SuburbanMap-4.png");
+    backgroundImageSub = loadImage("suburbanMap/SuburbanMap-4.png");
   } else if (whichSectionOnMap === 8 && carX <= 0 && carY > 87 && carY < 395) {
     whichSectionOnMap += 1;
     carX = 1200;
-    backgroundImage = loadImage("suburbanMap/SuburbanMap-3.png");
+    backgroundImageSub = loadImage("suburbanMap/SuburbanMap-3.png");
   } else if (whichSectionOnMap === 9 && carX <= 0 && carY > 448 && carY < 753) {
     whichSectionOnMap += 1;
     carX = 1200;
-    backgroundImage = loadImage("suburbanMap/SuburbanMap-2.png");
+    backgroundImageSub = loadImage("suburbanMap/SuburbanMap-2.png");
   } else if (whichSectionOnMap === 10 && carX <= 0 && carY > 48 && carY < 360) {
     whichSectionOnMap += 1;
     carX = 1200;
-    backgroundImage = loadImage("suburbanMap/SuburbanMap-1.png");
+    backgroundImageSub = loadImage("suburbanMap/SuburbanMap-1.png");
   } else if (
     whichSectionOnMap === 11 &&
     carY >= 900 &&
@@ -1992,7 +2016,7 @@ function suburbanConditions() {
   ) {
     whichSectionOnMap += 1;
     carY = 0;
-    backgroundImage = loadImage("suburbanMap/SuburbanMap-5.png");
+    backgroundImageSub = loadImage("suburbanMap/SuburbanMap-5.png");
   } else if (
     whichSectionOnMap === 12 &&
     carY >= 900 &&
@@ -2001,11 +2025,11 @@ function suburbanConditions() {
   ) {
     whichSectionOnMap += 1;
     carY = 0;
-    backgroundImage = loadImage("suburbanMap/SuburbanMap-9.png");
+    backgroundImageSub = loadImage("suburbanMap/SuburbanMap-9.png");
   }
 }
 function suburbanMap() {
-    background(backgroundImage);
+  background();
   suburbanConditions();
 }
 
