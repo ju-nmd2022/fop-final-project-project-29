@@ -11,7 +11,7 @@ function setup() {
     pink: color("#ed11a4"),
     purple: color("#7125ba"),
     white: color("#e5e5e5"),
-    orange: color("#d96d25")
+    orange: color("#d96d25"),
   };
 }
 let preBg;
@@ -46,6 +46,10 @@ let purpleSupra;
 let redSupra;
 let whiteSupra;
 let yellowSupra;
+let backgroundImageCity;
+let backgroundImageSub;
+let mapSelectBg;
+let tokyoCityImg;
 
 function preload() {
   /* pre screen */
@@ -86,94 +90,114 @@ function preload() {
   redSupra = loadImage("supra-45view/Supra-red.png");
   whiteSupra = loadImage("supra-45view/Supra-white.png");
   yellowSupra = loadImage("supra-45view/Supra-yellow.png");
+  // Load the initial background image for City
+  backgroundImageCity = loadImage("map-city/cityMap1.png");
+  // Load the initial background image for Suburban
+  backgroundImageSub = loadImage("suburbanMap/SuburbanMap-9.png");
+  /* map select screen */
+  mapSelectBg = loadImage("asphalt.jpeg");
+  tokyoCityImg = "url('logo.png')";
 }
 
 let currentScreen = "startScreen";
-// let htmlWidth = width;
 /* content of pre screen */
-let button = null;
-
+let buttonStart = null;
 function startButton() {
-  //The following 3 lines of code were made with the help of a teaching assistent 
-  if (button != null) {
-    button.remove();
+  //The following 3 lines of code were made with the help of a teaching assistent
+  if (buttonStart != null) {
+    buttonStart.remove();
   }
-  button = createButton("START");
-  button.size(200, 80);
-  button.position(windowWidth / 2 - 100, 600);
-  button.style("font-family", "Verdana");
-  button.style("font-size", "30px");
-  button.style("color: #ffffff");
-  button.style("border-radius: 30px");
-  button.style("border: 5px outset");
-  button.style("border-color: #FFFFFF");
-  button.style("background-color: #ec008c");
+  buttonStart = createButton("START");
+  buttonStart.size(200, 80);
+  buttonStart.position(windowWidth / 2 - 100, 600);
+  buttonStart.style("font-family", "Verdana");
+  buttonStart.style("font-size", "30px");
+  buttonStart.style("color: #ffffff");
+  buttonStart.style("border-radius: 30px");
+  buttonStart.style("border: 5px outset");
+  buttonStart.style("border-color: #FFFFFF");
+  buttonStart.style("background-color: #ec008c");
 }
 function preScreen() {
   background(preBg);
   startButton();
 }
 
+let buttonPlay = null;
 /* content of start screen */
 function playButton() {
-  if (button != null) {
-    button.remove();
+  if (buttonPlay != null) {
+    buttonPlay.remove();
   }
-  button = createButton("START");
-  button.size(250, 120);
-  button.style("borderRadius", "30px");
-  button.position(900, 250);
-  button.style("font-family", "Verdana");
-  button.style("font-size", "42px");
-  button.style("background-color", "#ec008c");
-  button.style("border-width", "5px");
-  button.style("border-color", "#ffffff");
-  button.style("color", "#ffffff");
-  button.style("border-style", "outset");
+  buttonPlay = createButton("START");
+  buttonPlay.size(250, 120);
+  buttonPlay.style("borderRadius", "30px");
+  buttonPlay.position(windowWidth / 2 + 200, 320);
+  buttonPlay.style("font-family", "Verdana");
+  buttonPlay.style("font-size", "42px");
+  buttonPlay.style("background-color", "#ec008c");
+  buttonPlay.style("border-width", "5px");
+  buttonPlay.style("border-color", "#ffffff");
+  buttonPlay.style("color", "#ffffff");
+  buttonPlay.style("border-style", "outset");
 }
+
+let buttonCarCustom = null;
 function carCustomButton() {
-  if (button != null) {
-    button.remove();
+  if (buttonCarCustom != null) {
+    buttonCarCustom.remove();
   }
-  button = createButton("Customize Car");
-  button.size(250, 60);
-  button.style("borderRadius", "20px");
-  button.position(900, 450);
-  button.style("font-family", "Verdana");
-  button.style("font-size", "24px");
-  button.style("background-color", "#00C5C5");
-  button.style("border-width", "5px");
-  button.style("border-color", "#ffffff");
-  button.style("color", "#ffffff");
-  button.style("border-style", "outset");
+  buttonCarCustom = createButton("Customize Car");
+  buttonCarCustom.size(250, 60);
+  buttonCarCustom.style("borderRadius", "20px");
+  buttonCarCustom.position(windowWidth / 2 + 200, 520);
+  buttonCarCustom.style("font-family", "Verdana");
+  buttonCarCustom.style("font-size", "24px");
+  buttonCarCustom.style("background-color", "#00C5C5");
+  buttonCarCustom.style("border-width", "5px");
+  buttonCarCustom.style("border-color", "#ffffff");
+  buttonCarCustom.style("color", "#ffffff");
+  buttonCarCustom.style("border-style", "outset");
 }
+
+let buttonMapCustom = null;
 function mapCustomButton() {
-  if (button != null) {
-    button.remove();
+  if (buttonMapCustom != null) {
+    buttonMapCustom.remove();
   }
-  button = createButton("Change Map");
-  button.size(250, 60);
-  button.style("borderRadius", "20px");
-  button.position(900, 520);
-  button.style("font-family", "Verdana");
-  button.style("font-size", "24px");
-  button.style("background-color", "#00C5C5");
-  button.style("border-width", "5px");
-  button.style("border-color", "#ffffff");
-  button.style("color", "#ffffff");
-  button.style("border-style", "outset");
+  buttonMapCustom = createButton("Change Map");
+  buttonMapCustom.size(250, 60);
+  buttonMapCustom.style("borderRadius", "20px");
+  buttonMapCustom.position(windowWidth / 2 + 200, 590);
+  buttonMapCustom.style("font-family", "Verdana");
+  buttonMapCustom.style("font-size", "24px");
+  buttonMapCustom.style("background-color", "#00C5C5");
+  buttonMapCustom.style("border-width", "5px");
+  buttonMapCustom.style("border-color", "#ffffff");
+  buttonMapCustom.style("color", "#ffffff");
+  buttonMapCustom.style("border-style", "outset");
 }
 
 function startScreen() {
   //https://p5js.org/examples/image-background-image.html
   background(startBg);
-  image(carStartImg, 150, 500, 600, 248);
-  image(logo, 100, 0, 700, 450);
+  image(carStartImg, 50, 450, 600, 248);
+  image(logo, 0, 0, 700, 450);
 
   //play button
   playButton();
   carCustomButton();
   mapCustomButton();
+  //selecting one of the changes
+  if (
+    mouseIsPressed &&
+    mouseX > 650 &&
+    mouseX < 900 &&
+    mouseY > 520 &&
+    mouseY < 580
+  ) {
+    currentScreen = "carSelection";
+  } 
 }
 
 /* content for car slection */
@@ -183,74 +207,75 @@ function headline() {
   textFont("verdana");
   textStyle(BOLD);
   textSize(55);
-  text("Chose Your Car", 410, 75);
+  text("Chose Your Car", 245, 75);
 }
 
+let buttonBack = null;
 function backButton() {
-  if (button != null) {
-    button.remove();
+  if (buttonBack != null) {
+    buttonBack.remove();
   }
-  button = createButton("BACK");
-  button.size(130, 60);
-  button.position(40, 40);
-  button.style("font-family", "Verdana");
-  button.style("font-size", "27px");
-  button.style("color: #ffffff");
-  button.style("border-radius: 30px");
-  button.style("border: 5px outset");
-  button.style("border-color: #FFFFFF");
-  button.style("background-color: #bd0271");
+  buttonBack = createButton("BACK");
+  buttonBack.size(130, 60);
+  buttonBack.position(windowWidth / 2 - 450, 130);
+  buttonBack.style("font-family", "Verdana");
+  buttonBack.style("font-size", "27px");
+  buttonBack.style("color: #ffffff");
+  buttonBack.style("border-radius: 30px");
+  buttonBack.style("border: 5px outset");
+  buttonBack.style("border-color: #FFFFFF");
+  buttonBack.style("background-color: #bd0271");
 }
 
 function colorBoxes() {
   push();
   fill(0, 0, 0, 80);
-  rect(125, 675, 540, 180);
+  rect(70, 515, 540, 160);
   pop();
   noStroke();
   fill(carColors.red);
-  rect(210, 700, 50, 50, 10);
+  rect(150, 530, 50, 50, 10);
   fill(carColors.green);
-  rect(290, 700, 50, 50, 10);
+  rect(230, 530, 50, 50, 10);
   fill(carColors.blue);
-  rect(370, 700, 50, 50, 10);
+  rect(310, 530, 50, 50, 10);
   fill(carColors.black);
-  rect(450, 700, 50, 50, 10);
+  rect(390, 530, 50, 50, 10);
   fill(carColors.yellow);
-  rect(530, 700, 50, 50, 10);
+  rect(470, 530, 50, 50, 10);
   fill(carColors.pink);
-  rect(210, 780, 50, 50, 10);
+  rect(150, 610, 50, 50, 10);
   fill(carColors.purple);
-  rect(290, 780, 50, 50, 10);
+  rect(230, 610, 50, 50, 10);
   fill(carColors.white);
-  rect(370, 780, 50, 50, 10);
+  rect(310, 610, 50, 50, 10);
   fill(carColors.orange);
-  rect(450, 780, 50, 50, 10);
+  rect(390, 610, 50, 50, 10);
   fill(carColors.black);
-  rect(530, 780, 50, 50, 10);
+  rect(470, 610, 50, 50, 10);
   push();
   textSize(40);
   fill("#00c5c5");
   stroke("#ec008c");
   strokeWeight(4);
-  text("?", 543, 819);
+  text("?", 484, 650);
   pop();
 }
 let currentCar = "bmw";
 let currentColor = "white";
 function selectCar(currentCar) {
   fill(0, 0, 0, 80);
-  rect(817, 176, 355, 590);
-  image(whiteBmw, 855, 222, 277, 118);
-  image(whiteRx7, 855, 400, 289, 123);
-  image(whiteSupra, 855, 575, 289, 123);
+  rect(675, 176, 260, 500);
+  image(whiteBmw, 695, 202, 222, 94);
+  image(whiteRx7, 695, 380, 222, 94);
+  image(whiteSupra, 695, 555, 222, 94);
   //big car
   if (currentCar === "bmw") {
-    image(whiteBmw, 80, 340, 647, 276);
+    image(whiteBmw, 80, 260, 517, 220);
   } else if (currentCar === "rx7") {
-    image(whiteRx7, 80, 340, 647, 276);
+    image(whiteRx7, 80, 260, 517, 220);
   } else if (currentCar === "supra") {
-    image(whiteSupra, 80, 340, 647, 276);
+    image(whiteSupra, 80, 260, 517, 220);
   }
 }
 //the following 4 lines of code were done with the help of ChatGPT
@@ -261,63 +286,63 @@ function selectRandomColor(obj) {
 function selectColor(currentCar, currentColor) {
   if (currentCar === "bmw") {
     if (currentColor === "red") {
-      image(redBmw, 80, 340, 647, 276);
+      image(redBmw, 80, 260, 517, 220);
     } else if (currentColor === "green") {
-      image(greenBmw, 80, 340, 647, 276);
+      image(greenBmw, 80, 260, 517, 220);
     } else if (currentColor === "blue") {
-      image(blueBmw, 80, 340, 647, 276);
+      image(blueBmw, 80, 260, 517, 220);
     } else if (currentColor === "black") {
-      image(blackBmw, 80, 340, 647, 276);
+      image(blackBmw, 80, 260, 517, 220);
     } else if (currentColor === "yellow") {
-      image(yellowBmw, 80, 340, 647, 276);
+      image(yellowBmw, 80, 260, 517, 220);
     } else if (currentColor === "pink") {
-      image(pinkBmw, 80, 340, 647, 276);
+      image(pinkBmw, 80, 260, 517, 220);
     } else if (currentColor === "purple") {
-      image(purpleBmw, 80, 340, 647, 276);
+      image(purpleBmw, 80, 260, 517, 220);
     } else if (currentColor === "white") {
-      image(whiteBmw, 80, 340, 647, 276);
+      image(whiteBmw, 80, 260, 517, 220);
     } else if (currentColor === "orange") {
-      image(orangeBmw, 80, 340, 647, 276);
+      image(orangeBmw, 80, 260, 517, 220);
     }
   } else if (currentCar === "rx7") {
     if (currentColor === "red") {
-      image(redRx7, 80, 340, 647, 276);
+      image(redRx7, 80, 260, 517, 220);
     } else if (currentColor === "green") {
-      image(greenRx7, 80, 340, 647, 276);
+      image(greenRx7, 80, 260, 517, 220);
     } else if (currentColor === "blue") {
-      image(blueRx7, 80, 340, 647, 276);
+      image(blueRx7, 80, 260, 517, 220);
     } else if (currentColor === "black") {
-      image(blackRx7, 80, 340, 647, 276);
+      image(blackRx7, 80, 260, 517, 220);
     } else if (currentColor === "yellow") {
-      image(yellowRx7, 80, 340, 647, 276);
+      image(yellowRx7, 80, 260, 517, 220);
     } else if (currentColor === "pink") {
-      image(pinkRx7, 80, 340, 647, 276);
+      image(pinkRx7, 80, 260, 517, 220);
     } else if (currentColor === "purple") {
-      image(purpleRx7, 80, 340, 647, 276);
+      image(purpleRx7, 80, 260, 517, 220);
     } else if (currentColor === "white") {
-      image(whiteRx7, 80, 340, 647, 276);
+      image(whiteRx7, 80, 260, 517, 220);
     } else if (currentColor === "orange") {
-      image(orangeRx7, 80, 340, 647, 276);
+      image(orangeRx7, 80, 260, 517, 220);
     }
   } else if (currentCar === "supra") {
     if (currentColor === "red") {
-      image(redSupra, 80, 340, 647, 276);
+      image(redSupra, 80, 260, 517, 220);
     } else if (currentColor === "green") {
-      image(greenSupra, 80, 340, 647, 276);
+      image(greenSupra, 80, 260, 517, 220);
     } else if (currentColor === "blue") {
-      image(blueSupra, 80, 340, 647, 276);
+      image(blueSupra, 80, 260, 517, 220);
     } else if (currentColor === "black") {
-      image(blackSupra, 80, 340, 647, 276);
+      image(blackSupra, 80, 260, 517, 220);
     } else if (currentColor === "yellow") {
-      image(yellowSupra, 80, 340, 647, 276);
+      image(yellowSupra, 80, 260, 517, 220);
     } else if (currentColor === "pink") {
-      image(pinkSupra, 80, 340, 647, 276);
+      image(pinkSupra, 80, 260, 517, 220);
     } else if (currentColor === "purple") {
-      image(purpleSupra, 80, 340, 647, 276);
+      image(purpleSupra, 80, 260, 517, 220);
     } else if (currentColor === "white") {
-      image(whiteSupra, 80, 340, 647, 276);
+      image(whiteSupra, 80, 260, 517, 220);
     } else if (currentColor === "orange") {
-      image(orangeSupra, 80, 340, 647, 276);
+      image(orangeSupra, 80, 260, 517, 220);
     }
   }
 }
@@ -327,129 +352,227 @@ function carSelection() {
   backButton();
   colorBoxes();
   //section for choosing car
-  if (mouseIsPressed && mouseX > 861 && mouseX < 1133 && mouseY > 222 && mouseY < 339) {
+  if (
+    mouseIsPressed &&
+    mouseX > 695 &&
+    mouseX < 917 &&
+    mouseY > 202 &&
+    mouseY < 296
+  ) {
     currentCar = "bmw";
-  } else if (mouseIsPressed && mouseX > 849 && mouseY < 1147 && mouseY > 395 && mouseY < 518) {
+  } else if (
+    mouseIsPressed &&
+    mouseX > 695 &&
+    mouseY < 917 &&
+    mouseY > 380 &&
+    mouseY < 474
+  ) {
     currentCar = "rx7";
-  } else if (mouseIsPressed && mouseX > 853 && mouseX < 1148 && mouseY > 569 && mouseY < 701) {
+  } else if (
+    mouseIsPressed &&
+    mouseX > 695 &&
+    mouseX < 917 &&
+    mouseY > 555 &&
+    mouseY < 649
+  ) {
     currentCar = "supra";
   }
   selectCar(currentCar);
   //section for choosing color
-  if (mouseIsPressed && mouseX > 210 && mouseX < 260 && mouseY > 700 && mouseY < 750) {
+  if (
+    mouseIsPressed &&
+    mouseX > 150 &&
+    mouseX < 200 &&
+    mouseY > 530 &&
+    mouseY < 580
+  ) {
     currentColor = "red";
-  } else if (mouseIsPressed && mouseX > 290 && mouseX < 340 && mouseY > 700 && mouseY < 750) {
+  } else if (
+    mouseIsPressed &&
+    mouseX > 230 &&
+    mouseX < 280 &&
+    mouseY > 530 &&
+    mouseY < 580
+  ) {
     currentColor = "green";
-  } else if (mouseIsPressed && mouseX > 370 && mouseX < 420 && mouseY > 700 && mouseY < 750) {
+  } else if (
+    mouseIsPressed &&
+    mouseX > 310 &&
+    mouseX < 360 &&
+    mouseY > 530 &&
+    mouseY < 580
+  ) {
     currentColor = "blue";
-  } else if (mouseIsPressed && mouseX > 450 && mouseX < 500 && mouseY > 700 && mouseY < 750) {
+  } else if (
+    mouseIsPressed &&
+    mouseX > 390 &&
+    mouseX < 440 &&
+    mouseY > 530 &&
+    mouseY < 580
+  ) {
     currentColor = "black";
-  } else if (mouseIsPressed && mouseX > 530 && mouseX < 580 && mouseY > 700 && mouseY < 750) {
+  } else if (
+    mouseIsPressed &&
+    mouseX > 470 &&
+    mouseX < 520 &&
+    mouseY > 530 &&
+    mouseY < 580
+  ) {
     currentColor = "yellow";
-  } else if (mouseIsPressed && mouseX > 210 && mouseX < 260 && mouseY > 780 && mouseY < 830) {
+  } else if (
+    mouseIsPressed &&
+    mouseX > 150 &&
+    mouseX < 200 &&
+    mouseY > 610 &&
+    mouseY < 660
+  ) {
     currentColor = "pink";
-  } else if (mouseIsPressed && mouseX > 290 && mouseX < 340 && mouseY > 780 && mouseY < 830) {
+  } else if (
+    mouseIsPressed &&
+    mouseX > 230 &&
+    mouseX < 280 &&
+    mouseY > 610 &&
+    mouseY < 660
+  ) {
     currentColor = "purple";
-  } else if (mouseIsPressed && mouseX > 370 && mouseX < 420 && mouseY > 780 && mouseY < 830) {
+  } else if (
+    mouseIsPressed &&
+    mouseX > 310 &&
+    mouseX < 360 &&
+    mouseY > 610 &&
+    mouseY < 660
+  ) {
     currentColor = "white";
-  } else if (mouseIsPressed && mouseX > 450 && mouseX < 500 && mouseY > 780 && mouseY < 830) {
+  } else if (
+    mouseIsPressed &&
+    mouseX > 390 &&
+    mouseX < 440 &&
+    mouseY > 610 &&
+    mouseY < 660
+  ) {
     currentColor = "orange";
-  } else if (mouseIsPressed && mouseX > 530 && mouseX < 580 && mouseY > 780 && mouseY < 830) {
+  } else if (
+    mouseIsPressed &&
+    mouseX > 470 &&
+    mouseX < 520 &&
+    mouseY > 610 &&
+    mouseY < 660
+  ) {
     selectRandomColor(carColors);
     //the following 2 lines of code were done with the help of ChatGPT
     let randomColor = selectRandomColor(carColors);
     let randomColorStr = String(randomColor);
     currentColor = randomColorStr;
-    console.log(randomColorStr);
   }
 
   selectColor(currentCar, currentColor);
 }
 
-/* conetnt for map selection */
-let mapSelectBg = loadImage("asphalt.jpeg");
-let tokyoCityImg = "url('logo.png')";
+/* content for map selection */
 let mapIsChosen = false;
 let doneGoBack = false;
+let buttonCity = null;
 
 function cityMapButton() {
-  if (button != null) {
-    button.remove();
+  if (buttonCity != null) {
+    buttonCity.remove();
   }
-  button = createButton("Tokyo City");
-  button.size(400, 300);
-  button.style("borderRadius", "30px");
-  button.position(150, 250);
-  button.style("font-family", "Verdana");
-  button.style("font-size", "42px");
-  button.style("background-color", "#ec008c");
-  button.style("border-width", "5px");
-  button.style("border-color", "#ffffff");
-  button.style("color", "#ffffff");
-  button.style("border-style", "outset");
-  if (mouseIsPressed && mouseX > 130 && mouseX < 527 && mouseY > 230 && mouseY < 525) {
+  buttonCity = createButton("Tokyo City");
+  buttonCity.size(400, 300);
+  buttonCity.style("borderRadius", "30px");
+  buttonCity.position(150, 250);
+  buttonCity.style("font-family", "Verdana");
+  buttonCity.style("font-size", "42px");
+  buttonCity.style("background-color", "#ec008c");
+  buttonCity.style("border-width", "5px");
+  buttonCity.style("border-color", "#ffffff");
+  buttonCity.style("color", "#ffffff");
+  buttonCity.style("border-style", "outset");
+  if (
+    mouseIsPressed &&
+    mouseX > 130 &&
+    mouseX < 527 &&
+    mouseY > 230 &&
+    mouseY < 525
+  ) {
     mapIsChosen = true;
     console.log("ok");
   }
-  button.mouseOver(function() {
-    button.style("background-color", "transparent");
+  buttonCity.mouseOver(function () {
+    buttonCity.style("background-color", "transparent");
     //button.style.backgroundImage = "url('logo.png')";
-    button.style("background-image", "url('logo.png')");
-    button.style("background-repeat", "no-repeat");
-    button.style("background-size", "cover");
+    buttonCity.style("background-image", "url('logo.png')");
+    buttonCity.style("background-repeat", "no-repeat");
+    buttonCity.style("background-size", "cover");
   });
-  button.mouseOut(function() {
-    button.style("background-color", "#ec008c");
+  buttonCity.mouseOut(function () {
+    buttonCity.style("background-color", "#ec008c");
   });
 }
+
+let buttonSuburban = null;
 function suburbanMapButton() {
-  if (button != null) {
-    button.remove();
+  if (buttonSuburban != null) {
+    buttonSuburban.remove();
   }
-  button = createButton("Suburbs");
-  button.size(400, 300);
-  button.style("borderRadius", "30px");
-  button.position(680, 250);
-  button.style("font-family", "Verdana");
-  button.style("font-size", "42px");
-  button.style("background-color", "#ec008c");
-  button.style("width", "400px");
-  button.style("height", "300px");
-  button.style("border-width", "5px");
-  button.style("border-color", "#ffffff");
-  button.style("color", "#ffffff");
-  button.style("border-style", "outset");
-  if (mouseIsPressed && mouseX > 660 && mouseX < 1080 && mouseY > 230 && mouseY < 525) {
+  buttonSuburban = createButton("Suburbs");
+  buttonSuburban.size(400, 300);
+  buttonSuburban.style("borderRadius", "30px");
+  buttonSuburban.position(680, 250);
+  buttonSuburban.style("font-family", "Verdana");
+  buttonSuburban.style("font-size", "42px");
+  buttonSuburban.style("background-color", "#ec008c");
+  buttonSuburban.style("width", "400px");
+  buttonSuburban.style("height", "300px");
+  buttonSuburban.style("border-width", "5px");
+  buttonSuburban.style("border-color", "#ffffff");
+  buttonSuburban.style("color", "#ffffff");
+  buttonSuburban.style("border-style", "outset");
+  if (
+    mouseIsPressed &&
+    mouseX > 660 &&
+    mouseX < 1080 &&
+    mouseY > 230 &&
+    mouseY < 525
+  ) {
     mapIsChosen = true;
     console.log("ok");
   }
-  /* button.mouseOver(function() {
-        button.style("background-color", "");
-        button.style("background-img", "url('logo.png')");
-        button.style("background-repeat", "no-repeat");
-        button.style("background-size", "cover");
+  /* buttonSuburban.mouseOver(function() {
+        buttonSuburban.style("background-color", "");
+        buttonSuburban.style("background-img", "url('logo.png')");
+        buttonSuburban.style("background-repeat", "no-repeat");
+        buttonSuburban.style("background-size", "cover");
       });
-    button.mouseOut(function() {
-        button.style("background-color", "#ec008c");
+    buttonSuburban.mouseOut(function() {
+        buttonSuburban.style("background-color", "#ec008c");
       });  */
 }
+
+let buttonDone = null;
 function selectButton() {
-  if (button != null) {
-    button.remove();
+  if (buttonDone != null) {
+    buttonDone.remove();
   }
-  button = createButton("Done");
-  button.style("borderRadius", "30px");
-  button.position(420, 680);
-  button.style("font-family", "Verdana");
-  button.style("font-size", "42px");
-  button.style("background-color", "#ec008c");
-  button.style("width", "400px");
-  button.style("height", "100px");
-  button.style("border-width", "5px");
-  button.style("border-color", "#ffffff");
-  button.style("color", "#ffffff");
-  button.style("border-style", "outset");
-  if (mouseIsPressed && mouseX > 420 && mouseX < 820 && mouseY > 680 && mouseY < 780) {
+  buttonDone = createButton("Done");
+  buttonDone.style("borderRadius", "30px");
+  buttonDone.position(420, 680);
+  buttonDone.style("font-family", "Verdana");
+  buttonDone.style("font-size", "42px");
+  buttonDone.style("background-color", "#ec008c");
+  buttonDone.style("width", "400px");
+  buttonDone.style("height", "100px");
+  buttonDone.style("border-width", "5px");
+  buttonDone.style("border-color", "#ffffff");
+  buttonDone.style("color", "#ffffff");
+  buttonDone.style("border-style", "outset");
+  if (
+    mouseIsPressed &&
+    mouseX > 420 &&
+    mouseX < 820 &&
+    mouseY > 680 &&
+    mouseY < 780
+  ) {
     doneGoBack = true;
     console.log("done");
   }
@@ -591,8 +714,18 @@ function bmw() {
   endShape();
 
   //Detail of Hood
-  line(carX - 174 * carScale, carY - 28 * carScale, carX - 89 * carScale, carY - 38 * carScale);
-  line(carX - 174 * carScale, carY + 32 * carScale, carX - 89 * carScale, carY + 42 * carScale);
+  line(
+    carX - 174 * carScale,
+    carY - 28 * carScale,
+    carX - 89 * carScale,
+    carY - 38 * carScale
+  );
+  line(
+    carX - 174 * carScale,
+    carY + 32 * carScale,
+    carX - 89 * carScale,
+    carY + 42 * carScale
+  );
 
   //Backlights
   push();
@@ -926,9 +1059,24 @@ function rx7() {
   endShape();
 
   //hood
-  line(carX - 184 * carScale, carY - 41 * carScale, carX - 186 * carScale, carY + 41 * carScale);
-  line(carX - 156 * carScale, carY - 63 * carScale, carX - 68 * carScale, carY - 61 * carScale);
-  line(carX - 156 * carScale, carY + 63 * carScale, carX - 68 * carScale, carY + 61 * carScale);
+  line(
+    carX - 184 * carScale,
+    carY - 41 * carScale,
+    carX - 186 * carScale,
+    carY + 41 * carScale
+  );
+  line(
+    carX - 156 * carScale,
+    carY - 63 * carScale,
+    carX - 68 * carScale,
+    carY - 61 * carScale
+  );
+  line(
+    carX - 156 * carScale,
+    carY + 63 * carScale,
+    carX - 68 * carScale,
+    carY + 61 * carScale
+  );
 
   //details on hood
   push();
@@ -1206,7 +1354,14 @@ function supra() {
     carX + 190 * carScale,
     carY - 55 * carScale
   );
-  bezierVertex(carX + 210 * carScale, carY - 40 * carScale, carX + 210 * carScale, carY, carX + 210 * carScale, carY);
+  bezierVertex(
+    carX + 210 * carScale,
+    carY - 40 * carScale,
+    carX + 210 * carScale,
+    carY,
+    carX + 210 * carScale,
+    carY
+  );
   vertex(carX + 210 * carScale, carY);
   bezierVertex(
     carX + 210 * carScale,
@@ -1691,23 +1846,45 @@ function nosBoost() {
   noStroke();
   fill(250);
 
-  rect(boostX - 3 * boostScale, boostY - 85 * boostScale, 6 * boostScale, 10 * boostScale);
+  rect(
+    boostX - 3 * boostScale,
+    boostY - 85 * boostScale,
+    6 * boostScale,
+    10 * boostScale
+  );
 
   //bottle
   fill(0, 40, 200);
 
-  rect(boostX - 20 * boostScale, boostY - 50 * boostScale, 40 * boostScale, 80 * boostScale, 5 * boostScale);
+  rect(
+    boostX - 20 * boostScale,
+    boostY - 50 * boostScale,
+    40 * boostScale,
+    80 * boostScale,
+    5 * boostScale
+  );
 
   ellipse(boostX, boostY - 47 * boostScale, 40 * boostScale);
 
   //reflection
   fill(0, 80, 220);
-  rect(boostX - 11 * boostScale, boostY - 60 * boostScale, 6 * boostScale, 80 * boostScale, 2 * boostScale);
+  rect(
+    boostX - 11 * boostScale,
+    boostY - 60 * boostScale,
+    6 * boostScale,
+    80 * boostScale,
+    2 * boostScale
+  );
 
   //bottle neck
   fill(0, 40, 200);
 
-  rect(boostX - 5 * boostScale, boostY - 75 * boostScale, 10 * boostScale, 10 * boostScale);
+  rect(
+    boostX - 5 * boostScale,
+    boostY - 75 * boostScale,
+    10 * boostScale,
+    10 * boostScale
+  );
 
   // knob
   fill(20 /* 0, 70, 200 */);
@@ -1728,7 +1905,13 @@ function nosBoost() {
   // Label
   fill(255, 120, 30);
   stroke(255);
-  rect(boostX - 15 * boostScale, boostY - 53 * boostScale, 30 * boostScale, 40 * boostScale, 5 * boostScale);
+  rect(
+    boostX - 15 * boostScale,
+    boostY - 53 * boostScale,
+    30 * boostScale,
+    40 * boostScale,
+    5 * boostScale
+  );
 
   //Power symbol
   beginShape();
@@ -1750,66 +1933,105 @@ function nosBoost() {
 /* content of city map */
 let whichBackgroundCity = 1;
 let isGameActive = false;
-function preloadCity() {
-  // Load the initial background image
-  backgroundImageCity = loadImage("map-city/cityMap1.png");
-}
+
 function cityConditions() {
   isGameActive = true;
   if (whichBackgroundCity === 1 && 335 < carY && carY < 560 && carX >= 1200) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap2.png");
     carX = 5;
-  } else if (whichBackgroundCity === 2 && 39 < carY && carY < 267 && carX >= 1200) {
+  } else if (
+    whichBackgroundCity === 2 &&
+    39 < carY &&
+    carY < 267 &&
+    carX >= 1200
+  ) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap3.png");
     carX = 5;
-  } else if (whichBackgroundCity === 3 && 448 < carX && carX < 670 && carY >= 900) {
+  } else if (
+    whichBackgroundCity === 3 &&
+    448 < carX &&
+    carX < 670 &&
+    carY >= 900
+  ) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap4.png");
     carY = 5;
-  } else if (whichBackgroundCity === 4 && 256 < carY && carY < 482 && carX >= 1200) {
+  } else if (
+    whichBackgroundCity === 4 &&
+    256 < carY &&
+    carY < 482 &&
+    carX >= 1200
+  ) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap5.png");
     carX = 5;
-  } else if (whichBackgroundCity === 5 && 517 < carX && carX < 745 && carY <= 0) {
+  } else if (
+    whichBackgroundCity === 5 &&
+    517 < carX &&
+    carX < 745 &&
+    carY <= 0
+  ) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap6.png");
     carY = 900;
-  } else if (whichBackgroundCity === 6 && 517 < carX && carX < 745 && carY <= 0) {
+  } else if (
+    whichBackgroundCity === 6 &&
+    517 < carX &&
+    carX < 745 &&
+    carY <= 0
+  ) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap7.png");
     carY = 900;
-  } else if (whichBackgroundCity === 7 && 254 < carY && carY < 479 && carX >= 1200) {
+  } else if (
+    whichBackgroundCity === 7 &&
+    254 < carY &&
+    carY < 479 &&
+    carX >= 1200
+  ) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap8.png");
     carX = 5;
-  } else if (whichBackgroundCity === 8 && 530 < carX && carX < 755 && carY >= 900) {
+  } else if (
+    whichBackgroundCity === 8 &&
+    530 < carX &&
+    carX < 755 &&
+    carY >= 900
+  ) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap9.png");
     carY = 5;
-  } else if (whichBackgroundCity === 9 && 320 < carY && carY < 544 && carX >= 1200) {
+  } else if (
+    whichBackgroundCity === 9 &&
+    320 < carY &&
+    carY < 544 &&
+    carX >= 1200
+  ) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap10.png");
     carX = 5;
-  } else if (whichBackgroundCity === 10 && 320 < carY && carY < 544 && carX >= 890) {
+  } else if (
+    whichBackgroundCity === 10 &&
+    320 < carY &&
+    carY < 544 &&
+    carX >= 890
+  ) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap10.png");
     isGameActive = false;
   }
 }
-function cityMap(backgroundImageCity) {
-  background(backgroundImageCity);
+function cityMap() {
+  background();
   cityConditions();
 }
 
 /* content of suburban map */
 let whichSectionOnMap = 1;
-function preloadSuburban(backgroundImageSub) {
-  // Load the initial background image
-  backgroundImageSub = loadImage("suburbanMap/SuburbanMap-9.png");
-}
-function suburbanConditions(backgroundImageSub) {
+
+function suburbanConditions() {
   if (whichSectionOnMap === 1 && carX >= 1200 && 254 < carY && carY < 552) {
     whichSectionOnMap += 1;
     carX = 0;
@@ -1818,19 +2040,39 @@ function suburbanConditions(backgroundImageSub) {
     whichSectionOnMap += 1;
     carY = 900;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-6.png");
-  } else if (whichSectionOnMap === 3 && carX >= 1200 && carY > 194 && carY < 504) {
+  } else if (
+    whichSectionOnMap === 3 &&
+    carX >= 1200 &&
+    carY > 194 &&
+    carY < 504
+  ) {
     whichSectionOnMap += 1;
     carX = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-7.png");
-  } else if (whichSectionOnMap === 4 && carY >= 900 && carX > 483 && carX < 783) {
+  } else if (
+    whichSectionOnMap === 4 &&
+    carY >= 900 &&
+    carX > 483 &&
+    carX < 783
+  ) {
     whichSectionOnMap += 1;
     carY = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-11.png");
-  } else if (whichSectionOnMap === 5 && carX >= 1200 && carY > 404 && carY < 724) {
+  } else if (
+    whichSectionOnMap === 5 &&
+    carX >= 1200 &&
+    carY > 404 &&
+    carY < 724
+  ) {
     whichSectionOnMap += 1;
     carX = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-12.png");
-  } else if (whichSectionOnMap === 6 && carY <= 0 && carX > 821 && carX < 1130) {
+  } else if (
+    whichSectionOnMap === 6 &&
+    carY <= 0 &&
+    carX > 821 &&
+    carX < 1130
+  ) {
     whichSectionOnMap += 1;
     carY = 900;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-8.png");
@@ -1850,11 +2092,21 @@ function suburbanConditions(backgroundImageSub) {
     whichSectionOnMap += 1;
     carX = 1200;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-1.png");
-  } else if (whichSectionOnMap === 11 && carY >= 900 && carX > 266 && carX < 574) {
+  } else if (
+    whichSectionOnMap === 11 &&
+    carY >= 900 &&
+    carX > 266 &&
+    carX < 574
+  ) {
     whichSectionOnMap += 1;
     carY = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-5.png");
-  } else if (whichSectionOnMap === 12 && carY >= 900 && carX > 319 && carX < 625) {
+  } else if (
+    whichSectionOnMap === 12 &&
+    carY >= 900 &&
+    carX > 319 &&
+    carX < 625
+  ) {
     whichSectionOnMap += 1;
     carY = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-9.png");
