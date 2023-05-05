@@ -1,17 +1,106 @@
+let carColors;
 function setup() {
-  window.createCanvas(1200, 900);
+  window.createCanvas(950, 712);
   frameRate(30);
+  carColors = {
+    green: color("#00FF00"),
+    blue: color("#00FFFF"),
+    red: color("#FF0000"),
+    black: color("#262626"),
+    yellow: color("#ddd312"),
+    pink: color("#ed11a4"),
+    purple: color("#7125ba"),
+    white: color("#e5e5e5"),
+    orange: color("#d96d25")
+  };
+}
+let preBg;
+let startBg;
+let carStartImg;
+let logo;
+let bgChooseScreen;
+let blueBmw;
+let greenBmw;
+let blackBmw;
+let orangeBmw;
+let pinkBmw;
+let purpleBmw;
+let redBmw;
+let whiteBmw;
+let yellowBmw;
+let blueRx7;
+let greenRx7;
+let blackRx7;
+let orangeRx7;
+let pinkRx7;
+let purpleRx7;
+let redRx7;
+let whiteRx7;
+let yellowRx7;
+let blueSupra;
+let greenSupra;
+let blackSupra;
+let orangeSupra;
+let pinkSupra;
+let purpleSupra;
+let redSupra;
+let whiteSupra;
+let yellowSupra;
+
+function preload() {
+  /* pre screen */
+  preBg = loadImage("./preview.png");
+  /* start screen */
+  startBg = loadImage("./opt3.jpeg");
+  carStartImg = loadImage("bmw-45view/bmw-blue.png");
+  logo = loadImage("logo.png");
+  /* car choose screen */
+  bgChooseScreen = loadImage("./garage.png");
+  //bmw
+  blueBmw = loadImage("bmw-45view/bmw-blue.png");
+  greenBmw = loadImage("bmw-45view/bmw-green.png");
+  blackBmw = loadImage("bmw-45view/bmw-grey.png");
+  orangeBmw = loadImage("bmw-45view/bmw-orange.png");
+  pinkBmw = loadImage("bmw-45view/bmw-pink.png");
+  purpleBmw = loadImage("bmw-45view/bmw-purple.png");
+  redBmw = loadImage("bmw-45view/bmw-red.png");
+  whiteBmw = loadImage("bmw-45view/bmw-white.png");
+  yellowBmw = loadImage("bmw-45view/bmw-yellow.png");
+  //rx7
+  blueRx7 = loadImage("rx7-45view/rx7-blue.png");
+  greenRx7 = loadImage("rx7-45view/rx7-green.png");
+  blackRx7 = loadImage("rx7-45view/rx7-grey.png");
+  orangeRx7 = loadImage("rx7-45view/rx7-orange.png");
+  pinkRx7 = loadImage("rx7-45view/rx7-pink.png");
+  purpleRx7 = loadImage("rx7-45view/rx7-purple.png");
+  redRx7 = loadImage("rx7-45view/rx7-red.png");
+  whiteRx7 = loadImage("rx7-45view/rx7-white.png");
+  yellowRx7 = loadImage("rx7-45view/rx7-yellow.png");
+  //supra
+  blueSupra = loadImage("supra-45view/Supra-light-blue.png");
+  greenSupra = loadImage("supra-45view/Supra-green.png");
+  blackSupra = loadImage("supra-45view/Supra-black.png");
+  orangeSupra = loadImage("supra-45view/Supra-orange.png");
+  pinkSupra = loadImage("supra-45view/Supra-pink.png");
+  purpleSupra = loadImage("supra-45view/Supra-purple.png");
+  redSupra = loadImage("supra-45view/Supra-red.png");
+  whiteSupra = loadImage("supra-45view/Supra-white.png");
+  yellowSupra = loadImage("supra-45view/Supra-yellow.png");
 }
 
-let currentScreen = "preScreen";
-
+let currentScreen = "startScreen";
+// let htmlWidth = width;
 /* content of pre screen */
-let bg = loadImage("./preview.png");
+let button = null;
+
 function startButton() {
-  let button;
+  //The following 3 lines of code were made with the help of a teaching assistent 
+  if (button != null) {
+    button.remove();
+  }
   button = createButton("START");
   button.size(200, 80);
-  button.position(540, 600);
+  button.position(windowWidth / 2 - 100, 600);
   button.style("font-family", "Verdana");
   button.style("font-size", "30px");
   button.style("color: #ffffff");
@@ -21,13 +110,15 @@ function startButton() {
   button.style("background-color: #ec008c");
 }
 function preScreen() {
-  background("preview.png");
+  background(preBg);
   startButton();
 }
 
 /* content of start screen */
 function playButton() {
-  let button;
+  if (button != null) {
+    button.remove();
+  }
   button = createButton("START");
   button.size(250, 120);
   button.style("borderRadius", "30px");
@@ -41,7 +132,9 @@ function playButton() {
   button.style("border-style", "outset");
 }
 function carCustomButton() {
-  let button;
+  if (button != null) {
+    button.remove();
+  }
   button = createButton("Customize Car");
   button.size(250, 60);
   button.style("borderRadius", "20px");
@@ -55,7 +148,9 @@ function carCustomButton() {
   button.style("border-style", "outset");
 }
 function mapCustomButton() {
-  let button;
+  if (button != null) {
+    button.remove();
+  }
   button = createButton("Change Map");
   button.size(250, 60);
   button.style("borderRadius", "20px");
@@ -68,9 +163,7 @@ function mapCustomButton() {
   button.style("color", "#ffffff");
   button.style("border-style", "outset");
 }
-let startBg = loadImage("./opt3.jpeg");
-let carStartImg = loadImage("bmw-45view/bmw-blue.png");
-let logo = loadImage("logo.png");
+
 function startScreen() {
   //https://p5js.org/examples/image-background-image.html
   background(startBg);
@@ -84,49 +177,7 @@ function startScreen() {
 }
 
 /* content for car slection */
-let bgChooseScreen = loadImage("./garage.png");
-//bmw
-let blueBmw = loadImage("bmw-45view/bmw-blue.png");
-let greenBmw = loadImage("bmw-45view/bmw-green.png");
-let blackBmw = loadImage("bmw-45view/bmw-grey.png");
-let orangeBmw = loadImage("bmw-45view/bmw-orange.png");
-let pinkBmw = loadImage("bmw-45view/bmw-pink.png");
-let purpleBmw = loadImage("bmw-45view/bmw-purple.png");
-let redBmw = loadImage("bmw-45view/bmw-red.png");
-let whiteBmw = loadImage("bmw-45view/bmw-white.png");
-let yellowBmw = loadImage("bmw-45view/bmw-yellow.png");
-//rx7
-let blueRx7 = loadImage("rx7-45view/rx7-blue.png");
-let greenRx7 = loadImage("rx7-45view/rx7-green.png");
-let blackRx7 = loadImage("rx7-45view/rx7-grey.png");
-let orangeRx7 = loadImage("rx7-45view/rx7-orange.png");
-let pinkRx7 = loadImage("rx7-45view/rx7-pink.png");
-let purpleRx7 = loadImage("rx7-45view/rx7-purple.png");
-let redRx7 = loadImage("rx7-45view/rx7-red.png");
-let whiteRx7 = loadImage("rx7-45view/rx7-white.png");
-let yellowRx7 = loadImage("rx7-45view/rx7-yellow.png");
-//supra
-let blueSupra = loadImage("supra-45view/Supra-light-blue.png");
-let greenSupra = loadImage("supra-45view/Supra-green.png");
-let blackSupra = loadImage("supra-45view/Supra-black.png");
-let orangeSupra = loadImage("supra-45view/Supra-orange.png");
-let pinkSupra = loadImage("supra-45view/Supra-pink.png");
-let purpleSupra = loadImage("supra-45view/Supra-purple.png");
-let redSupra = loadImage("supra-45view/Supra-red.png");
-let whiteSupra = loadImage("supra-45view/Supra-white.png");
-let yellowSupra = loadImage("supra-45view/Supra-yellow.png");
 
-let carColors = {
-  green: color("#00FF00"),
-  blue: color("#00FFFF"),
-  red: color("#FF0000"),
-  black: color("#262626"),
-  yellow: color("#ddd312"),
-  pink: color("#ed11a4"),
-  purple: color("#7125ba"),
-  white: color("#e5e5e5"),
-  orange: color("#d96d25"),
-};
 function headline() {
   fill(255);
   textFont("verdana");
@@ -136,7 +187,9 @@ function headline() {
 }
 
 function backButton() {
-  let button;
+  if (button != null) {
+    button.remove();
+  }
   button = createButton("BACK");
   button.size(130, 60);
   button.position(40, 40);
@@ -274,112 +327,34 @@ function carSelection() {
   backButton();
   colorBoxes();
   //section for choosing car
-  if (
-    mouseIsPressed &&
-    mouseX > 861 &&
-    mouseX < 1133 &&
-    mouseY > 222 &&
-    mouseY < 339
-  ) {
+  if (mouseIsPressed && mouseX > 861 && mouseX < 1133 && mouseY > 222 && mouseY < 339) {
     currentCar = "bmw";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 849 &&
-    mouseY < 1147 &&
-    mouseY > 395 &&
-    mouseY < 518
-  ) {
+  } else if (mouseIsPressed && mouseX > 849 && mouseY < 1147 && mouseY > 395 && mouseY < 518) {
     currentCar = "rx7";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 853 &&
-    mouseX < 1148 &&
-    mouseY > 569 &&
-    mouseY < 701
-  ) {
+  } else if (mouseIsPressed && mouseX > 853 && mouseX < 1148 && mouseY > 569 && mouseY < 701) {
     currentCar = "supra";
   }
   selectCar(currentCar);
   //section for choosing color
-  if (
-    mouseIsPressed &&
-    mouseX > 210 &&
-    mouseX < 260 &&
-    mouseY > 700 &&
-    mouseY < 750
-  ) {
+  if (mouseIsPressed && mouseX > 210 && mouseX < 260 && mouseY > 700 && mouseY < 750) {
     currentColor = "red";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 290 &&
-    mouseX < 340 &&
-    mouseY > 700 &&
-    mouseY < 750
-  ) {
+  } else if (mouseIsPressed && mouseX > 290 && mouseX < 340 && mouseY > 700 && mouseY < 750) {
     currentColor = "green";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 370 &&
-    mouseX < 420 &&
-    mouseY > 700 &&
-    mouseY < 750
-  ) {
+  } else if (mouseIsPressed && mouseX > 370 && mouseX < 420 && mouseY > 700 && mouseY < 750) {
     currentColor = "blue";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 450 &&
-    mouseX < 500 &&
-    mouseY > 700 &&
-    mouseY < 750
-  ) {
+  } else if (mouseIsPressed && mouseX > 450 && mouseX < 500 && mouseY > 700 && mouseY < 750) {
     currentColor = "black";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 530 &&
-    mouseX < 580 &&
-    mouseY > 700 &&
-    mouseY < 750
-  ) {
+  } else if (mouseIsPressed && mouseX > 530 && mouseX < 580 && mouseY > 700 && mouseY < 750) {
     currentColor = "yellow";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 210 &&
-    mouseX < 260 &&
-    mouseY > 780 &&
-    mouseY < 830
-  ) {
+  } else if (mouseIsPressed && mouseX > 210 && mouseX < 260 && mouseY > 780 && mouseY < 830) {
     currentColor = "pink";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 290 &&
-    mouseX < 340 &&
-    mouseY > 780 &&
-    mouseY < 830
-  ) {
+  } else if (mouseIsPressed && mouseX > 290 && mouseX < 340 && mouseY > 780 && mouseY < 830) {
     currentColor = "purple";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 370 &&
-    mouseX < 420 &&
-    mouseY > 780 &&
-    mouseY < 830
-  ) {
+  } else if (mouseIsPressed && mouseX > 370 && mouseX < 420 && mouseY > 780 && mouseY < 830) {
     currentColor = "white";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 450 &&
-    mouseX < 500 &&
-    mouseY > 780 &&
-    mouseY < 830
-  ) {
+  } else if (mouseIsPressed && mouseX > 450 && mouseX < 500 && mouseY > 780 && mouseY < 830) {
     currentColor = "orange";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 530 &&
-    mouseX < 580 &&
-    mouseY > 780 &&
-    mouseY < 830
-  ) {
+  } else if (mouseIsPressed && mouseX > 530 && mouseX < 580 && mouseY > 780 && mouseY < 830) {
     selectRandomColor(carColors);
     //the following 2 lines of code were done with the help of ChatGPT
     let randomColor = selectRandomColor(carColors);
@@ -398,7 +373,9 @@ let mapIsChosen = false;
 let doneGoBack = false;
 
 function cityMapButton() {
-  let button;
+  if (button != null) {
+    button.remove();
+  }
   button = createButton("Tokyo City");
   button.size(400, 300);
   button.style("borderRadius", "30px");
@@ -410,29 +387,25 @@ function cityMapButton() {
   button.style("border-color", "#ffffff");
   button.style("color", "#ffffff");
   button.style("border-style", "outset");
-  if (
-    mouseIsPressed &&
-    mouseX > 130 &&
-    mouseX < 527 &&
-    mouseY > 230 &&
-    mouseY < 525
-  ) {
+  if (mouseIsPressed && mouseX > 130 && mouseX < 527 && mouseY > 230 && mouseY < 525) {
     mapIsChosen = true;
     console.log("ok");
   }
-  button.mouseOver(function () {
+  button.mouseOver(function() {
     button.style("background-color", "transparent");
     //button.style.backgroundImage = "url('logo.png')";
     button.style("background-image", "url('logo.png')");
     button.style("background-repeat", "no-repeat");
     button.style("background-size", "cover");
   });
-  button.mouseOut(function () {
+  button.mouseOut(function() {
     button.style("background-color", "#ec008c");
   });
 }
 function suburbanMapButton() {
-  let button;
+  if (button != null) {
+    button.remove();
+  }
   button = createButton("Suburbs");
   button.size(400, 300);
   button.style("borderRadius", "30px");
@@ -446,13 +419,7 @@ function suburbanMapButton() {
   button.style("border-color", "#ffffff");
   button.style("color", "#ffffff");
   button.style("border-style", "outset");
-  if (
-    mouseIsPressed &&
-    mouseX > 660 &&
-    mouseX < 1080 &&
-    mouseY > 230 &&
-    mouseY < 525
-  ) {
+  if (mouseIsPressed && mouseX > 660 && mouseX < 1080 && mouseY > 230 && mouseY < 525) {
     mapIsChosen = true;
     console.log("ok");
   }
@@ -467,7 +434,9 @@ function suburbanMapButton() {
       });  */
 }
 function selectButton() {
-  let button;
+  if (button != null) {
+    button.remove();
+  }
   button = createButton("Done");
   button.style("borderRadius", "30px");
   button.position(420, 680);
@@ -480,13 +449,7 @@ function selectButton() {
   button.style("border-color", "#ffffff");
   button.style("color", "#ffffff");
   button.style("border-style", "outset");
-  if (
-    mouseIsPressed &&
-    mouseX > 420 &&
-    mouseX < 820 &&
-    mouseY > 680 &&
-    mouseY < 780
-  ) {
+  if (mouseIsPressed && mouseX > 420 && mouseX < 820 && mouseY > 680 && mouseY < 780) {
     doneGoBack = true;
     console.log("done");
   }
@@ -628,18 +591,8 @@ function bmw() {
   endShape();
 
   //Detail of Hood
-  line(
-    carX - 174 * carScale,
-    carY - 28 * carScale,
-    carX - 89 * carScale,
-    carY - 38 * carScale
-  );
-  line(
-    carX - 174 * carScale,
-    carY + 32 * carScale,
-    carX - 89 * carScale,
-    carY + 42 * carScale
-  );
+  line(carX - 174 * carScale, carY - 28 * carScale, carX - 89 * carScale, carY - 38 * carScale);
+  line(carX - 174 * carScale, carY + 32 * carScale, carX - 89 * carScale, carY + 42 * carScale);
 
   //Backlights
   push();
@@ -973,24 +926,9 @@ function rx7() {
   endShape();
 
   //hood
-  line(
-    carX - 184 * carScale,
-    carY - 41 * carScale,
-    carX - 186 * carScale,
-    carY + 41 * carScale
-  );
-  line(
-    carX - 156 * carScale,
-    carY - 63 * carScale,
-    carX - 68 * carScale,
-    carY - 61 * carScale
-  );
-  line(
-    carX - 156 * carScale,
-    carY + 63 * carScale,
-    carX - 68 * carScale,
-    carY + 61 * carScale
-  );
+  line(carX - 184 * carScale, carY - 41 * carScale, carX - 186 * carScale, carY + 41 * carScale);
+  line(carX - 156 * carScale, carY - 63 * carScale, carX - 68 * carScale, carY - 61 * carScale);
+  line(carX - 156 * carScale, carY + 63 * carScale, carX - 68 * carScale, carY + 61 * carScale);
 
   //details on hood
   push();
@@ -1268,14 +1206,7 @@ function supra() {
     carX + 190 * carScale,
     carY - 55 * carScale
   );
-  bezierVertex(
-    carX + 210 * carScale,
-    carY - 40 * carScale,
-    carX + 210 * carScale,
-    carY,
-    carX + 210 * carScale,
-    carY
-  );
+  bezierVertex(carX + 210 * carScale, carY - 40 * carScale, carX + 210 * carScale, carY, carX + 210 * carScale, carY);
   vertex(carX + 210 * carScale, carY);
   bezierVertex(
     carX + 210 * carScale,
@@ -1760,45 +1691,23 @@ function nosBoost() {
   noStroke();
   fill(250);
 
-  rect(
-    boostX - 3 * boostScale,
-    boostY - 85 * boostScale,
-    6 * boostScale,
-    10 * boostScale
-  );
+  rect(boostX - 3 * boostScale, boostY - 85 * boostScale, 6 * boostScale, 10 * boostScale);
 
   //bottle
   fill(0, 40, 200);
 
-  rect(
-    boostX - 20 * boostScale,
-    boostY - 50 * boostScale,
-    40 * boostScale,
-    80 * boostScale,
-    5 * boostScale
-  );
+  rect(boostX - 20 * boostScale, boostY - 50 * boostScale, 40 * boostScale, 80 * boostScale, 5 * boostScale);
 
   ellipse(boostX, boostY - 47 * boostScale, 40 * boostScale);
 
   //reflection
   fill(0, 80, 220);
-  rect(
-    boostX - 11 * boostScale,
-    boostY - 60 * boostScale,
-    6 * boostScale,
-    80 * boostScale,
-    2 * boostScale
-  );
+  rect(boostX - 11 * boostScale, boostY - 60 * boostScale, 6 * boostScale, 80 * boostScale, 2 * boostScale);
 
   //bottle neck
   fill(0, 40, 200);
 
-  rect(
-    boostX - 5 * boostScale,
-    boostY - 75 * boostScale,
-    10 * boostScale,
-    10 * boostScale
-  );
+  rect(boostX - 5 * boostScale, boostY - 75 * boostScale, 10 * boostScale, 10 * boostScale);
 
   // knob
   fill(20 /* 0, 70, 200 */);
@@ -1819,13 +1728,7 @@ function nosBoost() {
   // Label
   fill(255, 120, 30);
   stroke(255);
-  rect(
-    boostX - 15 * boostScale,
-    boostY - 53 * boostScale,
-    30 * boostScale,
-    40 * boostScale,
-    5 * boostScale
-  );
+  rect(boostX - 15 * boostScale, boostY - 53 * boostScale, 30 * boostScale, 40 * boostScale, 5 * boostScale);
 
   //Power symbol
   beginShape();
@@ -1857,84 +1760,39 @@ function cityConditions() {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap2.png");
     carX = 5;
-  } else if (
-    whichBackgroundCity === 2 &&
-    39 < carY &&
-    carY < 267 &&
-    carX >= 1200
-  ) {
+  } else if (whichBackgroundCity === 2 && 39 < carY && carY < 267 && carX >= 1200) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap3.png");
     carX = 5;
-  } else if (
-    whichBackgroundCity === 3 &&
-    448 < carX &&
-    carX < 670 &&
-    carY >= 900
-  ) {
+  } else if (whichBackgroundCity === 3 && 448 < carX && carX < 670 && carY >= 900) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap4.png");
     carY = 5;
-  } else if (
-    whichBackgroundCity === 4 &&
-    256 < carY &&
-    carY < 482 &&
-    carX >= 1200
-  ) {
+  } else if (whichBackgroundCity === 4 && 256 < carY && carY < 482 && carX >= 1200) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap5.png");
     carX = 5;
-  } else if (
-    whichBackgroundCity === 5 &&
-    517 < carX &&
-    carX < 745 &&
-    carY <= 0
-  ) {
+  } else if (whichBackgroundCity === 5 && 517 < carX && carX < 745 && carY <= 0) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap6.png");
     carY = 900;
-  } else if (
-    whichBackgroundCity === 6 &&
-    517 < carX &&
-    carX < 745 &&
-    carY <= 0
-  ) {
+  } else if (whichBackgroundCity === 6 && 517 < carX && carX < 745 && carY <= 0) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap7.png");
     carY = 900;
-  } else if (
-    whichBackgroundCity === 7 &&
-    254 < carY &&
-    carY < 479 &&
-    carX >= 1200
-  ) {
+  } else if (whichBackgroundCity === 7 && 254 < carY && carY < 479 && carX >= 1200) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap8.png");
     carX = 5;
-  } else if (
-    whichBackgroundCity === 8 &&
-    530 < carX &&
-    carX < 755 &&
-    carY >= 900
-  ) {
+  } else if (whichBackgroundCity === 8 && 530 < carX && carX < 755 && carY >= 900) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap9.png");
     carY = 5;
-  } else if (
-    whichBackgroundCity === 9 &&
-    320 < carY &&
-    carY < 544 &&
-    carX >= 1200
-  ) {
+  } else if (whichBackgroundCity === 9 && 320 < carY && carY < 544 && carX >= 1200) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap10.png");
     carX = 5;
-  } else if (
-    whichBackgroundCity === 10 &&
-    320 < carY &&
-    carY < 544 &&
-    carX >= 890
-  ) {
+  } else if (whichBackgroundCity === 10 && 320 < carY && carY < 544 && carX >= 890) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap10.png");
     isGameActive = false;
@@ -1960,39 +1818,19 @@ function suburbanConditions(backgroundImageSub) {
     whichSectionOnMap += 1;
     carY = 900;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-6.png");
-  } else if (
-    whichSectionOnMap === 3 &&
-    carX >= 1200 &&
-    carY > 194 &&
-    carY < 504
-  ) {
+  } else if (whichSectionOnMap === 3 && carX >= 1200 && carY > 194 && carY < 504) {
     whichSectionOnMap += 1;
     carX = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-7.png");
-  } else if (
-    whichSectionOnMap === 4 &&
-    carY >= 900 &&
-    carX > 483 &&
-    carX < 783
-  ) {
+  } else if (whichSectionOnMap === 4 && carY >= 900 && carX > 483 && carX < 783) {
     whichSectionOnMap += 1;
     carY = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-11.png");
-  } else if (
-    whichSectionOnMap === 5 &&
-    carX >= 1200 &&
-    carY > 404 &&
-    carY < 724
-  ) {
+  } else if (whichSectionOnMap === 5 && carX >= 1200 && carY > 404 && carY < 724) {
     whichSectionOnMap += 1;
     carX = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-12.png");
-  } else if (
-    whichSectionOnMap === 6 &&
-    carY <= 0 &&
-    carX > 821 &&
-    carX < 1130
-  ) {
+  } else if (whichSectionOnMap === 6 && carY <= 0 && carX > 821 && carX < 1130) {
     whichSectionOnMap += 1;
     carY = 900;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-8.png");
@@ -2012,21 +1850,11 @@ function suburbanConditions(backgroundImageSub) {
     whichSectionOnMap += 1;
     carX = 1200;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-1.png");
-  } else if (
-    whichSectionOnMap === 11 &&
-    carY >= 900 &&
-    carX > 266 &&
-    carX < 574
-  ) {
+  } else if (whichSectionOnMap === 11 && carY >= 900 && carX > 266 && carX < 574) {
     whichSectionOnMap += 1;
     carY = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-5.png");
-  } else if (
-    whichSectionOnMap === 12 &&
-    carY >= 900 &&
-    carX > 319 &&
-    carX < 625
-  ) {
+  } else if (whichSectionOnMap === 12 && carY >= 900 && carX > 319 && carX < 625) {
     whichSectionOnMap += 1;
     carY = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-9.png");
@@ -2043,6 +1871,7 @@ function crashScreen() {}
 
 function draw() {
   if (currentScreen === "preScreen") {
+    clear();
     preScreen();
   } else if (currentScreen === "startScreen") {
     startScreen();
