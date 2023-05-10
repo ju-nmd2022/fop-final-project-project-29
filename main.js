@@ -99,7 +99,8 @@ function preload() {
   tokyoCityImg = "url('logo.png')";
 }
 
-let currentScreen = "startScreen";
+let currentScreen = "carSelection";
+
 /* content of pre screen */
 let buttonStart = null;
 function startButton() {
@@ -118,9 +119,17 @@ function startButton() {
   buttonStart.style("border-color: #FFFFFF");
   buttonStart.style("background-color: #ec008c");
 }
+
+function changeToStartScreen() {
+  currentScreen = "startScreen";
+
+  buttonStart.remove();
+}
+
 function preScreen() {
   background(preBg);
   startButton();
+  buttonStart.mousePressed(changeToStartScreen);
 }
 
 let buttonPlay = null;
@@ -178,6 +187,22 @@ function mapCustomButton() {
   buttonMapCustom.style("border-style", "outset");
 }
 
+function changeToCarSelection() {
+  currentScreen = "carSelection";
+
+  buttonCarCustom.remove();
+  buttonMapCustom.remove();
+  buttonPlay.remove();
+}
+
+function changeToMapSelection() {
+  currentScreen = "mapSelection";
+
+  buttonCarCustom.remove();
+  buttonMapCustom.remove();
+  buttonPlay.remove();
+}
+
 function startScreen() {
   //https://p5js.org/examples/image-background-image.html
   background(startBg);
@@ -188,16 +213,10 @@ function startScreen() {
   playButton();
   carCustomButton();
   mapCustomButton();
-  //selecting one of the changes
-  if (
-    mouseIsPressed &&
-    mouseX > 650 &&
-    mouseX < 900 &&
-    mouseY > 520 &&
-    mouseY < 580
-  ) {
-    currentScreen = "carSelection";
-  } 
+  
+  buttonPlay.mousePressed(/* add here function to start the game */);
+  buttonCarCustom.mousePressed(changeToCarSelection);
+  buttonMapCustom.mousePressed(changeToMapSelection);
 }
 
 /* content for car slection */
@@ -225,6 +244,12 @@ function backButton() {
   buttonBack.style("border: 5px outset");
   buttonBack.style("border-color: #FFFFFF");
   buttonBack.style("background-color: #bd0271");
+}
+
+function backToStartScreen() {
+  currentScreen = "startScreen";
+
+  buttonBack.remove();
 }
 
 function colorBoxes() {
@@ -351,6 +376,7 @@ function carSelection() {
   headline();
   backButton();
   colorBoxes();
+  buttonBack.mousePressed(backToStartScreen);
   //section for choosing car
   if (
     mouseIsPressed &&
@@ -467,7 +493,7 @@ function carSelection() {
 
   selectColor(currentCar, currentColor);
 }
-
+//need to finish this screen -- button condition added later
 /* content for map selection */
 let mapIsChosen = false;
 let doneGoBack = false;
