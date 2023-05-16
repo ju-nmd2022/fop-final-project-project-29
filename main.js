@@ -50,6 +50,7 @@ let backgroundImageCity;
 let backgroundImageSub;
 let mapSelectBg;
 let tokyoCityImg;
+let mapSelected = "";
 
 function preload() {
   /* pre screen */
@@ -526,10 +527,13 @@ function cityMapButton() {
   }
   buttonCity.mouseOver(function () {
     buttonCity.style("background-color", "transparent");
-    //button.style.backgroundImage = "url('logo.png')";
     buttonCity.style("background-image", "url('map-city/cityMap1.png')");
     buttonCity.style("background-repeat", "no-repeat");
     buttonCity.style("background-size", "cover");
+  });
+  buttonCity.mousePressed(function (){
+    mapSelected = "City";
+    //add localstorage function
   });
   buttonCity.mouseOut(function () {
     buttonCity.style("background-color", "#ec008c");
@@ -564,15 +568,19 @@ function suburbanMapButton() {
     mapIsChosen = true;
     console.log("ok");
   }
-  /* buttonSuburban.mouseOver(function() {
-        buttonSuburban.style("background-color", "");
-        buttonSuburban.style("background-img", "url('logo.png')");
-        buttonSuburban.style("background-repeat", "no-repeat");
-        buttonSuburban.style("background-size", "cover");
-      });
-    buttonSuburban.mouseOut(function() {
-        buttonSuburban.style("background-color", "#ec008c");
-      });  */
+  buttonSuburban.mouseOver(function () {
+    buttonSuburban.style("background-color", "transparent");
+    buttonSuburban.style("background-image", "url('suburbanMap/SuburbanMap-1.png')");
+    buttonSuburban.style("background-repeat", "no-repeat");
+    buttonSuburban.style("background-size", "cover");
+  });
+  buttonSuburban.mousePressed(function (){
+    mapSelected = "Suburban";
+    //add localstorage function
+  });
+  buttonSuburban.mouseOut(function () {
+    buttonSuburban.style("background-color", "#ec008c");
+  });
 }
 
 let buttonDone = null;
@@ -602,6 +610,20 @@ function selectButton() {
     doneGoBack = true;
     console.log("done");
   }
+  buttonDone.mouseOver(function () {
+    buttonDone.style("background-color", "#a90059");
+    buttonDone.style("background-repeat", "no-repeat");
+    buttonDone.style("background-size", "cover");
+  });
+  buttonDone.mousePressed(function(){
+    currentScreen="startScreen";
+    buttonSuburban.remove();
+    buttonCity.remove();
+    buttonDone.remove();
+  });
+  buttonDone.mouseOut(function () {
+    buttonDone.style("background-color", "#ec008c");
+  });
 }
 let currentMap = "";
 function mapSelection() {
