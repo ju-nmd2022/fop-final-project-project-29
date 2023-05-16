@@ -506,7 +506,7 @@ function cityMapButton() {
   buttonCity = createButton("Tokyo City");
   buttonCity.size(400, 300);
   buttonCity.style("borderRadius", "30px");
-  buttonCity.position(windowWidth / 2 -50, 200);
+  buttonCity.position(windowWidth / 2 +20, 200);
   buttonCity.style("font-family", "Verdana");
   buttonCity.style("font-size", "42px");
   buttonCity.style("background-color", "#ec008c");
@@ -527,7 +527,7 @@ function cityMapButton() {
   buttonCity.mouseOver(function () {
     buttonCity.style("background-color", "transparent");
     //button.style.backgroundImage = "url('logo.png')";
-    buttonCity.style("background-image", "url('logo.png')");
+    buttonCity.style("background-image", "url('map-city/cityMap1.png')");
     buttonCity.style("background-repeat", "no-repeat");
     buttonCity.style("background-size", "cover");
   });
@@ -544,7 +544,7 @@ function suburbanMapButton() {
   buttonSuburban = createButton("Suburbs");
   buttonSuburban.size(400, 300);
   buttonSuburban.style("borderRadius", "30px");
-  buttonSuburban.position(windowWidth / 2 - 490, 200);
+  buttonSuburban.position(windowWidth / 2 - 420, 200);
   buttonSuburban.style("font-family", "Verdana");
   buttonSuburban.style("font-size", "42px");
   buttonSuburban.style("background-color", "#ec008c");
@@ -582,7 +582,7 @@ function selectButton() {
   }
   buttonDone = createButton("Done");
   buttonDone.style("borderRadius", "30px");
-  buttonDone.position(windowWidth / 2 - 270, 550);
+  buttonDone.position(windowWidth / 2 - 200, 550);
   buttonDone.style("font-family", "Verdana");
   buttonDone.style("font-size", "42px");
   buttonDone.style("background-color", "#ec008c");
