@@ -99,7 +99,7 @@ function preload() {
   tokyoCityImg = "url('logo.png')";
 }
 
-let currentScreen = "carSelection";
+let currentScreen = "mapSelection";
 
 /* content of pre screen */
 let buttonStart = null;
@@ -506,7 +506,7 @@ function cityMapButton() {
   buttonCity = createButton("Tokyo City");
   buttonCity.size(400, 300);
   buttonCity.style("borderRadius", "30px");
-  buttonCity.position(150, 250);
+  buttonCity.position(windowWidth / 2 -50, 200);
   buttonCity.style("font-family", "Verdana");
   buttonCity.style("font-size", "42px");
   buttonCity.style("background-color", "#ec008c");
@@ -544,7 +544,7 @@ function suburbanMapButton() {
   buttonSuburban = createButton("Suburbs");
   buttonSuburban.size(400, 300);
   buttonSuburban.style("borderRadius", "30px");
-  buttonSuburban.position(680, 250);
+  buttonSuburban.position(windowWidth / 2 - 490, 200);
   buttonSuburban.style("font-family", "Verdana");
   buttonSuburban.style("font-size", "42px");
   buttonSuburban.style("background-color", "#ec008c");
@@ -582,7 +582,7 @@ function selectButton() {
   }
   buttonDone = createButton("Done");
   buttonDone.style("borderRadius", "30px");
-  buttonDone.position(420, 680);
+  buttonDone.position(windowWidth / 2 - 270, 550);
   buttonDone.style("font-family", "Verdana");
   buttonDone.style("font-size", "42px");
   buttonDone.style("background-color", "#ec008c");
@@ -607,10 +607,10 @@ let currentMap = "";
 function mapSelection() {
   background(mapSelectBg);
   suburbanMapButton();
+  cityMapButton();
+  selectButton();
+  /* if one map is selected - > done button show up */
 
-  if (doneGoBack === true) {
-    //switch screen
-  }
 }
 let carX = 260;
 let carY = 180;
