@@ -50,9 +50,57 @@ function preload() {
 
 function cityBoundries(){
   if(whichBackground === 1) {
-    noStroke();
+    strokeWeight(1);
+    stroke(255,0,0);
     line(0, 266, 950, 266);
     line(0, 444, 950, 444);
+  } else if(whichBackground === 2){
+    stroke(255,0,0);
+    noFill();
+    line(0, 266, 320, 266);
+    line(0, 444, 414, 444);
+    beginShape();
+    vertex(414,444);
+    bezierVertex(500, 444, 500, 350, 500, 350);
+    endShape();
+    line(500, 350, 500, 210);
+    line(500, 210, 950, 213);
+    line(320, 265, 320, 113);
+    line(404, 31, 950, 31);
+    beginShape();
+    vertex(320,113);
+    bezierVertex(320, 113, 320, 31, 404, 31);
+    endShape();
+  } else if(whichBackground === 3){
+    line(0, 31, 405, 31);
+    line(496, 111, 534, 712);
+    line(0, 210, 324, 210);
+    line(324, 210, 356, 712);
+    beginShape();
+    noFill();
+    vertex(405,31);
+    bezierVertex(496,31,496,111,496,111);
+    endShape();
+  } else if(whichBackground === 4){
+    line(356, 0, 373, 293);
+    beginShape();
+    noFill();
+    vertex(373, 293);
+    bezierVertex(370, 335, 423, 381, 464, 381);
+    endShape();
+    line(464, 381, 950, 381);
+    line(534, 0, 546, 201);
+    line(546, 201, 950, 201);
+  } else if(whichBackground === 5){
+    line(0, 202, 409, 202);
+    line(409, 202, 409, 0);
+    line(0, 380, 501, 382);
+    beginShape();
+    noFill();
+    vertex(501, 382);
+    bezierVertex(558, 367, 585, 339, 588, 291);
+    endShape();
+    line(588, 291, 588, 0);
   }
 }
 
@@ -107,7 +155,7 @@ function cityMap() {
   
     background(backgroundImage);
   cityMap();
-
+cityBoundries();
   
     car(carX, carY, rotation);
 if (isGameActive === true){
