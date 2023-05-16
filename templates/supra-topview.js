@@ -1,333 +1,201 @@
-let carX = 300;
-let carY = 300;
+let carX = 0;
+let carY = 0;
 let carScale = 1;
 
+let rotation = 0;
+let speed = 0;
+let acceleration = 0.3;
+
 //outline
+function car(carX, carY, rotation) {
+    translate(carX +200, carY +200);
+    rotate(rotation);
 beginShape();
 stroke(0);
 fill(0,255,0);
 strokeWeight(1);
-vertex(carX - 215 * carScale, carY);
-bezierVertex(
-    carX - 215 * carScale, carY - 30 * carScale,
-    carX - 210 * carScale, carY-  50 * carScale,
-    carX - 186 * carScale, carY - 70 * carScale);
-bezierVertex(
-    carX - 185 * carScale, carY - 72 * carScale, 
-    carX - 178 * carScale, carY - 73 * carScale, 
-    carX - 175 * carScale, carY - 76 * carScale);
-bezierVertex(
-    carX - 173 * carScale, carY - 78 * carScale, 
-    carX - 165 * carScale, carY - 81 * carScale,
-    carX - 157 * carScale, carY - 86 * carScale);
-bezierVertex(
-    carX - 157 * carScale, carY - 87 * carScale,
-    carX - 151 * carScale ,carY - 87 * carScale,
-    carX - 148 * carScale, carY - 88 * carScale);
-bezierVertex(
-    carX + 40 * carScale, carY - 80 * carScale,
-    carX + 40 * carScale, carY - 80 * carScale,
-    carX + 73 * carScale, carY - 82 * carScale);
-bezierVertex(
-    carX + 73 * carScale, carY - 82 * carScale,
-    carX + 103 * carScale, carY - 87 * carScale,
-    carX + 123 * carScale, carY - 87 * carScale);
-vertex(carX + 182 * carScale, carY - 65 * carScale);
-bezierVertex(
-    carX + 182 * carScale, carY - 65 * carScale, 
-    carX + 185 * carScale, carY - 63 * carScale, 
-    carX + 190 * carScale, carY - 55 * carScale);
-bezierVertex(
-    carX + 210 * carScale, carY - 40 * carScale, 
-    carX + 210 * carScale, carY,
-    carX + 210 * carScale, carY);
-vertex(carX + 210 * carScale, carY);
-bezierVertex(
-    carX + 210 * carScale, carY,
-    carX + 210 * carScale, carY + 40 * carScale, 
-    carX + 190 * carScale, carY + 55 * carScale);
-bezierVertex(
-    carX + 190 * carScale, carY + 55 * carScale,
-    carX + 185 * carScale, carY + 63 * carScale,
-    carX + 182 * carScale, carY + 65 * carScale);
-vertex(carX + 123 * carScale, carY + 87 * carScale);
-bezierVertex(
-    carX + 103 * carScale, carY + 87 * carScale,
-    carX + 73 * carScale, carY + 82 * carScale,
-    carX + 73 * carScale, carY + 82 * carScale);
-bezierVertex(
-    carX + 40 * carScale, carY + 80 * carScale,
-    carX + 40 * carScale, carY + 80 * carScale,
-    carX - 148 * carScale, carY + 90 * carScale);
-bezierVertex(
-    carX - 148 * carScale, carY + 90 * carScale,
-    carX - 159 * carScale, carY + 93 * carScale,
-    carX - 171 * carScale, carY + 84 * carScale);
-bezierVertex(
-    carX - 200 * carScale, carY + 70 * carScale,
-    carX - 186 * carScale, carY + 70 * carScale,
-    carX - 200 * carScale, carY + 60 * carScale);
-bezierVertex(
-    carX - 210 * carScale, carY + 50 * carScale,
-    carX - 215 * carScale, carY + 30 * carScale,
-    carX - 215 * carScale, carY);
+vertex( - 215,0);
+bezierVertex(-215, -30, -210, -50, -186, -70);
+bezierVertex(-185, -72, -178, -73, -175, -76);
+bezierVertex(-173, -78, -165, -81,-157, -86);
+bezierVertex(-157, -87,-151, -87, -148, -88);
+bezierVertex(40, -80,40, -80, 73, -82);
+bezierVertex(73, -82, 103, -87, 123, -87);
+vertex( 182, -65);
+bezierVertex(182, -65, 185, -63, 190, -55);
+bezierVertex(210, -40, 210, 0, 210, 0);
+vertex( 210, 0);
+bezierVertex(210, 0, 210, 40, 190, 55);
+bezierVertex(190, 55, 185, 63, 182, 65);
+vertex(123, 87);
+bezierVertex(103, 87,73, 82,73, 82);
+bezierVertex(40, 80, 40, 80, -148, 90);
+bezierVertex(-148, 90, -159, 93, -171, 84);
+bezierVertex(-200, 70, -186, 70, -200, 60);
+bezierVertex(-210, 50, -215, 30, -215, 0);
 endShape();
 
 //front window
 beginShape();
 fill(35, 31, 32);
-vertex(carX - 21 * carScale, carY - 50 * carScale); 
-bezierVertex(
-    carX - 25 * carScale, carY - 40 * carScale,
-    carX - 25 * carScale, carY + 40 * carScale,
-    carX - 21 * carScale, carY + 50 * carScale);
-bezierVertex(
-    carX - 19 * carScale, carY + 56 * carScale,
-    carX - 26 * carScale, carY + 59 * carScale,
-    carX - 26 * carScale, carY + 60 * carScale);
-bezierVertex(
-    carX - 77 * carScale, carY + 74 * carScale,
-    carX - 77 * carScale, carY + 74 * carScale,
-    carX - 77 * carScale, carY + 74 * carScale);
-bezierVertex(
-    carX - 92 * carScale, carY + 58 * carScale,
-    carX - 103 * carScale, carY + 26 * carScale,
-    carX - 103 * carScale, carY);
-bezierVertex(
-    carX - 103 * carScale, carY - 40 * carScale,
-    carX - 77 * carScale, carY - 70 * carScale,
-    carX - 77 * carScale, carY - 72 * carScale);
-vertex(carX - 26 * carScale, carY - 60 * carScale);
-bezierVertex(
-    carX - 26 * carScale, carY - 60 * carScale,
-    carX - 19 * carScale, carY - 56 * carScale,
-    carX - 21 * carScale, carY - 50 * carScale);
+vertex(- 21, -50); 
+bezierVertex(-25, -40, -25, 40, -21, 50);
+bezierVertex(-19, 56, -26, 59, -26, 60);
+bezierVertex(-77, 74, -77, 74, -77, 74);
+bezierVertex(-92, 58, -103, 26, -103, 0);
+bezierVertex(-103, -40, -77, -70, -77, -72);
+vertex(- 26, -60);
+bezierVertex(-26, -60, -19, -56, -21, -50);
 endShape();
 
 //back window
 beginShape();
-vertex(carX + 75 * carScale, carY);
-vertex(carX + 75 * carScale, carY + 42 * carScale);
-bezierVertex(
-    carX + 76 * carScale, carY + 48 * carScale,
-    carX + 82 * carScale, carY + 49 * carScale, 
-    carX + 91 * carScale, carY + 52 * carScale); 
-bezierVertex(
-    carX + 129 * carScale, carY + 60 * carScale,
-    carX + 129 * carScale, carY + 57 * carScale,
-    carX + 129 * carScale, carY + 58 * carScale);
-bezierVertex(
-    carX + 148 * carScale, carY + 52 * carScale, 
-    carX + 144 * carScale, carY + 27 * carScale,
-    carX + 146 * carScale, carY);
-bezierVertex(
-    carX + 144 * carScale, carY - 27 * carScale,
-    carX + 148 * carScale, carY - 52 * carScale,
-    carX + 129 * carScale, carY - 58 * carScale);
-bezierVertex(
-    carX + 129 * carScale, carY - 57 * carScale,
-    carX + 129 * carScale, carY - 60 * carScale,
-    carX + 91 * carScale, carY - 52 * carScale);
-bezierVertex(
-    carX + 82 * carScale, carY -49 * carScale,
-    carX + 76 * carScale, carY - 48 * carScale,
-    carX + 75 * carScale, carY - 32 * carScale);
-vertex(
-    carX + 75 * carScale, carY);
+vertex(75,0);
+vertex(75, 42);
+bezierVertex(76, 48, 82, 49, 91, 52); 
+bezierVertex(129, 60, 129, 57, 129, 58);
+bezierVertex(148, 52, 144, 27, 146, 0);
+bezierVertex(144, -27, 148, -52, 129, -58);
+bezierVertex(129, -57, 129, -60, 91, -52);
+bezierVertex(82, -48, 76, -48, 75, -32);
+vertex(75, 0);
 endShape();
 
 //side window right
 beginShape();
-vertex(carX - 66 * carScale, carY - 76 * carScale);
-bezierVertex(
-    carX - 26 * carScale, carY - 62 * carScale,
-    carX + 06 * carScale, carY - 60 * carScale,
-    carX + 15 * carScale, carY - 58 * carScale);
-bezierVertex(
-    carX + 52 * carScale, carY - 57 * carScale,
-    carX + 54 * carScale, carY - 60 * carScale,
-    carX + 75 * carScale, carY - 65 * carScale);
-bezierVertex(
-    carX + 80 * carScale, carY - 67 * carScale,
-    carX + 80 * carScale, carY - 69 * carScale, 
-    carX + 76 * carScale, carY - 72 * carScale);
-bezierVertex(
-    carX + 50 * carScale, carY - 77 * carScale, 
-    carX - 12 * carScale, carY - 79 * carScale, 
-    carX - 66 * carScale, carY - 76 * carScale); 
+vertex(-66, -76);
+bezierVertex(-26, -62, 06, -60, 15, -58);
+bezierVertex(52, -57, 54, -60, 75, -65);
+bezierVertex(80, -67, 80, -69, 76, -72);
+bezierVertex(50, -77, -12, -79, - 66, -76); 
 endShape();
 
 //side window left
 beginShape();
-vertex(carX - 66 * carScale, carY + 76 * carScale);
-bezierVertex(
-    carX - 26 * carScale, carY + 62 * carScale,
-    carX + 06 * carScale, carY + 60 * carScale,
-    carX + 15 * carScale, carY + 58 * carScale);
-bezierVertex(
-    carX + 52 * carScale, carY + 57 * carScale,
-    carX + 54 * carScale, carY + 60 * carScale,
-    carX + 75 * carScale, carY + 65 * carScale);
-bezierVertex(
-    carX + 80 * carScale, carY + 67 * carScale,
-    carX + 80 * carScale, carY + 69 * carScale,
-    carX + 76 * carScale, carY + 72 * carScale);
-bezierVertex(
-    carX + 50 * carScale, carY + 77 * carScale,
-    carX - 12 * carScale, carY + 79 * carScale,
-    carX - 66 * carScale, carY + 76 * carScale); 
+vertex(-66, 76);
+bezierVertex(- 26, 62, 06, 60, 15, 58);
+bezierVertex(52, 57, 54, 60, 75, 65);
+bezierVertex(80, 67, 80, 69, 76, 72);
+bezierVertex(50, 77, -12, 79, -66, 76); 
 endShape();
 
 //wing
 beginShape();
 noFill();
-vertex(carX + 175 * carScale, carY + 51 * carScale);
-vertex(carX + 141 * carScale, carY + 66 * carScale);
-vertex(carX + 181 * carScale, carY + 62 * carScale);
-vertex(carX + 191 * carScale, carY + 54 * carScale);
+vertex(175, 51);
+vertex(141, 66);
+vertex(181, 62);
+vertex(191, 54);
 endShape();
 
 beginShape();
-vertex(carX + 175 * carScale, carY - 51 * carScale);
-vertex(carX + 141 * carScale, carY - 66 * carScale);
-vertex(carX + 181 * carScale, carY - 62 * carScale);
-vertex(carX + 191 * carScale, carY - 54 * carScale);
+vertex(175, -51);
+vertex(141, -66);
+vertex(181, -62);
+vertex(191, -54);
 endShape();
 
 beginShape();
-vertex(carX + 175 * carScale, carY - 51 * carScale);
-bezierVertex(
-    carX + 186 * carScale, carY - 20 * carScale,
-    carX + 186 * carScale, carY + 20 * carScale, 
-    carX + 175 * carScale, carY + 51 * carScale);
+vertex(175, -51);
+bezierVertex(186, -20, 186, +20, 175, 51);
 endShape();
 
 //hood
 beginShape();
 noFill();
-vertex(carX - 77* carScale, carY - 72 * carScale);
-bezierVertex(
-    carX - 205 * carScale, carY - 95 * carScale,
-    carX - 205 * carScale, carY - 33 * carScale,
-    carX - 205 * carScale, carY);
-bezierVertex(
-    carX - 205 * carScale, carY + 33 * carScale,
-    carX - 205 * carScale, carY + 95 * carScale,
-    carX - 77 * carScale, carY + 74 * carScale);
+vertex(-77, -72);
+bezierVertex(-205, -95, -205, -33, -205, 0);
+bezierVertex(-205, 33, -205, 95, -77, 74);
 endShape();
 
 beginShape();
-vertex(carX - 104 * carScale, carY - 45 * carScale);
-bezierVertex(
-    carX - 122 * carScale, carY - 44 * carScale,
-    carX - 170 * carScale, carY - 40 * carScale,
-    carX - 182 * carScale, carY - 36 *carScale); 
+vertex(-104, -45);
+bezierVertex( -122, -44, -170, -40, -182, -36); 
 endShape();
 
 beginShape();
-vertex(carX - 104 * carScale, carY + 45 * carScale);
-bezierVertex(
-    carX - 122 * carScale, carY + 44 * carScale,
-    carX - 170 * carScale, carY + 40 * carScale,
-    carX - 182 * carScale, carY + 36 * carScale);
+vertex(-104, 45);
+bezierVertex(-122, 44, -170, 40, -182, 36);
 endShape();
 
 beginShape();
-vertex(carX - 116 * carScale, carY - 18 * carScale);
-vertex(carX - 116 * carScale, carY + 18 * carScale);
-vertex(carX - 156 * carScale, carY + 21 * carScale);
-vertex(carX - 156 * carScale, carY - 21 * carScale);
-vertex(carX - 116 * carScale, carY - 18 * carScale);
+vertex(-116, -18);
+vertex(-116, 18);
+vertex(-156, 21);
+vertex(-156, -21);
+vertex(-116, -18);
 endShape();
 
 //headlights
  beginShape();
 fill(255, 242, 215);
-vertex(carX - 181 * carScale, carY - 68 * carScale);
-bezierVertex(
-    carX - 195 * carScale, carY - 58 * carScale,
-    carX - 201 * carScale, carY - 48 * carScale,
-    carX - 206 * carScale, carY - 36 * carScale);
-bezierVertex(
-    carX - 207 * carScale, carY - 33 * carScale, 
-    carX - 207 * carScale, carY - 25 * carScale,
-    carX - 189 * carScale, carY - 35 * carScale);
-bezierVertex(
-    carX - 184 * carScale, carY - 46 * carScale,
-    carX - 181 * carScale, carY - 57 * carScale,
-    carX - 179 * carScale, carY - 59 * carScale);
-bezierVertex(
-    carX - 177 * carScale, carY - 64 * carScale,
-    carX - 178 * carScale, carY - 66 * carScale,
-    carX - 181 * carScale, carY - 68 * carScale);
+vertex(-181, -68);
+bezierVertex(-195, -58, -201, -48, -206, -36);
+bezierVertex(-207, -33, -207, -25, -189, -35);
+bezierVertex(-184, -46, -181, -57, -179, -59);
+bezierVertex(-177, -64, -178, -66, -181, -68);
 endShape();
 
 beginShape();
-vertex(carX - 181 * carScale, carY + 68 * carScale);
-bezierVertex(
-    carX - 195 * carScale, carY + 58 * carScale,
-    carX - 201 * carScale, carY + 48 * carScale,
-    carX - 206 * carScale, carY + 36 * carScale);
-bezierVertex(
-    carX - 207 * carScale, carY + 33 * carScale,
-    carX - 203 * carScale, carY + 25 * carScale,
-    carX - 189 * carScale, carY + 35 * carScale);
-bezierVertex(
-    carX - 184 * carScale, carY + 46 * carScale,
-    carX - 181 * carScale, carY + 57 * carScale,
-    carX - 179 * carScale, carY + 59 * carScale);
-bezierVertex(
-    carX - 177 * carScale, carY + 64 * carScale,
-    carX - 178 * carScale, carY + 64 * carScale, 
-    carX - 181 * carScale, carY + 68 * carScale);
+vertex(-181, 68);
+bezierVertex(-195, 58, -201, 48, -206, 36);
+bezierVertex(-207, 33, -203, 25, -189, 35);
+bezierVertex(-184, 46, -181, 57, -179, 59);
+bezierVertex(-177, 64, -178, 64, -181, 68);
 endShape();
 
 //side-mirrors
 beginShape();
 fill(0,255,0);
-vertex(carX - 70 * carScale, carY - 81 *carScale);
-bezierVertex(
-    carX - 65 * carScale, carY - 78 * carScale,
-    carX - 65 * carScale, carY - 78 * carScale,
-    carX - 62 * carScale, carY - 81 * carScale);
-vertex(carX - 56 * carScale, carY -81 * carScale);
-vertex(carX - 48 * carScale, carY - 103 * carScale);
-bezierVertex(
-    carX - 54 * carScale, carY - 110 * carScale,
-    carX - 65 * carScale, carY - 92 * carScale,
-    carX - 70 * carScale, carY - 81 * carScale);
+vertex(-70, -81);
+bezierVertex(-65, -78, -65, -78, -62, -81);
+vertex(-56, -81);
+vertex(-48, -103);
+bezierVertex(-54, -110, -65, -92, -70, -81);
 endShape();
 
 beginShape();
-vertex(carX - 70 * carScale, carY + 81 * carScale);
-bezierVertex(
-    carX - 65 * carScale, carY + 78 * carScale,
-    carX - 65 * carScale, carY + 78 * carScale,
-    carX - 62 * carScale, carY + 81 * carScale);
-vertex(carX - 56 * carScale, carY + 81 * carScale);
-vertex(carX - 48 * carScale, carY + 103 * carScale);
-bezierVertex(
-    carX - 54 * carScale, carY  + 110 * carScale,
-    carX - 65 * carScale, carY + 92 * carScale,
-    carX - 70 * carScale, carY + 81 * carScale);
+vertex(-70, 81);
+bezierVertex(-65, 78, -65, 78, -62, 81);
+vertex(-56, 81);
+vertex(-48, 103);
+bezierVertex(-54, 110, -65, 92, -70, 81);
 endShape();
 
 //backdetails
 beginShape();
 noFill();
-vertex(carX + 79 * carScale, carY - 77 * carScale);
-bezierVertex(
-    carX + 101 * carScale, carY - 80 * carScale, 
-    carX + 128 * carScale, carY - 78 * carScale,
-    carX + 148 * carScale, carY - 71 * carScale);
+vertex(79, -77);
+bezierVertex(101, -80, 128, -78, 148, -71);
 endShape();
 
 beginShape();
 noFill();
-vertex(
-    carX + 79 * carScale, carY + 77 * carScale);
-bezierVertex(
-    carX + 101 * carScale, carY + 80 * carScale, 
-    carX + 128 * carScale, carY + 78 * carScale,
-    carX + 148 * carScale, carY + 71 * carScale);
+vertex(79, 77);
+bezierVertex(101, 80, 128, 78, 148, 71);
 endShape();
+}
+
+function draw() {
+    background(255);
+    car(carX, carY, rotation);
+  
+    //speed = speed + acceleration;
+  
+    carX = carX + Math.cos(rotation) * speed;
+    carY = carY + Math.sin(rotation) * speed;
+  
+    if (keyIsDown(38)) {
+      speed = -15;
+    } else if (keyIsDown(40)) {
+      speed = 15;
+    } else {
+      speed = 0;
+    }
+  
+    if (keyIsDown(37)) {
+      rotation = rotation - 0.05;
+    } else if (keyIsDown(39)) {
+      rotation = rotation + 0.05;
+    }
+  }
