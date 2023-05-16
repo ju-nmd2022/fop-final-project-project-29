@@ -100,7 +100,7 @@ function preload() {
   tokyoCityImg = "url('logo.png')";
 }
 
-let currentScreen = "mapSelection";
+let currentScreen = "preScreen";
 
 /* content of pre screen */
 let buttonStart = null;

@@ -1,4 +1,4 @@
-let cityMapSection1 = loadImage("map-city/cityMap1.png");
+let cityMapSection1 = loadImage("cityMap1.png");
 let cityMapSection2 = loadImage("map-city/cityMap2.png");
 let cityMapSection3 = loadImage("map-city/cityMap3.png");
 let cityMapSection4 = loadImage("map-city/cityMap4.png");
@@ -42,54 +42,63 @@ if(whichBackground === "city1" && leftWheel > 335){
 
 //function that checks for car passing by border -> change background
 
-createCanvas(1200, 900);
+createCanvas(950, 712);
 function preload() {
         // Load the initial background image
-        backgroundImage = loadImage("map-city/cityMap1.png");
+        backgroundImage = loadImage("../map-city/cityMap1.png");
       }
+
+function cityBoundries(){
+  if(whichBackground === 1) {
+    noStroke();
+    line(0, 266, 950, 266);
+    line(0, 444, 950, 444);
+  }
+}
 
 function cityMap() {
 
+
     isGameActive = true;
-    if(whichBackground === 1 && 335 < carY && carY < 560 && carX >= 1200) {
+    if(whichBackground === 1 && 266 < carY && carY < 444 && carX >= 950) {
         whichBackground += 1;
-        backgroundImage = loadImage("map-city/cityMap2.png");
+        backgroundImage = loadImage("../map-city/cityMap2.png");
         carX = 5;
-     } else if(whichBackground === 2 && 39 < carY && carY < 267 && carX >= 1200) {
+    } else if(whichBackground === 2 && 30 < carY && carY < 211 && carX >= 950) {
         whichBackground += 1;
-        backgroundImage = loadImage("map-city/cityMap3.png");
+        backgroundImage = loadImage("../map-city/cityMap3.png");
         carX = 5;
-    } else if(whichBackground === 3 && 448 < carX && carX < 670 && carY >= 900) {
+    } else if(whichBackground === 3 && 355 < carX && carX < 533 && carY >= 712) {
         whichBackground += 1;
-        backgroundImage = loadImage("map-city/cityMap4.png");
+        backgroundImage = loadImage("../map-city/cityMap4.png");
         carY = 5;
-    } else if(whichBackground === 4 && 256 < carY && carY < 482 && carX >= 1200) {
+    } else if(whichBackground === 4 && 200 < carY && carY < 380 && carX >= 950) {
         whichBackground += 1;
-        backgroundImage = loadImage("map-city/cityMap5.png");
+        backgroundImage = loadImage("../map-city/cityMap5.png");
         carX = 5;
-    } else if(whichBackground === 5 && 517 < carX && carX < 745 && carY <= 0) {
+    } else if(whichBackground === 5 && 410 < carX && carX < 588 && carY <= 0) {
         whichBackground += 1;
-        backgroundImage = loadImage("map-city/cityMap6.png");
-        carY = 900;
-    } else if(whichBackground === 6 && 517 < carX && carX < 745 && carY <= 0) {
+        backgroundImage = loadImage("../map-city/cityMap6.png");
+        carY = 700;
+    } else if(whichBackground === 6 && 410 < carX && carX < 588 && carY <= 0) {
         whichBackground += 1;
-        backgroundImage = loadImage("map-city/cityMap7.png");
-        carY = 900;
-    } else if(whichBackground === 7 && 254 < carY && carY < 479 && carX >= 1200) {
+        backgroundImage = loadImage("../map-city/cityMap7.png");
+        carY = 700;
+    } else if(whichBackground === 7 && 200 < carY && carY < 379 && carX >= 950) {
         whichBackground += 1;
-        backgroundImage = loadImage("map-city/cityMap8.png");
+        backgroundImage = loadImage("../map-city/cityMap8.png");
         carX = 5;
-    } else if(whichBackground === 8 && 530 < carX && carX < 755 && carY >= 900) {
+    } else if(whichBackground === 8 && 420 < carX && carX < 598 && carY >= 712) {
         whichBackground += 1;
-        backgroundImage = loadImage("map-city/cityMap9.png");
+        backgroundImage = loadImage("../map-city/cityMap9.png");
         carY = 5;
-    } else if(whichBackground === 9 && 320 < carY && carY < 544 && carX >= 1200) {
+    } else if(whichBackground === 9 && 253 < carY && carY < 431 && carX >= 950) {
         whichBackground += 1;
-        backgroundImage = loadImage("map-city/cityMap10.png");
+        backgroundImage = loadImage("../map-city/cityMap10.png");
         carX = 5;
-    } else if(whichBackground === 10 && 320 < carY && carY < 544 && carX >= 890) {
+    } else if(whichBackground === 10 && 253 < carY && carY < 431 && carX >= 695) {
         whichBackground += 1;
-        backgroundImage = loadImage("map-city/cityMap10.png");
+        backgroundImage = loadImage("../map-city/cityMap10.png");
         isGameActive = false;
     } 
   }
