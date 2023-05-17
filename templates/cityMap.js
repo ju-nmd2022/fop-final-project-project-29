@@ -29,7 +29,7 @@ function car(carX, carY, rotation) {
 
 
 //function that checks for wheels crossing white line -> stop game
-let isGameActive = false;
+let isGameActive = true;
 let rightWheel = "something";
 let leftWheel = "something else";
 
@@ -181,7 +181,7 @@ if (isGameActive === true){
     speed = 0;
     acceleration = 0;
     carX = carX + Math.cos(rotation) * speed;
-  carY = carY + Math.sin(rotation) * speed;
+    carY = carY + Math.sin(rotation) * speed;
   if (keyIsDown(38)) {
     speed = 0;
   } else if (keyIsDown(40)) {
