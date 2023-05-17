@@ -1,4 +1,4 @@
-/* let cityMapSection1 = loadImage("map-city/cityMap1.png");
+let cityMapSection1 = loadImage("map-city/cityMap1.png");
 let cityMapSection2 = loadImage("map-city/cityMap2.png");
 let cityMapSection3 = loadImage("map-city/cityMap3.png");
 let cityMapSection4 = loadImage("map-city/cityMap4.png");
@@ -7,7 +7,7 @@ let cityMapSection6 = loadImage("map-city/cityMap6.png");
 let cityMapSection7 = loadImage("map-city/cityMap7.png");
 let cityMapSection8 = loadImage("map-city/cityMap8.png");
 let cityMapSection9 = loadImage("map-city/cityMap9.png");
-let cityMapSection10 = loadImage("map-city/cityMap10.png"); */
+let cityMapSection10 = loadImage("map-city/cityMap10.png");
 
 let whichBackground = 1;
 
@@ -43,7 +43,7 @@ if(whichBackground === "city1" && leftWheel > 335){
 createCanvas(950, 712);
 function preload() {
         // Load the initial background image
-        //backgroundImage = loadImage("map-city/cityMap1.png");
+        backgroundImage = loadImage("map-city/cityMap1.png");
       }
 
 function cityBoundries(){
@@ -99,6 +99,43 @@ function cityBoundries(){
     bezierVertex(558, 367, 585, 339, 588, 291);
     endShape();
     line(588, 291, 588, 0);
+  } else if(whichBackground === 6){
+    line(409, 0, 409, 712);
+    line(589,0 ,589, 712);
+  } else if(whichBackground === 7){
+    line(409, 289, 409, 712);
+    line(589,380, 589, 712);
+    line(589, 380, 950, 380);
+    line(502, 201, 950, 201);
+    beginShape();
+    noFill();
+    vertex(409, 289);
+    bezierVertex(420 ,236, 451, 205, 502, 201);
+    endShape();
+  } else if(whichBackground === 8){
+    line(0, 200, 510, 200);
+    line(0, 379, 419, 379);
+    line(419, 379, 419, 712);
+    line(597, 282, 597, 712);
+    beginShape();
+    noFill();
+    vertex(510, 200);
+    bezierVertex(555, 202, 598, 242, 597, 282);
+    endShape();
+  } else if(whichBackground === 9){
+    line(419, 0, 419, 350);
+    line(598, 0 ,598, 253);
+    line(598, 253, 950, 253);
+    line(506, 432, 950, 432);
+    beginShape();
+    noFill();
+    vertex(419, 350);
+    bezierVertex(426, 393, 460, 424, 506, 432);
+    endShape();
+  } else if(whichBackground === 10){
+    line(0, 253, 694, 253);
+    line(0, 432, 694, 432);
+    line(694, 253, 694, 432);
   }
 }
 
@@ -149,9 +186,9 @@ function cityMap() {
   
 function draw() {
   
-  background('map-city/cityMap1.png');
+  background(backgroundImage);
   cityMap();
-  //cityBoundries();
+  cityBoundries();
   car(carX, carY, rotation);
   
 if (isGameActive === true){
