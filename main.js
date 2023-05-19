@@ -2084,7 +2084,30 @@ function cityConditions() {
   }
 }
 
-function carControls() {}
+
+let carRotation = 180;
+let speed = 0;
+let acceleration = 0;
+
+function carControls(carX, carY, carRotation) {
+  speed = speed + acceleration;
+  carX = carX + Math.cos(carRotation) * speed;
+  carY = carY + Math.sin(carRotation) * speed;
+
+  if (keyIsDown(38)) {
+    speed = 10;
+  } else if (keyIsDown(40)) {
+    speed = -10;
+  } else {
+    speed = 0;
+  }
+
+  if (keyIsDown(37)) {
+    carRotation = carRotation - 0.05;
+  } else if (keyIsDown(39)) {
+    carRotation = carRotation + 0.05;
+  }
+}
 
 function cityMap() {
   background();
@@ -2183,8 +2206,9 @@ function suburbanConditions() {
   }
 }
 function suburbanMap() {
+  carX = 500;
   background(backgroundImageSub);
-  suburbanConditions();
+  suburbanConditions();carControls();
   if (currentCar === "bmw") {
     bmw();
   } else if( currentCar === "rx7") {
@@ -2192,6 +2216,7 @@ function suburbanMap() {
   } else if (currentCar === "supra") {
     supra();
   }
+  
 }
 
 function resultScreen() {}
