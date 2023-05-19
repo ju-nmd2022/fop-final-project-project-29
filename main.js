@@ -100,7 +100,7 @@ function preload() {
   tokyoCityImg = "url('logo.png')";
 }
 
-let currentScreen = "preScreen";
+let currentScreen = "suburbanMap";
 
 /* content of pre screen */
 let buttonStart = null;
@@ -500,6 +500,7 @@ let mapIsChosen = false;
 let doneGoBack = false;
 let buttonCity = null;
 
+
 function cityMapButton() {
   if (buttonCity != null) {
     buttonCity.remove();
@@ -539,6 +540,8 @@ function cityMapButton() {
     buttonCity.style("background-color", "#ec008c");
   });
 }
+
+
 
 let buttonSuburban = null;
 function suburbanMapButton() {
@@ -638,14 +641,38 @@ function mapSelection() {
 }
 let carX = 260;
 let carY = 180;
-let carScale = 1;
+let carScale = 0.5;
+let colorSelected = "";
+
+function addSelectedColor() {
+  if (currentColor === "red") {
+    colorSelected = carColors.red;
+  } else if (currentColor === "green") {
+    colorSelected = carColors.green;
+  } else if(currentColor === "blue") {
+    colorSelected = carColors.blue;
+  } else if (currentColor === "black") {
+    colorSelected = carColors.black;
+  } else if (currentColor === "yellow") {
+    colorSelected = carColors.yellow;
+  } else if (currentColor === "pink") {
+    colorSelected = carColors.pink;
+  } else if(currentColor === "purple") {
+    colorSelected = carColors.purple;
+  } else if (currentColor === "white") {
+    colorSelected = carColors.white;
+  } else if (currentColor === "orange") {
+    colorSelected = carColors.orange;
+  }
+}
 
 function bmw(carX, carY, carRotation) {
+  addSelectedColor(colorSelected);
   translate(carX, carY);
   rotate(carRotation);
   strokeWeight(1 * carScale);
   //Base Body
-  fill(217, 109, 37);
+  fill(colorSelected);
   beginShape();
   vertex(-180 * carScale, -41 * carScale);
   vertex(-176 * carScale, -45 * carScale);
@@ -885,7 +912,7 @@ function bmw(carX, carY, carRotation) {
   endShape();
 
   //mirror right
-  fill(217, 109, 37);
+  fill(colorSelected);
   beginShape();
   vertex(-51 * carScale, -59 * carScale);
   vertex(-50 * carScale, -70 * carScale);
@@ -933,12 +960,13 @@ function bmw(carX, carY, carRotation) {
   );
   endShape();
 }
-function rx7(carX, carY, carRotation) {
+function supra(carX, carY, carRotation) {
+  addSelectedColor(colorSelected);
   translate(carX + 200, carY + 200);
   rotate(carRotation);
   beginShape();
   stroke(0);
-  fill(0, 255, 0);
+  fill(colorSelected);
   strokeWeight(1 * carScale);
   vertex(-215 * carScale, 0 * carScale);
   bezierVertex(
@@ -1408,7 +1436,7 @@ function rx7(carX, carY, carRotation) {
 
   //side-mirrors
   beginShape();
-  fill(0, 255, 0);
+  fill(colorSelected);
   vertex(-70 * carScale, -81 * carScale);
   bezierVertex(
     -65 * carScale,
@@ -1479,13 +1507,14 @@ function rx7(carX, carY, carRotation) {
   );
   endShape();
 }
-function supra(carX, carY, carRotation) {
+function rx7(carX, carY, carRotation) {
+  addSelectedColor(colorSelected);
   translate(carX + 300, carY + 200);
   rotate(carRotation);
 
   strokeWeight(1 * carScale);
   //BaseBody
-  fill("#ed11a4");
+  fill(colorSelected);
   beginShape();
   vertex(-187 * carScale, -67 * carScale);
   bezierVertex(
@@ -2054,9 +2083,19 @@ function cityConditions() {
     isGameActive = false;
   }
 }
+
+function carControls() {}
+
 function cityMap() {
   background();
   cityConditions();
+  if (currentCar === "bmw") {
+    bmw();
+  } else if( currentCar === "rx7") {
+    rx7();
+  } else if (currentCar === "supra") {
+    supra();
+  }
 }
 
 /* content of suburban map */
@@ -2144,8 +2183,15 @@ function suburbanConditions() {
   }
 }
 function suburbanMap() {
-  background();
+  background(backgroundImageSub);
   suburbanConditions();
+  if (currentCar === "bmw") {
+    bmw();
+  } else if( currentCar === "rx7") {
+    rx7();
+  } else if (currentCar === "supra") {
+    supra();
+  }
 }
 
 function resultScreen() {}
