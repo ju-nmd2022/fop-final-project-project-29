@@ -500,7 +500,6 @@ let mapIsChosen = false;
 let doneGoBack = false;
 let buttonCity = null;
 
-
 function cityMapButton() {
   if (buttonCity != null) {
     buttonCity.remove();
@@ -540,8 +539,6 @@ function cityMapButton() {
     buttonCity.style("background-color", "#ec008c");
   });
 }
-
-
 
 let buttonSuburban = null;
 function suburbanMapButton() {
@@ -649,7 +646,7 @@ function addSelectedColor() {
     colorSelected = carColors.red;
   } else if (currentColor === "green") {
     colorSelected = carColors.green;
-  } else if(currentColor === "blue") {
+  } else if (currentColor === "blue") {
     colorSelected = carColors.blue;
   } else if (currentColor === "black") {
     colorSelected = carColors.black;
@@ -657,7 +654,7 @@ function addSelectedColor() {
     colorSelected = carColors.yellow;
   } else if (currentColor === "pink") {
     colorSelected = carColors.pink;
-  } else if(currentColor === "purple") {
+  } else if (currentColor === "purple") {
     colorSelected = carColors.purple;
   } else if (currentColor === "white") {
     colorSelected = carColors.white;
@@ -2084,7 +2081,6 @@ function cityConditions() {
   }
 }
 
-
 let carRotation = 180;
 let speed = 0;
 let acceleration = 0;
@@ -2114,7 +2110,7 @@ function cityMap() {
   cityConditions();
   if (currentCar === "bmw") {
     bmw();
-  } else if( currentCar === "rx7") {
+  } else if (currentCar === "rx7") {
     rx7();
   } else if (currentCar === "supra") {
     supra();
@@ -2208,15 +2204,14 @@ function suburbanConditions() {
 function suburbanMap() {
   carX = 500;
   background(backgroundImageSub);
-  suburbanConditions();carControls();
+  suburbanConditions();
   if (currentCar === "bmw") {
     bmw();
-  } else if( currentCar === "rx7") {
+  } else if (currentCar === "rx7") {
     rx7();
   } else if (currentCar === "supra") {
     supra();
   }
-  
 }
 
 function resultScreen() {}
@@ -2237,6 +2232,23 @@ function draw() {
     cityMap();
   } else if (currentScreen === "suburbanMap") {
     suburbanMap();
+    speed = speed + acceleration;
+    carX = carX + Math.cos(carRotation) * speed;
+    carY = carY + Math.sin(carRotation) * speed;
+
+    if (keyIsDown(38)) {
+      speed = 10;
+    } else if (keyIsDown(40)) {
+      speed = -10;
+    } else {
+      speed = 0;
+    }
+
+    if (keyIsDown(37)) {
+      carRotation = carRotation - 0.05;
+    } else if (keyIsDown(39)) {
+      carRotation = carRotation + 0.05;
+    }
   } else if (currentScreen === "resultScreen") {
     resultScreen();
   } else if (currentScreen === "crashScreen") {
