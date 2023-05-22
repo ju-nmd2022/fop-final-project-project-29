@@ -494,7 +494,7 @@ function carSelection() {
 
   selectColor(currentCar, currentColor);
 }
-//need to finish this screen -- button condition added later
+
 /* content for map selection */
 let mapIsChosen = false;
 let doneGoBack = false;
@@ -638,8 +638,9 @@ function mapSelection() {
 }
 let carX = 260;
 let carY = 180;
-let carScale = 0.5;
+let carScale = 0.4;
 let colorSelected = "";
+let carRotation = 180;
 
 function addSelectedColor() {
   if (currentColor === "red") {
@@ -666,6 +667,7 @@ function addSelectedColor() {
 function bmw(carX, carY, carRotation) {
   addSelectedColor(colorSelected);
   translate(carX, carY);
+  angleMode(DEGREES);
   rotate(carRotation);
   strokeWeight(1 * carScale);
   //Base Body
@@ -960,6 +962,7 @@ function bmw(carX, carY, carRotation) {
 function supra(carX, carY, carRotation) {
   addSelectedColor(colorSelected);
   translate(carX + 200, carY + 200);
+  angleMode(DEGREES);
   rotate(carRotation);
   beginShape();
   stroke(0);
@@ -1507,6 +1510,7 @@ function supra(carX, carY, carRotation) {
 function rx7(carX, carY, carRotation) {
   addSelectedColor(colorSelected);
   translate(carX + 300, carY + 200);
+  angleMode(DEGREES);
   rotate(carRotation);
 
   strokeWeight(1 * carScale);
@@ -2081,29 +2085,35 @@ function cityConditions() {
   }
 }
 
-let carRotation = 180;
+
 let speed = 0;
 let acceleration = 0;
 
-function carControls(carX, carY, carRotation) {
+function carControls(carX, carY, carRotation, speed, acceleration) {
   speed = speed + acceleration;
-  carX = carX + Math.cos(carRotation) * speed;
-  carY = carY + Math.sin(carRotation) * speed;
+  carX = carX + Math.sin(carRotation) * speed;
+  carY = carY + Math.cos(carRotation) * speed;
 
   if (keyIsDown(38)) {
-    speed = 10;
-  } else if (keyIsDown(40)) {
     speed = -10;
+    
+  } else if (keyIsDown(40)) {
+    speed = 10;
   } else {
     speed = 0;
   }
 
   if (keyIsDown(37)) {
-    carRotation = carRotation - 0.05;
+    carRotation = carRotation - 1;
+    console.log(carRotation);
   } else if (keyIsDown(39)) {
-    carRotation = carRotation + 0.05;
+    carRotation = carRotation + 1;
   }
+  console.log(carX);
+  //the following line of code were done with the help of ChatGPT
+  return [carX, carY, carRotation, speed];
 }
+
 
 function cityMap() {
   background();
@@ -2202,15 +2212,17 @@ function suburbanConditions() {
   }
 }
 function suburbanMap() {
-  carX = 500;
   background(backgroundImageSub);
-  suburbanConditions();
+  suburbanConditions(); 
+    //the following line of code were done with the help of ChatGPT
+  [carX, carY, carRotation, speed] = carControls(carX, carY, carRotation, speed, acceleration);
+  
   if (currentCar === "bmw") {
-    bmw();
+    bmw(carX, carY, carRotation);
   } else if (currentCar === "rx7") {
-    rx7();
+    rx7(carX, carY, carRotation);
   } else if (currentCar === "supra") {
-    supra();
+    supra(carX, carY, carRotation);
   }
 }
 
@@ -2232,23 +2244,7 @@ function draw() {
     cityMap();
   } else if (currentScreen === "suburbanMap") {
     suburbanMap();
-    speed = speed + acceleration;
-    carX = carX + Math.cos(carRotation) * speed;
-    carY = carY + Math.sin(carRotation) * speed;
-
-    if (keyIsDown(38)) {
-      speed = 10;
-    } else if (keyIsDown(40)) {
-      speed = -10;
-    } else {
-      speed = 0;
-    }
-
-    if (keyIsDown(37)) {
-      carRotation = carRotation - 0.05;
-    } else if (keyIsDown(39)) {
-      carRotation = carRotation + 0.05;
-    }
+   
   } else if (currentScreen === "resultScreen") {
     resultScreen();
   } else if (currentScreen === "crashScreen") {
