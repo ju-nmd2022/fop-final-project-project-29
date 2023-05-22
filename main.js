@@ -13,6 +13,7 @@ function setup() {
     white: color("#e5e5e5"),
     orange: color("#d96d25"),
   };
+  carRotation = PI;
 }
 let preBg;
 let startBg;
@@ -50,7 +51,7 @@ let backgroundImageCity;
 let backgroundImageSub;
 let mapSelectBg;
 let tokyoCityImg;
-let mapSelected = "";
+
 
 function preload() {
   /* pre screen */
@@ -100,7 +101,7 @@ function preload() {
   tokyoCityImg = "url('logo.png')";
 }
 
-let currentScreen = "suburbanMap";
+let currentScreen = "carSelection";
 
 /* content of pre screen */
 let buttonStart = null;
@@ -204,6 +205,17 @@ function changeToMapSelection() {
   buttonPlay.remove();
 }
 
+function startGame() {
+  if (mapSelected === "suburban") {
+    currentScreen = "suburbanMap";
+  } else if (mapSelected === "city") {
+    currentScreen = "cityMap";
+  }
+  buttonCarCustom.remove();
+  buttonMapCustom.remove();
+  buttonPlay.remove(); 
+}
+
 function startScreen() {
   //https://p5js.org/examples/image-background-image.html
   background(startBg);
@@ -215,7 +227,7 @@ function startScreen() {
   carCustomButton();
   mapCustomButton();
 
-  buttonPlay.mousePressed(/* add here function to start the game */);
+  buttonPlay.mousePressed(startGame);
   buttonCarCustom.mousePressed(changeToCarSelection);
   buttonMapCustom.mousePressed(changeToMapSelection);
 }
@@ -499,7 +511,7 @@ function carSelection() {
 let mapIsChosen = false;
 let doneGoBack = false;
 let buttonCity = null;
-
+let mapSelected = "";
 function cityMapButton() {
   if (buttonCity != null) {
     buttonCity.remove();
@@ -532,7 +544,7 @@ function cityMapButton() {
     buttonCity.style("background-size", "cover");
   });
   buttonCity.mousePressed(function () {
-    mapSelected = "City";
+    mapSelected = "city";
     //add localstorage function
   });
   buttonCity.mouseOut(function () {
@@ -578,7 +590,7 @@ function suburbanMapButton() {
     buttonSuburban.style("background-size", "cover");
   });
   buttonSuburban.mousePressed(function () {
-    mapSelected = "Suburban";
+    mapSelected = "suburban";
     //add localstorage function
   });
   buttonSuburban.mouseOut(function () {
@@ -628,7 +640,7 @@ function selectButton() {
     buttonDone.style("background-color", "#ec008c");
   });
 }
-let currentMap = "";
+//let currentMap = "";
 function mapSelection() {
   background(mapSelectBg);
   suburbanMapButton();
@@ -636,11 +648,13 @@ function mapSelection() {
   selectButton();
   /* if one map is selected - > done button show up */
 }
+
+/* content for the cars that will drive */
 let carX = 260;
 let carY = 180;
 let carScale = 0.4;
 let colorSelected = "";
-let carRotation = 180;
+let carRotation;
 
 function addSelectedColor() {
   if (currentColor === "red") {
@@ -668,7 +682,7 @@ function bmw(carX, carY, carRotation) {
   addSelectedColor(colorSelected);
   translate(carX, carY);
   rotate(carRotation);
-  strokeWeight(1 * carScale);
+  strokeWeight(1 * carScale );
   //Base Body
   fill(colorSelected);
   beginShape();
@@ -961,7 +975,6 @@ function bmw(carX, carY, carRotation) {
 function supra(carX, carY, carRotation) {
   addSelectedColor(colorSelected);
   translate(carX + 200, carY + 200);
-  angleMode(DEGREES);
   rotate(carRotation);
   beginShape();
   stroke(0);
@@ -1509,7 +1522,6 @@ function supra(carX, carY, carRotation) {
 function rx7(carX, carY, carRotation) {
   addSelectedColor(colorSelected);
   translate(carX + 300, carY + 200);
-  angleMode(DEGREES);
   rotate(carRotation);
 
   strokeWeight(1 * carScale);
@@ -1896,7 +1908,7 @@ function rx7(carX, carY, carRotation) {
   endShape();
 }
 
-/* content of boost */
+/* content of boost */ 
 let boostX = 100;
 let boostY = 300;
 let boostScale = 3;
@@ -2099,14 +2111,12 @@ function carControls(carX, carY, carRotation, speed, acceleration) {
   } else {
     speed = 0;
   }
-
+ 
   if (keyIsDown(37)) {
-    carRotation = carRotation - 1;
-    console.log(carRotation);
+    carRotation = carRotation - 0.05;
   } else if (keyIsDown(39)) {
-    carRotation = carRotation + 1;
+    carRotation = carRotation + 0.05;
   }
-  console.log(carX);
   //the following line of code were done with the help of ChatGPT
   return [carX, carY, carRotation, speed];
 }
@@ -2208,12 +2218,21 @@ function cityMap() {
   background(backgroundImageCity);
   cityBoundries();
   cityConditions();
+  //the following line of code were done with the help of ChatGPT
+  [carX, carY, carRotation, speed] = carControls(
+    carX,
+    carY,
+    carRotation,
+    speed,
+    acceleration
+  );
+
   if (currentCar === "bmw") {
-    bmw();
+    bmw(carX, carY, carRotation);
   } else if (currentCar === "rx7") {
-    rx7();
+    rx7(carX, carY, carRotation);
   } else if (currentCar === "supra") {
-    supra();
+    supra(carX, carY, carRotation);
   }
 }
 
