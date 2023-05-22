@@ -101,7 +101,7 @@ function preload() {
   tokyoCityImg = "url('logo.png')";
 }
 
-let currentScreen = "carSelection";
+let currentScreen = "preScreen";
 
 /* content of pre screen */
 let buttonStart = null;
@@ -2101,8 +2101,8 @@ let acceleration = 0;
 
 function carControls(carX, carY, carRotation, speed, acceleration) {
   speed = speed + acceleration;
-  carX = carX + Math.sin(carRotation) * speed;
-  carY = carY + Math.cos(carRotation) * speed;
+  carX = carX + Math.cos(carRotation) * speed;
+  carY = carY + Math.sin(carRotation) * speed;
 
   if (keyIsDown(38)) {
     speed = -10;
