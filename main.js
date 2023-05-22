@@ -667,7 +667,6 @@ function addSelectedColor() {
 function bmw(carX, carY, carRotation) {
   addSelectedColor(colorSelected);
   translate(carX, carY);
-  angleMode(DEGREES);
   rotate(carRotation);
   strokeWeight(1 * carScale);
   //Base Body
@@ -1997,41 +1996,41 @@ let isGameActive = false;
 
 function cityConditions() {
   isGameActive = true;
-  if (whichBackgroundCity === 1 && 335 < carY && carY < 560 && carX >= 1200) {
+  if (whichBackgroundCity === 1 && 266 < carY && carY < 444 && carX >= 950) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap2.png");
     carX = 5;
   } else if (
     whichBackgroundCity === 2 &&
-    39 < carY &&
-    carY < 267 &&
-    carX >= 1200
+    30 < carY &&
+    carY < 211 &&
+    carX >= 950
   ) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap3.png");
     carX = 5;
   } else if (
     whichBackgroundCity === 3 &&
-    448 < carX &&
-    carX < 670 &&
-    carY >= 900
+    355 < carX &&
+    carX < 533 &&
+    carY >= 712
   ) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap4.png");
     carY = 5;
   } else if (
     whichBackgroundCity === 4 &&
-    256 < carY &&
-    carY < 482 &&
-    carX >= 1200
+    200 < carY &&
+    carY < 380 &&
+    carX >= 950
   ) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap5.png");
     carX = 5;
   } else if (
     whichBackgroundCity === 5 &&
-    517 < carX &&
-    carX < 745 &&
+    410 < carX &&
+    carX < 588 &&
     carY <= 0
   ) {
     whichBackgroundCity += 1;
@@ -2039,8 +2038,8 @@ function cityConditions() {
     carY = 900;
   } else if (
     whichBackgroundCity === 6 &&
-    517 < carX &&
-    carX < 745 &&
+    410 < carX &&
+    carX < 588 &&
     carY <= 0
   ) {
     whichBackgroundCity += 1;
@@ -2048,43 +2047,42 @@ function cityConditions() {
     carY = 900;
   } else if (
     whichBackgroundCity === 7 &&
-    254 < carY &&
-    carY < 479 &&
-    carX >= 1200
+    200 < carY &&
+    carY < 379 &&
+    carX >= 950
   ) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap8.png");
     carX = 5;
   } else if (
     whichBackgroundCity === 8 &&
-    530 < carX &&
-    carX < 755 &&
-    carY >= 900
+    420 < carX &&
+    carX < 598 &&
+    carY >= 712
   ) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap9.png");
     carY = 5;
   } else if (
     whichBackgroundCity === 9 &&
-    320 < carY &&
-    carY < 544 &&
-    carX >= 1200
+    253 < carY &&
+    carY < 431 &&
+    carX >= 950
   ) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap10.png");
     carX = 5;
   } else if (
     whichBackgroundCity === 10 &&
-    320 < carY &&
-    carY < 544 &&
-    carX >= 890
+    253 < carY &&
+    carY < 431 &&
+    carX >= 695
   ) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap10.png");
     isGameActive = false;
   }
 }
-
 
 let speed = 0;
 let acceleration = 0;
@@ -2096,7 +2094,6 @@ function carControls(carX, carY, carRotation, speed, acceleration) {
 
   if (keyIsDown(38)) {
     speed = -10;
-    
   } else if (keyIsDown(40)) {
     speed = 10;
   } else {
@@ -2114,9 +2111,102 @@ function carControls(carX, carY, carRotation, speed, acceleration) {
   return [carX, carY, carRotation, speed];
 }
 
+function cityBoundries(){
+  if(whichBackground === 1) {
+    strokeWeight(1);
+    stroke(255,0,0);
+    line(0, 266, 950, 266);
+    line(0, 444, 950, 444);
+  } else if(whichBackground === 2){
+    stroke(255,0,0);
+    noFill();
+    line(0, 266, 320, 266);
+    line(0, 444, 414, 444);
+    beginShape();
+    vertex(414,444);
+    bezierVertex(500, 444, 500, 350, 500, 350);
+    endShape();
+    line(500, 350, 500, 210);
+    line(500, 210, 950, 213);
+    line(320, 265, 320, 113);
+    line(404, 31, 950, 31);
+    beginShape();
+    vertex(320,113);
+    bezierVertex(320, 113, 320, 31, 404, 31);
+    endShape();
+  } else if(whichBackground === 3){
+    line(0, 31, 405, 31);
+    line(496, 111, 534, 712);
+    line(0, 210, 324, 210);
+    line(324, 210, 356, 712);
+    beginShape();
+    noFill();
+    vertex(405,31);
+    bezierVertex(496,31,496,111,496,111);
+    endShape();
+  } else if(whichBackground === 4){
+    line(356, 0, 373, 293);
+    beginShape();
+    noFill();
+    vertex(373, 293);
+    bezierVertex(370, 335, 423, 381, 464, 381);
+    endShape();
+    line(464, 381, 950, 381);
+    line(534, 0, 546, 201);
+    line(546, 201, 950, 201);
+  } else if(whichBackground === 5){
+    line(0, 202, 409, 202);
+    line(409, 202, 409, 0);
+    line(0, 380, 501, 382);
+    beginShape();
+    noFill();
+    vertex(501, 382);
+    bezierVertex(558, 367, 585, 339, 588, 291);
+    endShape();
+    line(588, 291, 588, 0);
+  } else if(whichBackground === 6){
+    line(409, 0, 409, 712);
+    line(589,0 ,589, 712);
+  } else if(whichBackground === 7){
+    line(409, 289, 409, 712);
+    line(589,380, 589, 712);
+    line(589, 380, 950, 380);
+    line(502, 201, 950, 201);
+    beginShape();
+    noFill();
+    vertex(409, 289);
+    bezierVertex(420 ,236, 451, 205, 502, 201);
+    endShape();
+  } else if(whichBackground === 8){
+    line(0, 200, 510, 200);
+    line(0, 379, 419, 379);
+    line(419, 379, 419, 712);
+    line(597, 282, 597, 712);
+    beginShape();
+    noFill();
+    vertex(510, 200);
+    bezierVertex(555, 202, 598, 242, 597, 282);
+    endShape();
+  } else if(whichBackground === 9){
+    line(419, 0, 419, 350);
+    line(598, 0 ,598, 253);
+    line(598, 253, 950, 253);
+    line(506, 432, 950, 432);
+    beginShape();
+    noFill();
+    vertex(419, 350);
+    bezierVertex(426, 393, 460, 424, 506, 432);
+    endShape();
+  } else if(whichBackground === 10){
+    line(0, 253, 694, 253);
+    line(0, 432, 694, 432);
+    line(694, 253, 694, 432);
+  }
+}
 
 function cityMap() {
-  background();
+  background(backgroundImageCity);
+  cityBoundries();
   cityConditions();
   if (currentCar === "bmw") {
     bmw();
@@ -2131,92 +2221,247 @@ function cityMap() {
 let whichSectionOnMap = 1;
 
 function suburbanConditions() {
-  if (whichSectionOnMap === 1 && carX >= 1200 && 254 < carY && carY < 552) {
+  if (whichSectionOnMap === 1 && carX >= 900 && 203 < carY && carY < 435) {
     whichSectionOnMap += 1;
     carX = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-10.png");
-  } else if (whichSectionOnMap === 2 && carY <= 0 && carX > 463 && carX < 767) {
+  } else if (whichSectionOnMap === 2 && carY <= 0 && carX > 366 && carX < 607) {
     whichSectionOnMap += 1;
     carY = 900;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-6.png");
   } else if (
     whichSectionOnMap === 3 &&
-    carX >= 1200 &&
-    carY > 194 &&
-    carY < 504
+    carX >= 900 &&
+    carY > 154 &&
+    carY < 399
   ) {
     whichSectionOnMap += 1;
     carX = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-7.png");
   } else if (
     whichSectionOnMap === 4 &&
-    carY >= 900 &&
-    carX > 483 &&
-    carX < 783
+    carY >= 712 &&
+    carX > 383 &&
+    carX < 620
   ) {
     whichSectionOnMap += 1;
     carY = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-11.png");
   } else if (
     whichSectionOnMap === 5 &&
-    carX >= 1200 &&
-    carY > 404 &&
-    carY < 724
+    carX >= 900 &&
+    carY > 320 &&
+    carY < 572
   ) {
     whichSectionOnMap += 1;
     carX = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-12.png");
-  } else if (
-    whichSectionOnMap === 6 &&
-    carY <= 0 &&
-    carX > 821 &&
-    carX < 1130
-  ) {
+  } else if (whichSectionOnMap === 6 && carY <= 0 && carX > 650 && carX < 896) {
     whichSectionOnMap += 1;
     carY = 900;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-8.png");
-  } else if (whichSectionOnMap === 7 && carY <= 0 && carX > 269 && carX < 575) {
+  } else if (whichSectionOnMap === 7 && carY <= 0 && carX > 213 && carX < 455) {
     whichSectionOnMap += 1;
     carY = 900;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-4.png");
-  } else if (whichSectionOnMap === 8 && carX <= 0 && carY > 87 && carY < 395) {
+  } else if (whichSectionOnMap === 8 && carX <= 0 && carY > 68 && carY < 312) {
     whichSectionOnMap += 1;
     carX = 1200;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-3.png");
-  } else if (whichSectionOnMap === 9 && carX <= 0 && carY > 448 && carY < 753) {
+  } else if (whichSectionOnMap === 9 && carX <= 0 && carY > 354 && carY < 594) {
     whichSectionOnMap += 1;
     carX = 1200;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-2.png");
-  } else if (whichSectionOnMap === 10 && carX <= 0 && carY > 48 && carY < 360) {
+  } else if (whichSectionOnMap === 10 && carX <= 0 && carY > 38 && carY < 284) {
     whichSectionOnMap += 1;
     carX = 1200;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-1.png");
   } else if (
     whichSectionOnMap === 11 &&
-    carY >= 900 &&
-    carX > 266 &&
-    carX < 574
+    carY >= 712 &&
+    carX > 215 &&
+    carX < 463
   ) {
     whichSectionOnMap += 1;
     carY = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-5.png");
   } else if (
     whichSectionOnMap === 12 &&
-    carY >= 900 &&
-    carX > 319 &&
-    carX < 625
+    carY >= 712 &&
+    carX > 214 &&
+    carX < 463
   ) {
     whichSectionOnMap += 1;
     carY = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-9.png");
   }
 }
+
+function suburbanBoundries() {
+  strokeWeight(3);
+  noFill();
+  if (whichSectionOnMap === 1) {
+    line(496, 0, 497, 203);
+    line(497, 203, 949, 203);
+    line(253, 0, 253, 386);
+    beginShape();
+    vertex(253, 386);
+    bezierVertex(258, 419, 283, 437, 307, 437);
+    endShape();
+    line(307, 437, 950, 437);
+  } else if (whichSectionOnMap === 2) {
+    line(0, 203, 366, 202);
+    line(366, 202, 366, 0);
+    line(0, 436, 505, 435);
+    beginShape();
+    vertex(505, 435);
+    bezierVertex(561, 430, 599, 405, 606, 350);
+    endShape();
+    line(606, 350, 608, 0);
+  } else if (whichSectionOnMap === 3) {
+    line(609, 711, 607, 366);
+    line(607, 366, 950, 399);
+    line(365, 711, 363, 186);
+    beginShape();
+    vertex(363, 186);
+    bezierVertex(362, 138, 393, 96, 463, 110);
+    endShape();
+    line(463, 110, 949, 154);
+  } else if (whichSectionOnMap === 4) {
+    line(0, 154, 261, 178);
+    beginShape();
+    vertex(261, 178);
+    bezierVertex(320, 63, 404, 20, 504, 17);
+    bezierVertex(705, 27, 786, 153, 790, 306);
+    bezierVertex(784, 447, 716, 504, 619, 556);
+    endShape();
+    line(619, 556, 621, 711);
+    line(0, 399, 260, 425);
+    line(260, 425, 292, 475);
+    line(292, 475, 428, 365);
+    beginShape();
+    vertex(428, 365);
+    bezierVertex(383, 290, 426, 197, 506, 199);
+    bezierVertex(630, 210, 633, 350, 559, 396);
+    vertex(442, 387);
+    vertex(312, 497);
+    vertex(384, 547);
+    vertex(383, 711);
+    endShape();
+  } else if (whichSectionOnMap === 5) {
+    line(384, 0, 382, 344);
+    beginShape();
+    vertex(382, 344);
+    bezierVertex(384, 386, 411, 435, 457, 448);
+    vertex(950, 573);
+    endShape();
+    line(622, 0, 624, 234);
+    line(624, 234, 950, 320);
+  } else if (whichSectionOnMap === 6) {
+    line(0, 320, 90, 344);
+    line(90, 344, 631, 368);
+    line(631, 368, 650, 0);
+    line(0, 573, 40, 583);
+    line(40, 583, 673, 616);
+    beginShape();
+    vertex(673, 616);
+    bezierVertex(804, 603, 859, 532, 876, 434);
+    vertex(897, 0);
+    endShape();
+  } else if (whichSectionOnMap === 7) {
+    line(649, 711, 668, 334);
+    line(668, 334, 278, 211);
+    beginShape();
+    vertex(278, 211);
+    bezierVertex(230, 198, 213, 170, 212, 126);
+    vertex(213, 0);
+    endShape();
+    line(456, 0, 456, 13);
+    line(456, 13, 786, 121);
+    beginShape();
+    vertex(786, 121);
+    bezierVertex(868, 144, 919, 209, 917, 291);
+    vertex(897, 712);
+    endShape();
+  } else if (whichSectionOnMap === 8) {
+    line(458, 712, 458, 654);
+    line(458, 654, 565, 654);
+    beginShape();
+    vertex(565, 654);
+    bezierVertex(641, 651, 708, 580, 719, 496);
+    vertex(718, 139);
+    bezierVertex(716, 96, 685, 69, 644, 68);
+    vertex(0, 68);
+    endShape();
+    line(0, 312, 474, 310);
+    line(474, 310, 474, 403);
+    beginShape();
+    vertex(474, 403);
+    bezierVertex(311, 394, 221, 463, 218, 571);
+    vertex(216, 713);
+    endShape();
+  } else if (whichSectionOnMap === 9) {
+    line(0, 595, 553, 594);
+    beginShape();
+    vertex(553, 594);
+    bezierVertex(646, 585, 707, 518, 715, 439);
+    vertex(714, 313);
+    vertex(950, 312);
+    endShape();
+    line(0, 354, 470, 356);
+    line(470, 356, 470, 246);
+    beginShape();
+    vertex(470, 246);
+    bezierVertex(480, 152, 527, 87, 632, 67);
+    vertex(951, 67);
+    endShape();
+  } else if (whichSectionOnMap === 10) {
+    line(0, 38, 355, 44);
+    beginShape();
+    vertex(355, 44);
+    bezierVertex(409, 44, 454, 83, 454, 136);
+    vertex(454, 352);
+    vertex(950, 354);
+    endShape();
+    line(950, 595, 328, 596);
+    beginShape();
+    vertex(328, 596);
+    bezierVertex(249, 606, 213, 572, 208, 511);
+    vertex(210, 290);
+    vertex(0, 284);
+    endShape();
+  } else if (whichSectionOnMap === 11) {
+    line(463, 713, 431, 485);
+    line(431, 485, 432, 270);
+    line(432, 270, 950, 282);
+    beginShape();
+    vertex(216, 713);
+    vertex(189, 515);
+    vertex(190, 175);
+    bezierVertex(205, 73, 300, 3, 460, 27);
+    vertex(950, 37);
+    endShape();
+  } else if (whichSectionOnMap === 12) {
+    line(465, 0, 494, 209);
+    line(494, 209, 496, 712);
+    line(216, 0, 252, 256);
+    line(252, 256, 252, 713);
+  }
+}
+
 function suburbanMap() {
   background(backgroundImageSub);
-  suburbanConditions(); 
-    //the following line of code were done with the help of ChatGPT
-  [carX, carY, carRotation, speed] = carControls(carX, carY, carRotation, speed, acceleration);
-  
+  suburbanBoundries();
+  suburbanConditions();
+  //the following line of code were done with the help of ChatGPT
+  [carX, carY, carRotation, speed] = carControls(
+    carX,
+    carY,
+    carRotation,
+    speed,
+    acceleration
+  );
+
   if (currentCar === "bmw") {
     bmw(carX, carY, carRotation);
   } else if (currentCar === "rx7") {
@@ -2244,7 +2489,6 @@ function draw() {
     cityMap();
   } else if (currentScreen === "suburbanMap") {
     suburbanMap();
-   
   } else if (currentScreen === "resultScreen") {
     resultScreen();
   } else if (currentScreen === "crashScreen") {
