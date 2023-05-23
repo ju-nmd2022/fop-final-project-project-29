@@ -512,6 +512,7 @@ let mapIsChosen = false;
 let doneGoBack = false;
 let buttonCity = null;
 let mapSelected = "";
+
 function cityMapButton() {
   if (buttonCity != null) {
     buttonCity.remove();
@@ -2030,9 +2031,9 @@ function carControls(carX, carY, carRotation, speed, acceleration) {
   carY = carY + Math.sin(carRotation) * speed;
 
   if (keyIsDown(38)) {
-    speed = -10;
+    speed = -8;
   } else if (keyIsDown(40)) {
-    speed = 10;
+    speed = 8;
   } else {
     speed = 0;
   }
@@ -2047,9 +2048,9 @@ function carControls(carX, carY, carRotation, speed, acceleration) {
 }
 
 function cityBoundries() {
-    stroke(0, 0, 0);
+    stroke(255, 255, 0);
+    strokeWeight(3);
   if (whichBackgroundCity === 1) {
-    strokeWeight(1);
     line(0, 266, 950, 266);
     line(0, 444, 950, 444);
   } else if (whichBackgroundCity === 2) {
@@ -2166,8 +2167,8 @@ function cityMap() {
 }
 
 /* content of suburban map */
-let whichSectionOnMap = 1;
 
+let whichSectionOnMap = 1;
 function suburbanConditions() {
   if (whichSectionOnMap === 1 && carX >= 900 && 203 < carY && carY < 435) {
     whichSectionOnMap += 1;
@@ -2255,6 +2256,7 @@ function suburbanConditions() {
 function suburbanBoundries() {
   strokeWeight(3);
   noFill();
+  stroke(255,255,0);
   if (whichSectionOnMap === 1) {
     line(496, 0, 497, 203);
     line(497, 203, 949, 203);
@@ -2401,6 +2403,15 @@ function suburbanBoundries() {
     line(494, 209, 496, 712);
     line(216, 0, 252, 256);
     line(252, 256, 252, 713);
+  } else if (whichSectionOnMap === 13) {
+    line(496, 0, 497, 203);
+    line(497, 203, 949, 203);
+    line(253, 0, 253, 386);
+    beginShape();
+    vertex(253, 386);
+    bezierVertex(258, 419, 283, 437, 307, 437);
+    endShape();
+    line(307, 437, 950, 437);
   }
 }
 
@@ -2417,12 +2428,13 @@ function callOnceCarSuburban() {
     called = true;
   }
 }
-
+ 
 function suburbanMap() {
   background(backgroundImageSub);
-  suburbanBoundries();
+  
   suburbanConditions();
   callOnceCarSuburban();
+  suburbanBoundries();
   //the following line of code were done with the help of ChatGPT
   [carX, carY, carRotation, speed] = carControls(
     carX,
@@ -2442,15 +2454,17 @@ function suburbanMap() {
 
    if (detectCollision()) {
     currentScreen = "crashScreen";
-  }
+  } 
+  
 }
-
+/* content for collison that is like super weird */
+//the following 20 lines of code were done with the help of ChatGPT
 function detectCollision() {
     // Define the bounding box of the car
-    let carXMin = carX - 185 * carScale;
-    let carXMax = carX + 185 * carScale;
-    let carYMin = carY - 82 * carScale;
-    let carYMax = carY + 82 * carScale;
+    let carXMin = carX - 100 * carScale;
+    let carXMax = carX + 100 * carScale;
+    let carYMin = carY - 30 * carScale;
+    let carYMax = carY + 30 * carScale;
   
     // Iterate over the pixels within the bounding box
     for (let i = carXMin; i <= carXMax; i++) {
@@ -2458,15 +2472,14 @@ function detectCollision() {
         let pixelColor = get(i, j);
   
         // Check if the pixel color is red
-        if (pixelColor[0] === 0 && pixelColor[1] === 0 && pixelColor[2] === 0) {
+        if (pixelColor[0] === 255 && pixelColor[1] === 255 && pixelColor[2] === 0) {
           return true; // Collision detected
         }
       } 
     } 
     
     return false; // No collision
-  }
-
+}
 
 /* content for the result screen */
 function highscore() {
