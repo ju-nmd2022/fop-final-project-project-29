@@ -724,6 +724,25 @@ function cityMap() {
         isGameActive = false;
     } 
   }
+
+  let obstacleColor = [255, 0, 0]; // Red color (change as needed)
+
+  function checkCollisionWithColor(carX, carY, color) {
+    // Get the color of the pixel at the center of the car
+    let centerPixelColor = get(carX, carY);
+    
+    // Compare the color values
+    for (let i = 0; i < 3; i++) {
+      if (centerPixelColor[i] === color[i]) {
+        continue;
+      } else {
+        return false; // Colors don't match
+      }
+    }
+    
+    return true; // Colors match, collision detected
+  }
+  
   
 function draw() {
   
@@ -771,6 +790,18 @@ if (isGameActive === true){
   }
 console.log(isGameActive);
   }
+
+  if (checkCollisionWithColor(carX, carY, 120, 55, obstacleColor)) {
+    console.log("game overrrr");
+    noLoop();
+    console.log("Game Over!");
+  }
   
+  distance = int(dist(carX, carY, lineX, lineY));
+if ((distance < 50) || (distance < 10)){
+  console.log("game overrrr!!!!!");
+ 
+}
+
 }
 
