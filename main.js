@@ -2250,6 +2250,7 @@ function suburbanConditions() {
     carY < 435
   ) {
     currentScreen = "resultScreen";
+    setTimeout(stopTimer);
   }
 }
 
@@ -2428,14 +2429,12 @@ function callOnceCarSuburban() {
     called = true;
   }
 }
-
+ 
 function suburbanMap() {
   background(backgroundImageSub);
 
   suburbanConditions();
   suburbanBoundries();
-  callOnceCarSuburban();
-
   //the following line of code were done with the help of ChatGPT
   [carX, carY, carRotation, speed] = carControls(
     carX,
@@ -2459,30 +2458,25 @@ function suburbanMap() {
 /* content for collison that is like super weird */
 //the following 20 lines of code were done with the help of ChatGPT
 function detectCollision() {
-  // Define the bounding box of the car
-  let carXMin = carX - 120 * carScale;
-  let carXMax = carX + 120 * carScale;
-  let carYMin = carY - 40 * carScale;
-  let carYMax = carY + 40 * carScale;
-
-  // Iterate over the pixels within the bounding box
-  for (let i = carXMin; i <= carXMax; i++) {
-    for (let j = carYMin; j <= carYMax; j++) {
-      let pixelColor = get(i, j);
-
-      // Check if the pixel color is red
-      if (
-        pixelColor[0] === 255 &&
-        pixelColor[1] === 255 && 
-        pixelColor[2] === 180
-      ) {
-        console.log("collision");
-        return true; // Collision detected
-      }
-    }
-  }
-
-  return false; // No collision
+    // Define the bounding box of the car
+    let carXMin = carX - 100 * carScale;
+    let carXMax = carX + 100 * carScale;
+    let carYMin = carY - 30 * carScale;
+    let carYMax = carY + 30 * carScale;
+  
+    // Iterate over the pixels within the bounding box
+    for (let i = carXMin; i <= carXMax; i++) {
+      for (let j = carYMin; j <= carYMax; j++) {
+        let pixelColor = get(i, j);
+  
+        // Check if the pixel color is red
+        if (pixelColor[0] === 255 && pixelColor[1] === 255 && pixelColor[2] === 0) {
+          return true; // Collision detected
+        }
+      } 
+    } 
+    
+    return false; // No collision
 }
 
 /* content for the result screen */
@@ -2516,7 +2510,7 @@ function highscore() {
   text("fourth..", 300, 374);
   text("atleast I made it", 300, 424);
 
-  text("00:00:00", 600, 224);
+  text("", 600, 224);
   text("00:00:00", 600, 274);
   text("00:00:00", 600, 324);
   text("00:00:00", 600, 374);
@@ -2547,6 +2541,8 @@ function retryButton() {
       suburbanCarSetup();
       backgroundImageSub = loadImage("suburbanMap/SuburbanMap-9.png");
       carRotation = PI;
+      stopTimer();
+      startTimer();
     } else if (mapSelected === "city") {
       currentScreen = "cityMap";
       whichBackgroundCity = 1;
@@ -2626,4 +2622,11 @@ function draw() {
   } else if (currentScreen === "crashScreen") {
     crashScreen();
   }
+}
+
+const storedElapsedTime = localStorage.getItem('elapsedTime');
+
+if (storedElapsedTime) {
+  const parsedElapsedTime = parseInt(storedElapsedTime, 10);
+  console.log(`Stored elapsed time: ${parsedElapsedTime} milliseconds`);
 }
