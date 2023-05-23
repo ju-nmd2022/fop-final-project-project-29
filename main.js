@@ -2250,6 +2250,7 @@ function suburbanConditions() {
     carY < 435
   ) {
     currentScreen = "resultScreen";
+    setTimeout(stopTimer);
   }
 }
 
@@ -2429,12 +2430,44 @@ function callOnceCarSuburban() {
   }
 }
  
+let startTime;
+let timerInterval;
+let isTimerRunning = false;
+
+function startTimer() {
+  if (isTimerRunning === false) {
+    startTime = Date.now();
+    timerInterval = setInterval(updateTimer, 10);
+    isTimerRunning = true;
+  }
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+  isTimerRunning = false;
+  localStorage.setItem('elapsedTime', elapsedTime.toString());
+}
+
+function updateTimer() {
+  const elapsedTime = Date.now() - startTime;
+//The following 4 lines of code where conducted by the help og ChatGPT
+  const minutes = Math.floor(elapsedTime / 60000);
+  const seconds = Math.floor((elapsedTime % 60000) / 1000);
+  const milliseconds = elapsedTime % 1000;
+  console.log(`Elapsed time: ${minutes}:${pad(seconds, 2)}:${pad(milliseconds, 3)}`);
+}
+//The following 3 lines of code where conducted by the help og ChatGPT
+function pad(number, length) {
+  return number.toString().padStart(length, '0');
+}
+
 function suburbanMap() {
   background(backgroundImageSub);
   
   suburbanConditions();
   callOnceCarSuburban();
   suburbanBoundries();
+  startTimer();
   //the following line of code were done with the help of ChatGPT
   [carX, carY, carRotation, speed] = carControls(
     carX,
@@ -2473,12 +2506,16 @@ function detectCollision() {
   
         // Check if the pixel color is red
         if (pixelColor[0] === 255 && pixelColor[1] === 255 && pixelColor[2] === 0) {
+          clearInterval(timerInterval);
           return true; // Collision detected
         }
       } 
     } 
+
     
+
     return false; // No collision
+    
 }
 
 /* content for the result screen */
@@ -2512,7 +2549,7 @@ function highscore() {
   text("fourth..", 300, 374);
   text("atleast I made it", 300, 424);
 
-  text("00:00:00", 600, 224);
+  text("", 600, 224);
   text("00:00:00", 600, 274);
   text("00:00:00", 600, 324);
   text("00:00:00", 600, 374);
@@ -2543,6 +2580,8 @@ function retryButton() {
       suburbanCarSetup();
       backgroundImageSub = loadImage("suburbanMap/SuburbanMap-9.png");
       carRotation = PI;
+      stopTimer();
+      startTimer();
     } else if (mapSelected === "city") {
       currentScreen = "cityMap";
       whichBackgroundCity = 1;
@@ -2622,4 +2661,11 @@ function draw() {
   } else if (currentScreen === "crashScreen") {
     crashScreen();
   }
+}
+
+const storedElapsedTime = localStorage.getItem('elapsedTime');
+
+if (storedElapsedTime) {
+  const parsedElapsedTime = parseInt(storedElapsedTime, 10);
+  console.log(`Stored elapsed time: ${parsedElapsedTime} milliseconds`);
 }
