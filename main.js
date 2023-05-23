@@ -2031,8 +2031,8 @@ function carControls(carX, carY, carRotation, speed) {
   if (keyIsDown(38)) {
     if (speed > -16) {
       speed -= 0.2; 
-      
-    }console.log(speed);
+    }
+    console.log(speed);
   } else if (keyIsDown(40)) { 
     speed += 1;
   } else {
@@ -2432,9 +2432,9 @@ function callOnceCarSuburban() {
  
 function suburbanMap() {
   background(backgroundImageSub);
-
   suburbanConditions();
   suburbanBoundries();
+  callOnceCarSuburban();
   //the following line of code were done with the help of ChatGPT
   [carX, carY, carRotation, speed] = carControls(
     carX,
@@ -2459,24 +2459,29 @@ function suburbanMap() {
 //the following 20 lines of code were done with the help of ChatGPT
 function detectCollision() {
     // Define the bounding box of the car
-    let carXMin = carX - 100 * carScale;
-    let carXMax = carX + 100 * carScale;
-    let carYMin = carY - 30 * carScale;
-    let carYMax = carY + 30 * carScale;
-  
-    // Iterate over the pixels within the bounding box
-    for (let i = carXMin; i <= carXMax; i++) {
-      for (let j = carYMin; j <= carYMax; j++) {
-        let pixelColor = get(i, j);
-  
-        // Check if the pixel color is red
-        if (pixelColor[0] === 255 && pixelColor[1] === 255 && pixelColor[2] === 0) {
-          return true; // Collision detected
-        }
-      } 
-    } 
-    
-    return false; // No collision
+  let carXMin = carX - 120 * carScale;
+  let carXMax = carX + 120 * carScale;
+  let carYMin = carY - 40 * carScale;
+  let carYMax = carY + 40 * carScale;
+
+  // Iterate over the pixels within the bounding box
+  for (let i = carXMin; i <= carXMax; i++) {
+    for (let j = carYMin; j <= carYMax; j++) {
+      let pixelColor = get(i, j);
+
+      // Check if the pixel color is red
+      if (
+        pixelColor[0] === 255 &&
+        pixelColor[1] === 255 && 
+        pixelColor[2] === 180
+      ) {
+        console.log("collision");
+        return true; // Collision detected
+      }
+    }
+  }
+
+  return false; // No collision
 }
 
 /* content for the result screen */
@@ -2573,6 +2578,8 @@ function goBackToStartButton() {
     mouseY <= 670
   ) {
     currentScreen = "startScreen";
+    called = false;
+    //here problem that when you crash and then go back and change the map, the car position is the same as when it crashed
   }
 }
 
