@@ -1911,6 +1911,34 @@ function rx7(carX, carY, carRotation) {
   endShape();
 }
 
+let isTimerRunning = false;
+
+function startTimer() {
+  if (isTimerRunning === false) {
+    startTime = Date.now();
+    timerInterval = setInterval(updateTimer, 10);
+    isTimerRunning = true;
+  }
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+  isTimerRunning = false;
+}
+
+function updateTimer() {
+  const elapsedTime = Date.now() - startTime;
+//The following 4 lines of code where conducted by the help og ChatGPT
+  const minutes = Math.floor(elapsedTime / 60000);
+  const seconds = Math.floor((elapsedTime % 60000) / 1000);
+  const milliseconds = elapsedTime % 1000;
+  console.log(`Elapsed time: ${minutes}:${pad(seconds, 2)}:${pad(milliseconds, 3)}`);
+}
+//The following 3 lines of code where conducted by the help og ChatGPT
+function pad(number, length) {
+  return number.toString().padStart(length, '0');
+}
+
 /* content of city map */
 let whichBackgroundCity = 1;
 let isGameActive = false;
