@@ -2463,6 +2463,7 @@ function suburbanMap() {
   suburbanConditions();
   suburbanBoundries();
   callOnceCarSuburban();
+  startTimer();
   //the following line of code were done with the help of ChatGPT
   [carX, carY, carRotation, speed] = carControls(
     carX,
@@ -2504,6 +2505,7 @@ function detectCollision() {
         pixelColor[2] === 180
       ) {
         console.log("collision");
+        stopTimer();
         return true; // Collision detected
       }
     }
