@@ -2526,7 +2526,7 @@ function highscore() {
   stroke(236, 0, 140);
   strokeWeight(2);
   textSize(40);
-  text("HIGH SCORES", 340, 154);
+  text("HIGH SCORES", 320, 154);
   line(300, 166, 650, 166);
 
   fill(236, 0, 140);
@@ -2539,17 +2539,17 @@ function highscore() {
   text("4.", 225, 374);
   text("5.", 225, 424);
 
-  text("best", 300, 224);
-  text("second best", 300, 274);
-  text("third place", 300, 324);
-  text("fourth..", 300, 374);
-  text("atleast I made it", 300, 424);
+  text("Verstappen", 300, 224);
+  text("Russel", 300, 274);
+  text("Leclerc", 300, 324);
+  text("Alonso", 300, 374);
+  text("Perez", 300, 424);
 
-  text("", 600, 224);
-  text("00:00:00", 600, 274);
-  text("00:00:00", 600, 324);
-  text("00:00:00", 600, 374);
-  text("00:00:00", 600, 424);
+  text("00:32:52", 570, 224);
+  text("00:35:02", 570, 274);
+  text("00:36:43", 570, 324);
+  text("00:42:44", 570, 374);
+  text("00:52:32", 570, 424);
 }
 function retryButton() {
   fill(240);
