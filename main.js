@@ -507,6 +507,7 @@ function carSelection() {
 }
 
 /* content for map selection */
+
 let mapIsChosen = false;
 let doneGoBack = false;
 let buttonCity = null;
@@ -649,6 +650,7 @@ function mapSelection() {
 }
 
 /* content for the cars that will drive */
+
 let carX = 0;
 let carY = 0;
 let carScale = 0.35;
@@ -2045,13 +2047,12 @@ function carControls(carX, carY, carRotation, speed, acceleration) {
 }
 
 function cityBoundries() {
+    stroke(0, 0, 0);
   if (whichBackgroundCity === 1) {
     strokeWeight(1);
-    stroke(255, 0, 0);
     line(0, 266, 950, 266);
     line(0, 444, 950, 444);
   } else if (whichBackgroundCity === 2) {
-    stroke(255, 0, 0);
     noFill();
     line(0, 266, 320, 266);
     line(0, 444, 414, 444);
@@ -2157,6 +2158,10 @@ function cityMap() {
     rx7(carX, carY, carRotation);
   } else if (currentCar === "supra") {
     supra(carX, carY, carRotation);
+  }
+
+  if (detectCollision()) {
+    currentScreen = "crashScreen";
   }
 }
 
@@ -2434,7 +2439,34 @@ function suburbanMap() {
   } else if (currentCar === "supra") {
     supra(carX, carY, carRotation);
   }
+
+   if (detectCollision()) {
+    currentScreen = "crashScreen";
+  }
 }
+
+function detectCollision() {
+    // Define the bounding box of the car
+    let carXMin = carX - 185 * carScale;
+    let carXMax = carX + 185 * carScale;
+    let carYMin = carY - 82 * carScale;
+    let carYMax = carY + 82 * carScale;
+  
+    // Iterate over the pixels within the bounding box
+    for (let i = carXMin; i <= carXMax; i++) {
+      for (let j = carYMin; j <= carYMax; j++) {
+        let pixelColor = get(i, j);
+  
+        // Check if the pixel color is red
+        if (pixelColor[0] === 0 && pixelColor[1] === 0 && pixelColor[2] === 0) {
+          return true; // Collision detected
+        }
+      } 
+    } 
+    
+    return false; // No collision
+  }
+
 
 /* content for the result screen */
 function highscore() {
