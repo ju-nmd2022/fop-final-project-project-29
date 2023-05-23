@@ -101,7 +101,7 @@ function preload() {
   tokyoCityImg = "url('logo.png')";
 }
 
-let currentScreen = "startScreen";
+let currentScreen = "suburbanMap";
 
 /* content of pre screen */
 let buttonStart = null;
@@ -650,8 +650,8 @@ function mapSelection() {
 }
 
 /* content for the cars that will drive */
-let carX = 260;
-let carY = 180;
+let carX = 0;
+let carY = 0;
 let carScale = 0.35;
 let colorSelected = "";
 let carRotation;
@@ -2004,14 +2004,14 @@ function nosBoost() {
 }
 
 /* content of city map */
-let whichBackgroundCity = 1;
+let whichBackgroundCity = 1; 
 let isGameActive = false; 
 
 function cityConditions() {
   isGameActive = true;
   if (whichBackgroundCity === 1 && 266 < carY && carY < 444 && carX >= 950) {
     whichBackgroundCity += 1;
-    backgroundImageCity = loadImage("map-city/cityMap2.png");
+    backgroundImageCity = loadImage("map-city/cityMap2.png"); 
     carX = 5;
   } else if (
     whichBackgroundCity === 2 &&
@@ -2097,6 +2097,26 @@ function cityConditions() {
   }
 }
 
+
+
+function cityCarSetup() {
+  carX = 70;
+  carY = 350;
+  carScale = 0.3;
+}
+
+//the following 7 lines of code were done wiht the help of ChatGPT
+let called = false;
+
+function callOnceCarCity() {
+  if (!called) {
+    cityCarSetup();
+    called = true;
+  }
+}
+
+
+
 let speed = 0;
 let acceleration = 0;
 
@@ -2123,12 +2143,12 @@ function carControls(carX, carY, carRotation, speed, acceleration) {
 }
 
 function cityBoundries(){
-  if(whichBackground === 1) {
+  if(whichBackgroundCity === 1) {
     strokeWeight(1);
     stroke(255,0,0);
     line(0, 266, 950, 266);
     line(0, 444, 950, 444);
-  } else if(whichBackground === 2){
+  } else if(whichBackgroundCity === 2){
     stroke(255,0,0);
     noFill();
     line(0, 266, 320, 266);
@@ -2145,7 +2165,7 @@ function cityBoundries(){
     vertex(320,113);
     bezierVertex(320, 113, 320, 31, 404, 31);
     endShape();
-  } else if(whichBackground === 3){
+  } else if(whichBackgroundCity === 3){
     line(0, 31, 405, 31);
     line(496, 111, 534, 712);
     line(0, 210, 324, 210);
@@ -2155,7 +2175,7 @@ function cityBoundries(){
     vertex(405,31);
     bezierVertex(496,31,496,111,496,111);
     endShape();
-  } else if(whichBackground === 4){
+  } else if(whichBackgroundCity === 4){
     line(356, 0, 373, 293);
     beginShape();
     noFill();
@@ -2165,7 +2185,7 @@ function cityBoundries(){
     line(464, 381, 950, 381);
     line(534, 0, 546, 201);
     line(546, 201, 950, 201);
-  } else if(whichBackground === 5){
+  } else if(whichBackgroundCity === 5){
     line(0, 202, 409, 202);
     line(409, 202, 409, 0);
     line(0, 380, 501, 382);
@@ -2175,10 +2195,10 @@ function cityBoundries(){
     bezierVertex(558, 367, 585, 339, 588, 291);
     endShape();
     line(588, 291, 588, 0);
-  } else if(whichBackground === 6){
+  } else if(whichBackgroundCity === 6){
     line(409, 0, 409, 712);
     line(589,0 ,589, 712);
-  } else if(whichBackground === 7){
+  } else if(whichBackgroundCity === 7){
     line(409, 289, 409, 712);
     line(589,380, 589, 712);
     line(589, 380, 950, 380);
@@ -2188,7 +2208,7 @@ function cityBoundries(){
     vertex(409, 289);
     bezierVertex(420 ,236, 451, 205, 502, 201);
     endShape();
-  } else if(whichBackground === 8){
+  } else if(whichBackgroundCity === 8){
     line(0, 200, 510, 200);
     line(0, 379, 419, 379);
     line(419, 379, 419, 712);
@@ -2198,7 +2218,7 @@ function cityBoundries(){
     vertex(510, 200);
     bezierVertex(555, 202, 598, 242, 597, 282);
     endShape();
-  } else if(whichBackground === 9){
+  } else if(whichBackgroundCity === 9){
     line(419, 0, 419, 350);
     line(598, 0 ,598, 253);
     line(598, 253, 950, 253);
@@ -2208,7 +2228,7 @@ function cityBoundries(){
     vertex(419, 350);
     bezierVertex(426, 393, 460, 424, 506, 432);
     endShape();
-  } else if(whichBackground === 10){
+  } else if(whichBackgroundCity === 10){
     line(0, 253, 694, 253);
     line(0, 432, 694, 432);
     line(694, 253, 694, 432);
@@ -2218,6 +2238,7 @@ function cityBoundries(){
 function cityMap() {
   background(backgroundImageCity);
   cityBoundries();
+  callOnceCarCity(); 
   cityConditions();
   //the following line of code were done with the help of ChatGPT
   [carX, carY, carRotation, speed] = carControls(
@@ -2469,10 +2490,25 @@ function suburbanBoundries() {
   }
 }
 
+function suburbanCarSetup() {
+  carX = 460;
+  carY = 360;
+  carScale = 0.35;
+}
+
+//the following 7 lines of code were done wiht the help of ChatGPT
+function callOnceCarSuburban() {
+  if (!called) {
+    suburbanCarSetup();
+    called = true;
+  }
+}
+
 function suburbanMap() {
   background(backgroundImageSub);
   suburbanBoundries();
   suburbanConditions();
+  callOnceCarSuburban();
   //the following line of code were done with the help of ChatGPT
   [carX, carY, carRotation, speed] = carControls(
     carX,
