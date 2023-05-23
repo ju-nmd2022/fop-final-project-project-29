@@ -2623,10 +2623,3 @@ function draw() {
     crashScreen();
   }
 }
-
-const storedElapsedTime = localStorage.getItem('elapsedTime');
-
-if (storedElapsedTime) {
-  const parsedElapsedTime = parseInt(storedElapsedTime, 10);
-  console.log(`Stored elapsed time: ${parsedElapsedTime} milliseconds`);
-}
