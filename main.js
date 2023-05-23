@@ -52,7 +52,6 @@ let backgroundImageSub;
 let mapSelectBg;
 let tokyoCityImg;
 
-
 function preload() {
   /* pre screen */
   preBg = loadImage("./preview.png");
@@ -101,7 +100,7 @@ function preload() {
   tokyoCityImg = "url('logo.png')";
 }
 
-let currentScreen = "suburbanMap";
+let currentScreen = "startScreen";
 
 /* content of pre screen */
 let buttonStart = null;
@@ -213,7 +212,7 @@ function startGame() {
   }
   buttonCarCustom.remove();
   buttonMapCustom.remove();
-  buttonPlay.remove(); 
+  buttonPlay.remove();
 }
 
 function startScreen() {
@@ -676,14 +675,14 @@ function addSelectedColor() {
   } else if (currentColor === "orange") {
     colorSelected = carColors.orange;
   }
-}  
+}
 
 function bmw(carX, carY, carRotation) {
-  addSelectedColor(colorSelected); 
+  addSelectedColor(colorSelected);
   translate(carX, carY);
   rotate(carRotation);
-  strokeWeight(1 * carScale );
-  stroke(0,0,0);
+  strokeWeight(1 * carScale);
+  stroke(0, 0, 0);
   //Base Body
   fill(colorSelected);
   beginShape();
@@ -978,7 +977,7 @@ function supra(carX, carY, carRotation) {
   translate(carX, carY);
   rotate(carRotation);
   beginShape();
-  stroke(0,0,0);
+  stroke(0, 0, 0);
   fill(colorSelected);
   strokeWeight(1 * carScale);
   vertex(-215 * carScale, 0 * carScale);
@@ -1522,9 +1521,9 @@ function supra(carX, carY, carRotation) {
 }
 function rx7(carX, carY, carRotation) {
   addSelectedColor(colorSelected);
-  translate(carX, carY );
+  translate(carX, carY);
   rotate(carRotation);
-  stroke(0,0,0);
+  stroke(0, 0, 0);
   strokeWeight(1 * carScale);
   //BaseBody
   fill(colorSelected);
@@ -1909,7 +1908,7 @@ function rx7(carX, carY, carRotation) {
   endShape();
 }
 
-/* content of boost */ 
+/* content of boost */
 let boostX = 100;
 let boostY = 300;
 let boostScale = 3;
@@ -2004,14 +2003,14 @@ function nosBoost() {
 }
 
 /* content of city map */
-let whichBackgroundCity = 1; 
-let isGameActive = false; 
+let whichBackgroundCity = 1;
+let isGameActive = false;
 
 function cityConditions() {
   isGameActive = true;
   if (whichBackgroundCity === 1 && 266 < carY && carY < 444 && carX >= 950) {
     whichBackgroundCity += 1;
-    backgroundImageCity = loadImage("map-city/cityMap2.png"); 
+    backgroundImageCity = loadImage("map-city/cityMap2.png");
     carX = 5;
   } else if (
     whichBackgroundCity === 2 &&
@@ -2094,10 +2093,9 @@ function cityConditions() {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap10.png");
     isGameActive = false;
+    currentScreen = "resultScreen";
   }
 }
-
-
 
 function cityCarSetup() {
   carX = 70;
@@ -2115,13 +2113,11 @@ function callOnceCarCity() {
   }
 }
 
-
-
 let speed = 0;
-let acceleration = 0;
+let acceleration = -3;
 
 function carControls(carX, carY, carRotation, speed, acceleration) {
-  speed = speed + acceleration;
+  //speed = speed + acceleration;
   carX = carX + Math.cos(carRotation) * speed;
   carY = carY + Math.sin(carRotation) * speed;
 
@@ -2132,7 +2128,7 @@ function carControls(carX, carY, carRotation, speed, acceleration) {
   } else {
     speed = 0;
   }
- 
+
   if (keyIsDown(37)) {
     carRotation = carRotation - 0.05;
   } else if (keyIsDown(39)) {
@@ -2142,19 +2138,19 @@ function carControls(carX, carY, carRotation, speed, acceleration) {
   return [carX, carY, carRotation, speed];
 }
 
-function cityBoundries(){
-  if(whichBackgroundCity === 1) {
+function cityBoundries() {
+  if (whichBackgroundCity === 1) {
     strokeWeight(1);
-    stroke(255,0,0);
+    stroke(255, 0, 0);
     line(0, 266, 950, 266);
     line(0, 444, 950, 444);
-  } else if(whichBackgroundCity === 2){
-    stroke(255,0,0);
+  } else if (whichBackgroundCity === 2) {
+    stroke(255, 0, 0);
     noFill();
     line(0, 266, 320, 266);
     line(0, 444, 414, 444);
     beginShape();
-    vertex(414,444);
+    vertex(414, 444);
     bezierVertex(500, 444, 500, 350, 500, 350);
     endShape();
     line(500, 350, 500, 210);
@@ -2162,20 +2158,20 @@ function cityBoundries(){
     line(320, 265, 320, 113);
     line(404, 31, 950, 31);
     beginShape();
-    vertex(320,113);
+    vertex(320, 113);
     bezierVertex(320, 113, 320, 31, 404, 31);
     endShape();
-  } else if(whichBackgroundCity === 3){
+  } else if (whichBackgroundCity === 3) {
     line(0, 31, 405, 31);
     line(496, 111, 534, 712);
     line(0, 210, 324, 210);
     line(324, 210, 356, 712);
     beginShape();
     noFill();
-    vertex(405,31);
-    bezierVertex(496,31,496,111,496,111);
+    vertex(405, 31);
+    bezierVertex(496, 31, 496, 111, 496, 111);
     endShape();
-  } else if(whichBackgroundCity === 4){
+  } else if (whichBackgroundCity === 4) {
     line(356, 0, 373, 293);
     beginShape();
     noFill();
@@ -2185,7 +2181,7 @@ function cityBoundries(){
     line(464, 381, 950, 381);
     line(534, 0, 546, 201);
     line(546, 201, 950, 201);
-  } else if(whichBackgroundCity === 5){
+  } else if (whichBackgroundCity === 5) {
     line(0, 202, 409, 202);
     line(409, 202, 409, 0);
     line(0, 380, 501, 382);
@@ -2195,20 +2191,20 @@ function cityBoundries(){
     bezierVertex(558, 367, 585, 339, 588, 291);
     endShape();
     line(588, 291, 588, 0);
-  } else if(whichBackgroundCity === 6){
+  } else if (whichBackgroundCity === 6) {
     line(409, 0, 409, 712);
-    line(589,0 ,589, 712);
-  } else if(whichBackgroundCity === 7){
+    line(589, 0, 589, 712);
+  } else if (whichBackgroundCity === 7) {
     line(409, 289, 409, 712);
-    line(589,380, 589, 712);
+    line(589, 380, 589, 712);
     line(589, 380, 950, 380);
     line(502, 201, 950, 201);
     beginShape();
     noFill();
     vertex(409, 289);
-    bezierVertex(420 ,236, 451, 205, 502, 201);
+    bezierVertex(420, 236, 451, 205, 502, 201);
     endShape();
-  } else if(whichBackgroundCity === 8){
+  } else if (whichBackgroundCity === 8) {
     line(0, 200, 510, 200);
     line(0, 379, 419, 379);
     line(419, 379, 419, 712);
@@ -2218,9 +2214,9 @@ function cityBoundries(){
     vertex(510, 200);
     bezierVertex(555, 202, 598, 242, 597, 282);
     endShape();
-  } else if(whichBackgroundCity === 9){
+  } else if (whichBackgroundCity === 9) {
     line(419, 0, 419, 350);
-    line(598, 0 ,598, 253);
+    line(598, 0, 598, 253);
     line(598, 253, 950, 253);
     line(506, 432, 950, 432);
     beginShape();
@@ -2228,7 +2224,7 @@ function cityBoundries(){
     vertex(419, 350);
     bezierVertex(426, 393, 460, 424, 506, 432);
     endShape();
-  } else if(whichBackgroundCity === 10){
+  } else if (whichBackgroundCity === 10) {
     line(0, 253, 694, 253);
     line(0, 432, 694, 432);
     line(694, 253, 694, 432);
@@ -2238,7 +2234,7 @@ function cityBoundries(){
 function cityMap() {
   background(backgroundImageCity);
   cityBoundries();
-  callOnceCarCity(); 
+  callOnceCarCity();
   cityConditions();
   //the following line of code were done with the help of ChatGPT
   [carX, carY, carRotation, speed] = carControls(
@@ -2268,7 +2264,7 @@ function suburbanConditions() {
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-10.png");
   } else if (whichSectionOnMap === 2 && carY <= 0 && carX > 366 && carX < 607) {
     whichSectionOnMap += 1;
-    carY = 900;
+    carY = 712;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-6.png");
   } else if (
     whichSectionOnMap === 3 &&
@@ -2299,23 +2295,23 @@ function suburbanConditions() {
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-12.png");
   } else if (whichSectionOnMap === 6 && carY <= 0 && carX > 650 && carX < 896) {
     whichSectionOnMap += 1;
-    carY = 900;
+    carY = 712;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-8.png");
   } else if (whichSectionOnMap === 7 && carY <= 0 && carX > 213 && carX < 455) {
     whichSectionOnMap += 1;
-    carY = 900;
+    carY = 712;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-4.png");
   } else if (whichSectionOnMap === 8 && carX <= 0 && carY > 68 && carY < 312) {
     whichSectionOnMap += 1;
-    carX = 1200;
+    carX = 900;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-3.png");
   } else if (whichSectionOnMap === 9 && carX <= 0 && carY > 354 && carY < 594) {
     whichSectionOnMap += 1;
-    carX = 1200;
+    carX = 900;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-2.png");
   } else if (whichSectionOnMap === 10 && carX <= 0 && carY > 38 && carY < 284) {
     whichSectionOnMap += 1;
-    carX = 1200;
+    carX = 900;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-1.png");
   } else if (
     whichSectionOnMap === 11 &&
@@ -2335,6 +2331,13 @@ function suburbanConditions() {
     whichSectionOnMap += 1;
     carY = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-9.png");
+  } else if (
+    whichSectionOnMap === 13 &&
+    carX > 570 &&
+    203 < carY &&
+    carY < 435
+  ) {
+    currentScreen = "resultScreen";
   }
 }
 
@@ -2527,9 +2530,127 @@ function suburbanMap() {
   }
 }
 
-function resultScreen() {}
+/* content for the result screen */
+function highscore() {
+  fill(240);
+  stroke(0, 197, 197);
+  strokeWeight(15);
 
-function crashScreen() {}
+  rect(200, 80, 550, 400, 50);
+
+  fill(236, 0, 140);
+  stroke(236, 0, 140);
+  strokeWeight(2);
+  textSize(40);
+  text("HIGH SCORES", 340, 154);
+  line(300, 166, 650, 166);
+
+  fill(236, 0, 140);
+  stroke(236, 0, 140);
+  strokeWeight(0);
+  textSize(30);
+  text("1.", 225, 224);
+  text("2.", 225, 274);
+  text("3.", 225, 324);
+  text("4.", 225, 374);
+  text("5.", 225, 424);
+
+  text("best", 300, 224);
+  text("second best", 300, 274);
+  text("third place", 300, 324);
+  text("fourth..", 300, 374);
+  text("atleast I made it", 300, 424);
+
+  text("00:00:00", 600, 224);
+  text("00:00:00", 600, 274);
+  text("00:00:00", 600, 324);
+  text("00:00:00", 600, 374);
+  text("00:00:00", 600, 424);
+}
+function retryButton() {
+  fill(240);
+  stroke(0, 197, 197);
+  strokeWeight(15);
+
+  rect(200, 550, 250, 120, 40);
+
+  fill(236, 0, 140);
+  stroke(236, 0, 140);
+  strokeWeight(1);
+  textSize(40);
+  text("RETRY", 257, 624);
+
+  if (
+    mouseIsPressed & (mouseX >= 200) &&
+    mouseX <= 450 &&
+    mouseY >= 550 &&
+    mouseY <= 670
+  ) {
+    if (mapSelected === "suburban") {
+      currentScreen = "suburbanMap";
+      whichSectionOnMap = 1;
+      suburbanCarSetup();
+      backgroundImageSub = loadImage("suburbanMap/SuburbanMap-9.png");
+      carRotation = PI;
+    } else if (mapSelected === "city") {
+      currentScreen = "cityMap";
+      whichBackgroundCity = 1;
+      backgroundImageCity = loadImage("map-city/cityMap1.png");
+      cityCarSetup();
+      carRotation = PI;
+    }
+  }
+}
+
+function goBackToStartButton() {
+  fill(240);
+  stroke(0, 197, 197);
+  strokeWeight(15);
+
+  rect(500, 550, 250, 120, 40);
+
+  fill(236, 0, 140);
+  stroke(236, 0, 140);
+  strokeWeight(1);
+  textSize(40);
+  text("GO BACK", 530, 624);
+
+  if (
+    mouseIsPressed & (mouseX >= 500) &&
+    mouseX <= 750 &&
+    mouseY >= 550 &&
+    mouseY <= 670
+  ) {
+    currentScreen = "startScreen";
+  }
+}
+
+function resultScreen() {
+  highscore();
+  retryButton();
+  goBackToStartButton();
+}
+
+/* content of the start screen */
+function crashBox() {
+  fill(240);
+  stroke(0, 197, 197);
+  strokeWeight(15);
+
+  rect(200, 180, 550, 300, 50);
+
+  fill(236, 0, 140);
+  stroke(236, 0, 140);
+  strokeWeight(2);
+  textSize(60);
+  text("YOU CRASHED", 255, 344);
+}
+
+function crashScreen() {
+  crashBox();
+  retryButton();
+  goBackToStartButton();
+}
 
 function draw() {
   if (currentScreen === "preScreen") {
