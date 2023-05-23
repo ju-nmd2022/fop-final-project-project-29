@@ -684,7 +684,7 @@ function bmw(carX, carY, carRotation) {
   addSelectedColor(colorSelected);
   translate(carX, carY);
   rotate(carRotation);
-  strokeWeight(1 * carScale);
+  strokeWeight(2 * carScale);
   stroke(0, 0, 0);
   //Base Body
   fill(colorSelected);
@@ -982,7 +982,7 @@ function supra(carX, carY, carRotation) {
   beginShape();
   stroke(0, 0, 0);
   fill(colorSelected);
-  strokeWeight(1 * carScale);
+  strokeWeight(2 * carScale);
   vertex(-215 * carScale, 0 * carScale);
   bezierVertex(
     -215 * carScale,
@@ -1527,7 +1527,7 @@ function rx7(carX, carY, carRotation) {
   translate(carX, carY);
   rotate(carRotation);
   stroke(0, 0, 0);
-  strokeWeight(1 * carScale);
+  strokeWeight(2 * carScale);
   //BaseBody
   fill(colorSelected);
   beginShape();
@@ -2023,33 +2023,34 @@ function callOnceCarCity() {
 }
 
 let speed = 0;
-let acceleration = -3;
 
-function carControls(carX, carY, carRotation, speed, acceleration) {
-  //speed = speed + acceleration;
+function carControls(carX, carY, carRotation, speed) {
   carX = carX + Math.cos(carRotation) * speed;
   carY = carY + Math.sin(carRotation) * speed;
 
   if (keyIsDown(38)) {
-    speed = -8;
-  } else if (keyIsDown(40)) {
-    speed = 8;
+    if (speed > -16) {
+      speed -= 0.2; 
+      
+    }console.log(speed);
+  } else if (keyIsDown(40)) { 
+    speed += 1;
   } else {
-    speed = 0;
+    speed = -0.5;
   }
 
   if (keyIsDown(37)) {
-    carRotation = carRotation - 0.05;
+    carRotation = carRotation - 0.08;
   } else if (keyIsDown(39)) {
-    carRotation = carRotation + 0.05;
+    carRotation = carRotation + 0.08;
   }
   //the following line of code were done with the help of ChatGPT
   return [carX, carY, carRotation, speed];
 }
 
 function cityBoundries() {
-    stroke(255, 255, 0);
-    strokeWeight(3);
+  stroke(255, 255, 180);
+  strokeWeight(3);
   if (whichBackgroundCity === 1) {
     line(0, 266, 950, 266);
     line(0, 444, 950, 444);
@@ -2149,8 +2150,7 @@ function cityMap() {
     carX,
     carY,
     carRotation,
-    speed,
-    acceleration
+    speed
   );
 
   if (currentCar === "bmw") {
@@ -2256,7 +2256,7 @@ function suburbanConditions() {
 function suburbanBoundries() {
   strokeWeight(3);
   noFill();
-  stroke(255,255,0);
+  stroke(255, 255, 180);
   if (whichSectionOnMap === 1) {
     line(496, 0, 497, 203);
     line(497, 203, 949, 203);
@@ -2428,20 +2428,20 @@ function callOnceCarSuburban() {
     called = true;
   }
 }
- 
+
 function suburbanMap() {
   background(backgroundImageSub);
-  
+
   suburbanConditions();
-  callOnceCarSuburban();
   suburbanBoundries();
+  callOnceCarSuburban();
+
   //the following line of code were done with the help of ChatGPT
   [carX, carY, carRotation, speed] = carControls(
     carX,
     carY,
     carRotation,
-    speed,
-    acceleration
+    speed
   );
 
   if (currentCar === "bmw") {
@@ -2452,33 +2452,37 @@ function suburbanMap() {
     supra(carX, carY, carRotation);
   }
 
-   if (detectCollision()) {
+  if (detectCollision()) {
     currentScreen = "crashScreen";
-  } 
-  
+  }
 }
 /* content for collison that is like super weird */
 //the following 20 lines of code were done with the help of ChatGPT
 function detectCollision() {
-    // Define the bounding box of the car
-    let carXMin = carX - 100 * carScale;
-    let carXMax = carX + 100 * carScale;
-    let carYMin = carY - 30 * carScale;
-    let carYMax = carY + 30 * carScale;
-  
-    // Iterate over the pixels within the bounding box
-    for (let i = carXMin; i <= carXMax; i++) {
-      for (let j = carYMin; j <= carYMax; j++) {
-        let pixelColor = get(i, j);
-  
-        // Check if the pixel color is red
-        if (pixelColor[0] === 255 && pixelColor[1] === 255 && pixelColor[2] === 0) {
-          return true; // Collision detected
-        }
-      } 
-    } 
-    
-    return false; // No collision
+  // Define the bounding box of the car
+  let carXMin = carX - 120 * carScale;
+  let carXMax = carX + 120 * carScale;
+  let carYMin = carY - 40 * carScale;
+  let carYMax = carY + 40 * carScale;
+
+  // Iterate over the pixels within the bounding box
+  for (let i = carXMin; i <= carXMax; i++) {
+    for (let j = carYMin; j <= carYMax; j++) {
+      let pixelColor = get(i, j);
+
+      // Check if the pixel color is red
+      if (
+        pixelColor[0] === 255 &&
+        pixelColor[1] === 255 && 
+        pixelColor[2] === 180
+      ) {
+        console.log("collision");
+        return true; // Collision detected
+      }
+    }
+  }
+
+  return false; // No collision
 }
 
 /* content for the result screen */
