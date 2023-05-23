@@ -101,7 +101,7 @@ function preload() {
   tokyoCityImg = "url('logo.png')";
 }
 
-let currentScreen = "preScreen";
+let currentScreen = "startScreen";
 
 /* content of pre screen */
 let buttonStart = null;
@@ -652,7 +652,7 @@ function mapSelection() {
 /* content for the cars that will drive */
 let carX = 260;
 let carY = 180;
-let carScale = 0.4;
+let carScale = 0.35;
 let colorSelected = "";
 let carRotation;
 
@@ -676,13 +676,14 @@ function addSelectedColor() {
   } else if (currentColor === "orange") {
     colorSelected = carColors.orange;
   }
-}
+}  
 
 function bmw(carX, carY, carRotation) {
-  addSelectedColor(colorSelected);
+  addSelectedColor(colorSelected); 
   translate(carX, carY);
   rotate(carRotation);
   strokeWeight(1 * carScale );
+  stroke(0,0,0);
   //Base Body
   fill(colorSelected);
   beginShape();
@@ -974,10 +975,10 @@ function bmw(carX, carY, carRotation) {
 }
 function supra(carX, carY, carRotation) {
   addSelectedColor(colorSelected);
-  translate(carX + 200, carY + 200);
+  translate(carX, carY);
   rotate(carRotation);
   beginShape();
-  stroke(0);
+  stroke(0,0,0);
   fill(colorSelected);
   strokeWeight(1 * carScale);
   vertex(-215 * carScale, 0 * carScale);
@@ -1521,9 +1522,9 @@ function supra(carX, carY, carRotation) {
 }
 function rx7(carX, carY, carRotation) {
   addSelectedColor(colorSelected);
-  translate(carX + 300, carY + 200);
+  translate(carX, carY );
   rotate(carRotation);
-
+  stroke(0,0,0);
   strokeWeight(1 * carScale);
   //BaseBody
   fill(colorSelected);
@@ -2004,7 +2005,7 @@ function nosBoost() {
 
 /* content of city map */
 let whichBackgroundCity = 1;
-let isGameActive = false;
+let isGameActive = false; 
 
 function cityConditions() {
   isGameActive = true;
