@@ -1,4 +1,4 @@
-function startTimer() {
+/* function startTimer() {
     if (isTimerRunning === false) {
       startTime = Date.now();
       timerInterval = setInterval(updateTimer, 10);
@@ -30,12 +30,12 @@ function startTimer() {
   //The following 3 lines of code where conducted by the help og ChatGPT
   function pad(number, length) {
     return number.toString().padStart(length, "0");
-  }
+  } */
 
   //console.log(localStorage.getItem());
 
 
-let lapTimes= [];
+/* let lapTimes= [];
 
 function addlapTimes(name, time) {
     lapTimes.push({ name, time });
@@ -58,7 +58,7 @@ addlapTimes('John', 500);
 addlapTimes('Emily', 700);
 addlapTimes('Sarah', 300);
 
-console.log(lapTimes);
+console.log(lapTimes); */
 
 /* 
 if(newLaptime < Bestlaptime){
@@ -80,6 +80,12 @@ function getTopHighScores(n){
     return highScores.slice(0,n);
 }
 
-addHighScore('nameInput', 'ellapsedTime');
+addHighScore('nameInput1', 'elapsedTime1');
+addHighScore('nameInput2', 'elapsedTime2');
+addHighScore('nameInput3', 'elapsedTime3');
+addHighScore('nameInput6', 'elapsedTime6');
+addHighScore('nameInput4', 'elapsedTime4');
+addHighScore('nameInput5', 'elapsedTime5');
 
-getTopHighScores(0);
+const topHighScores = getTopHighScores(1);
+topHighScores.forEach((highScores) => console.log(highScores.name));
