@@ -111,9 +111,6 @@ function setup() {
 function draw() {
   background(220);
   
-  // Display the input value
-  textSize(24);
-  text(inputValue, 20, 60);
 }
 
 function handleEnter() {

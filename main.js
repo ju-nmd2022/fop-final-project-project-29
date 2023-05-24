@@ -14,6 +14,8 @@ function setup() {
     orange: color("#d96d25"),
   };
   carRotation = PI;
+
+  //input for name
 }
 let preBg;
 let startBg;
@@ -100,7 +102,7 @@ function preload() {
   tokyoCityImg = "url('logo.png')";
 }
 
-let currentScreen = "playersName";
+let currentScreen = "startScreen";
 
 /* content of pre screen */
 let buttonStart = null;
@@ -206,11 +208,7 @@ function changeToMapSelection() {
 
 function startGame() {
   currentScreen = "playersName";
-  /* if (mapSelected === "suburban") {
-    currentScreen = "suburbanMap";
-  } else if (mapSelected === "city") {
-    currentScreen = "cityMap";
-  } */
+
   buttonCarCustom.remove();
   buttonMapCustom.remove();
   buttonPlay.remove();
@@ -226,8 +224,9 @@ function startScreen() {
   playButton();
   carCustomButton();
   mapCustomButton();
-
-  buttonPlay.mousePressed(startGame);
+  if (mapSelected) {
+    buttonPlay.mousePressed(startGame);
+  }
   buttonCarCustom.mousePressed(changeToCarSelection);
   buttonMapCustom.mousePressed(changeToMapSelection);
 }
@@ -651,7 +650,7 @@ function mapSelection() {
 }
 
 /* content for adding the players name */
-let inp;
+let inp = null;
 let inputValue = "";
 function nameInput() {
   fill(240);
@@ -666,6 +665,9 @@ function nameInput() {
   textSize(55);
   text("What's your name?", 237, 300);
 
+  if (inp != null) {
+    inp.remove();
+  }
   inp = createInput("");
   inp.position(480, 480);
   inp.size(200);
@@ -675,11 +677,13 @@ function nameInput() {
 //the following 5 lines of code were applied with the help of ChatGPT
 function handleEnter() {
   // Handle the input value when the enter key is pressed
+  if (inp != null) {
+    inp.remove();
+  }
   inputValue = this.value();
   console.log("Input entered:", inputValue);
-  // Here add the function when the name gets saved 
+  // Here add the function when the name gets saved
 }
-
 
 function enterButton() {
   fill(240);
@@ -701,7 +705,10 @@ function enterButton() {
     mouseY >= 550 &&
     mouseY <= 550 + 120
   ) {
-    
+    if (inp != null) {
+      inp.remove();
+    }
+    inp.mousePressed(handleEnter);
     if (mapSelected === "suburban") {
       currentScreen = "suburbanMap";
     } else if (mapSelected === "city") {
@@ -711,6 +718,7 @@ function enterButton() {
 }
 
 function playersName() {
+  setup();
   nameInput();
   enterButton();
 }
