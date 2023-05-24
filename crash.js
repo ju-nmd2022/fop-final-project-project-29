@@ -14,8 +14,6 @@ function crashBox(){
     strokeWeight(2);
     textSize(60);
     text('YOU CRASHED', 255, 344);
-
- 
 }
 
 function retryButton(){

@@ -205,11 +205,12 @@ function changeToMapSelection() {
 }
 
 function startGame() {
-  if (mapSelected === "suburban") {
+  currentScreen = "playersName";
+  /* if (mapSelected === "suburban") {
     currentScreen = "suburbanMap";
   } else if (mapSelected === "city") {
     currentScreen = "cityMap";
-  }
+  } */
   buttonCarCustom.remove();
   buttonMapCustom.remove();
   buttonPlay.remove();
@@ -648,6 +649,67 @@ function mapSelection() {
   cityMapButton();
   selectButton();
   /* if one map is selected - > done button show up */
+}
+
+/* content for adding the players name */
+let inp = createInput("");
+
+function nameInput() {
+  fill(240);
+  stroke(0, 197, 197);
+  strokeWeight(15);
+
+  rect(200, 180, 550, 300, 50);
+
+  fill(236, 0, 140);
+  stroke(236, 0, 140);
+  strokeWeight(1);
+  textSize(55);
+  text("What's your name?", 237, 300);
+
+  
+  inp.position(380, 400);
+  inp.size(200);
+  inp.input(myInputEvent);
+}
+
+function myInputEvent() {
+  // add here the saving for the name, I think
+  console.log("you are typing: ", this.value());
+}
+
+function enterButton() {
+  fill(240);
+  stroke(0, 197, 197);
+  strokeWeight(15);
+
+  rect(340, 550, 250, 120, 40);
+
+  fill(236, 0, 140);
+  stroke(236, 0, 140);
+  strokeWeight(1);
+  textSize(50);
+  text("Done", 404, 628);
+
+  if (
+    mouseIsPressed /* also condition they can only continue when they only entered a name */ &&
+    mouseX >= 340 &&
+    mouseX <= 340 + 250 &&
+    mouseY >= 550 &&
+    mouseY <= 550 + 120
+  ) {
+    if (mapSelected === "suburban") {
+      currentScreen = "suburbanMap";
+    } else if (mapSelected === "city") {
+      currentScreen = "cityMap";
+    }
+    inp.remove();
+  }
+}
+
+function playersName() {
+  nameInput();
+  enterButton();
 }
 
 /* content for the cars that will drive */
@@ -1928,15 +1990,17 @@ function stopTimer() {
 
 function updateTimer() {
   const elapsedTime = Date.now() - startTime;
-//The following 4 lines of code where conducted by the help og ChatGPT
+  //The following 4 lines of code where conducted by the help og ChatGPT
   const minutes = Math.floor(elapsedTime / 60000);
   const seconds = Math.floor((elapsedTime % 60000) / 1000);
   const milliseconds = elapsedTime % 1000;
-  console.log(`Elapsed time: ${minutes}:${pad(seconds, 2)}:${pad(milliseconds, 3)}`);
+  console.log(
+    `Elapsed time: ${minutes}:${pad(seconds, 2)}:${pad(milliseconds, 3)}`
+  );
 }
 //The following 3 lines of code where conducted by the help og ChatGPT
 function pad(number, length) {
-  return number.toString().padStart(length, '0');
+  return number.toString().padStart(length, "0");
 }
 
 /* content of city map */
@@ -2058,10 +2122,10 @@ function carControls(carX, carY, carRotation, speed) {
 
   if (keyIsDown(38)) {
     if (speed > -16) {
-      speed -= 0.2; 
+      speed -= 0.2;
     }
     console.log(speed);
-  } else if (keyIsDown(40)) { 
+  } else if (keyIsDown(40)) {
     speed += 1;
   } else {
     speed = -0.5;
@@ -2457,7 +2521,7 @@ function callOnceCarSuburban() {
     called = true;
   }
 }
- 
+
 function suburbanMap() {
   background(backgroundImageSub);
   suburbanConditions();
@@ -2487,7 +2551,7 @@ function suburbanMap() {
 /* content for collison that is like super weird */
 //the following 20 lines of code were done with the help of ChatGPT
 function detectCollision() {
-    // Define the bounding box of the car
+  // Define the bounding box of the car
   let carXMin = carX - 120 * carScale;
   let carXMax = carX + 120 * carScale;
   let carYMin = carY - 40 * carScale;
@@ -2501,7 +2565,7 @@ function detectCollision() {
       // Check if the pixel color is red
       if (
         pixelColor[0] === 255 &&
-        pixelColor[1] === 255 && 
+        pixelColor[1] === 255 &&
         pixelColor[2] === 180
       ) {
         console.log("collision");
@@ -2608,8 +2672,10 @@ function goBackToStartButton() {
     mouseY <= 670
   ) {
     currentScreen = "startScreen";
+    carRotation = PI;
     called = false;
-    //here problem that when you crash and then go back and change the map, the car position is the same as when it crashed
+    cityCarSetup();
+    suburbanCarSetup();
   }
 }
 
@@ -2650,6 +2716,8 @@ function draw() {
     carSelection();
   } else if (currentScreen === "mapSelection") {
     mapSelection();
+  } else if (currentScreen === "playersName") {
+    playersName();
   } else if (currentScreen === "cityMap") {
     cityMap();
   } else if (currentScreen === "suburbanMap") {
