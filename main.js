@@ -2008,6 +2008,12 @@ function updateTimer() {
   console.log(
     `Elapsed time: ${minutes}:${pad(seconds, 2)}:${pad(milliseconds, 3)}`
   );
+  //the following 1 line is conducted by the help of chatGPT
+  const formattedTime = `${minutes}:${pad(seconds, 2)}:${pad(milliseconds, 3)}`;
+  //console.log(`Elapsed time: ${formattedTime}`);
+
+  // Store elapsed time in localStorage
+  localStorage.setItem('elapsedTime', formattedTime);
 }
 //The following 3 lines of code where conducted by the help og ChatGPT
 function pad(number, length) {
@@ -2591,6 +2597,7 @@ function detectCollision() {
 
 /* content for the result screen */
 function highscore() {
+  push();
   fill(240);
   stroke(0, 197, 197);
   strokeWeight(15);
@@ -2620,11 +2627,12 @@ function highscore() {
   text("Alonso", 300, 374);
   text("Perez", 300, 424);
 
-  text("00:32:52", 570, 224);
-  text("00:35:02", 570, 274);
-  text("00:36:43", 570, 324);
-  text("00:42:44", 570, 374);
-  text("00:52:32", 570, 424);
+  text(localStorage.getItem('elapsedTime'), 570, 224);
+  text(localStorage.getItem('elapsedTime'), 570, 274);
+  text(localStorage.getItem('elapsedTime'), 570, 324);
+  text(localStorage.getItem('elapsedTime'), 570, 374);
+  text(localStorage.getItem('elapsedTime'), 570, 424);
+  pop();
 }
 function retryButton() {
   fill(240);
@@ -2698,6 +2706,7 @@ function resultScreen() {
 
 /* content of the start screen */
 function crashBox() {
+  push();
   fill(240);
   stroke(0, 197, 197);
   strokeWeight(15);
@@ -2709,6 +2718,7 @@ function crashBox() {
   strokeWeight(2);
   textSize(60);
   text("YOU CRASHED", 255, 344);
+  pop();
 }
 
 function crashScreen() {
