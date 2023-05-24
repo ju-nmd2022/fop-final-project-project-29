@@ -1,6 +1,4 @@
-function setup() {
-  createCanvas(900, 712);
-}
+
 
 function nameInput() {
   fill(240);
@@ -26,7 +24,7 @@ function myInputEvent() {
   console.log("you are typing: ", this.value());
 }
 
-function enterButton() {
+/* function enterButton() {
   fill(240);
   stroke(0, 197, 197);
   strokeWeight(15);
@@ -51,9 +49,76 @@ function enterButton() {
       currentScreen = "cityMap";
     }
   }
+} */
+
+/* function draw() {
+  nameInput();
+  enterButton();
+} 
+
+
+let input;
+let inputValue = "";
+
+function setup() {
+  createCanvas(400, 200);
+  
+  // Create an input field
+  input = createInput();
+  input.position(20, 20);
+  
+  // Set a callback function to handle input changes
+  input.input(handleInput);
+  
+  // Set a callback function to handle key presses
+  input.changed(handleEnter);
 }
 
 function draw() {
-  nameInput();
-  enterButton();
+  background(220);
+  
+  // Display the input value
+  textSize(24);
+  text(inputValue, 20, 60);
+}
+
+function handleInput() {
+  // Update the inputValue variable with the current input value
+  inputValue = this.value();
+}
+
+function handleEnter() {
+  // Handle the input value when the enter key is pressed
+  console.log("Input entered:", inputValue);
+  // Additional logic for processing the input value can be added here
+}
+
+ */
+
+
+let input;
+let inputValue = "";
+
+function setup() {
+  createCanvas(400, 200);
+  
+  // Create an input field
+  input = createInput();
+  input.position(20, 20);
+  input.changed(handleEnter);
+}
+
+function draw() {
+  background(220);
+  
+  // Display the input value
+  textSize(24);
+  text(inputValue, 20, 60);
+}
+
+function handleEnter() {
+  // Handle the input value when the enter key is pressed
+  inputValue = this.value();
+  console.log("Input entered:", inputValue);
+  // Additional logic for processing the input value can be added here
 }

@@ -100,7 +100,7 @@ function preload() {
   tokyoCityImg = "url('logo.png')";
 }
 
-let currentScreen = "startScreen";
+let currentScreen = "playersName";
 
 /* content of pre screen */
 let buttonStart = null;
@@ -642,7 +642,6 @@ function selectButton() {
     buttonDone.style("background-color", "#ec008c");
   });
 }
-//let currentMap = "";
 function mapSelection() {
   background(mapSelectBg);
   suburbanMapButton();
@@ -652,8 +651,8 @@ function mapSelection() {
 }
 
 /* content for adding the players name */
-let inp = createInput("");
-
+let inp;
+let inputValue = "";
 function nameInput() {
   fill(240);
   stroke(0, 197, 197);
@@ -667,16 +666,20 @@ function nameInput() {
   textSize(55);
   text("What's your name?", 237, 300);
 
-  
-  inp.position(380, 400);
+  inp = createInput("");
+  inp.position(480, 480);
   inp.size(200);
-  inp.input(myInputEvent);
+  inp.changed(handleEnter);
 }
 
-function myInputEvent() {
-  // add here the saving for the name, I think
-  console.log("you are typing: ", this.value());
+//the following 5 lines of code were applied with the help of ChatGPT
+function handleEnter() {
+  // Handle the input value when the enter key is pressed
+  inputValue = this.value();
+  console.log("Input entered:", inputValue);
+  // Here add the function when the name gets saved 
 }
+
 
 function enterButton() {
   fill(240);
@@ -698,12 +701,12 @@ function enterButton() {
     mouseY >= 550 &&
     mouseY <= 550 + 120
   ) {
+    
     if (mapSelected === "suburban") {
       currentScreen = "suburbanMap";
     } else if (mapSelected === "city") {
       currentScreen = "cityMap";
     }
-    inp.remove();
   }
 }
 
