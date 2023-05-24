@@ -2047,7 +2047,7 @@ function cityConditions() {
   ) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap4.png");
-    carY = 5;
+    carY = -15;
   } else if (
     whichBackgroundCity === 4 &&
     200 < carY &&
@@ -2112,6 +2112,7 @@ function cityConditions() {
     backgroundImageCity = loadImage("map-city/cityMap10.png");
     isGameActive = false;
     currentScreen = "resultScreen";
+    setTimeout(stopTimer);
   }
 }
 
@@ -2254,6 +2255,7 @@ function cityMap() {
   cityBoundries();
   callOnceCarCity();
   cityConditions();
+  startTimer();
   //the following line of code were done with the help of ChatGPT
   [carX, carY, carRotation, speed] = carControls(
     carX,
