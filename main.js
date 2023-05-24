@@ -2623,11 +2623,11 @@ function highscore() {
   text("4.", 225, 374);
   text("5.", 225, 424);
 
-  text("Verstappen", 300, 224);
-  text("Russel", 300, 274);
-  text("Leclerc", 300, 324);
-  text("Alonso", 300, 374);
-  text("Perez", 300, 424);
+  text("nameInputValue", 300, 224);
+  text("nameInputValue", 300, 274);
+  text("nameInputValue", 300, 324);
+  text("nameInputValue", 300, 374);
+  text("nameInputValue", 300, 424);
 
   text(localStorage.getItem('elapsedTime'), 570, 224);
   text(localStorage.getItem('elapsedTime'), 570, 274);

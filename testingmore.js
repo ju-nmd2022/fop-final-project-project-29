@@ -32,4 +32,54 @@ function startTimer() {
     return number.toString().padStart(length, "0");
   }
 
-  console.log(localStorage.getItem());
+  //console.log(localStorage.getItem());
+
+
+let lapTimes= [];
+
+function addlapTimes(name, time) {
+    lapTimes.push({ name, time });
+    sortlapTimes();
+  }
+
+function addLapTimesFromInput(nameInputValue, timeInputValue) {
+  const name = nameInputValue;
+  const time = timeInputValue;
+  timeEntries.push({ name, time });
+  sortTimeEntries();
+}  
+
+function sortlapTimes() {
+    lapTimes.sort((a, b) => a.time - b.time);
+}
+
+
+addlapTimes('John', 500);
+addlapTimes('Emily', 700);
+addlapTimes('Sarah', 300);
+
+console.log(lapTimes);
+
+/* 
+if(newLaptime < Bestlaptime){
+    //overwrite best laptime
+} */
+
+let highScores = [];
+
+function addHighScore(name, score){
+    highScores.push({name, score});
+    sortHighScore();
+}
+
+function sortHighScore(){
+    highScores.sort((a,b)=>b.score - a.score);
+}
+
+function getTopHighScores(n){
+    return highScores.slice(0,n);
+}
+
+addHighScore('nameInput', 'ellapsedTime');
+
+getTopHighScores(0);
