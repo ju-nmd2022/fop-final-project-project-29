@@ -21,9 +21,6 @@ function setup() {
   };
 
   carRotation = PI;
-
-  calmSong = loadSound("sound/calmSong.mp3");
-  raceSong = loadSound("sound/raceSong.mp3");
 }
 
 let preBg;
@@ -109,6 +106,9 @@ function preload() {
   /* map select screen */
   mapSelectBg = loadImage("asphalt.jpeg");
   tokyoCityImg = "url('logo.png')";
+
+  calmSong = loadSound("sounds/calmSong.mp3");
+  raceSong = loadSound("sounds/raceSong.mp3");
 }
 
 /* content of pre screen */
@@ -134,13 +134,13 @@ function changeToStartScreen() {
   currentScreen = "playersName";
   inputBox();
   buttonStart.remove();
+  calmSong.play();
 }
 
 function preScreen() {
   background(preBg);
   startButton();
   buttonStart.mousePressed(changeToStartScreen);
-  calmSong.play();
 }
 /* content for adding the players name */
 
@@ -294,6 +294,8 @@ function startGame() {
   buttonCarCustom.remove();
   buttonMapCustom.remove();
   buttonPlay.remove();
+  calmSong.stop();
+  raceSong.play();
 }
 
 function startScreen() {
@@ -529,28 +531,31 @@ function cityMapButton() {
   buttonCity.position(windowWidth / 2 + 20, windowHeight / 2 - 200);
   buttonCity.style("font-family", "Verdana");
   buttonCity.style("font-size", "42px");
-  buttonCity.style("background-color", "#ec008c");
+  //buttonCity.style("background-color", "#ec008c");
+  buttonCity.style("background-image", "url('map-city/cityMap1.png')");
+  buttonCity.style("background-size","cover");
   buttonCity.style("border-width", "5px");
   buttonCity.style("border-color", "#ffffff");
-  buttonCity.style("color", "#ffffff");
+  buttonCity.style("font-weight","bold");
+  buttonCity.style("color", "#ec008c");
   buttonCity.style("border-style", "outset");
   if (mouseIsPressed && mouseX > 130 && mouseX < 527 && mouseY > 230 && mouseY < 525) {
     mapIsChosen = true;
     console.log("ok");
   }
-  buttonCity.mouseOver(function() {
+  /* buttonCity.mouseOver(function() {
     buttonCity.style("background-color", "transparent");
     buttonCity.style("background-image", "url('map-city/cityMap1.png')");
     buttonCity.style("background-repeat", "no-repeat");
     buttonCity.style("background-size", "cover");
-  });
+  }); */
   buttonCity.mousePressed(function() {
     mapSelected = "city";
     //add localstorage function
   });
-  buttonCity.mouseOut(function() {
+  /* buttonCity.mouseOut(function() {
     buttonCity.style("background-color", "#ec008c");
-  });
+  }); */
 }
 
 let buttonSuburban = null;
@@ -564,30 +569,33 @@ function suburbanMapButton() {
   buttonSuburban.position(windowWidth / 2 - 420, windowHeight / 2 - 200);
   buttonSuburban.style("font-family", "Verdana");
   buttonSuburban.style("font-size", "42px");
-  buttonSuburban.style("background-color", "#ec008c");
+  buttonSuburban.style("background-image", "url('suburbanMap/SuburbanMap-7.png')");
+  buttonSuburban.style("background-size","cover");
+  //buttonSuburban.style("background-color", "#ec008c");
   buttonSuburban.style("width", "400px");
+  buttonSuburban.style("font-weight","bold");
   buttonSuburban.style("height", "300px");
   buttonSuburban.style("border-width", "5px");
   buttonSuburban.style("border-color", "#ffffff");
-  buttonSuburban.style("color", "#ffffff");
+  buttonSuburban.style("color", "#ec008c");
   buttonSuburban.style("border-style", "outset");
   if (mouseIsPressed && mouseX > 660 && mouseX < 1080 && mouseY > 230 && mouseY < 525) {
     mapIsChosen = true;
     console.log("ok");
   }
-  buttonSuburban.mouseOver(function() {
+  /* buttonSuburban.mouseOver(function() {
     buttonSuburban.style("background-color", "transparent");
     buttonSuburban.style("background-image", "url('suburbanMap/SuburbanMap-1.png')");
     buttonSuburban.style("background-repeat", "no-repeat");
     buttonSuburban.style("background-size", "cover");
-  });
+  }); */
   buttonSuburban.mousePressed(function() {
     mapSelected = "suburban";
     //add localstorage function
   });
-  buttonSuburban.mouseOut(function() {
+  /* buttonSuburban.mouseOut(function() {
     buttonSuburban.style("background-color", "#ec008c");
-  });
+  }); */
 }
 
 let buttonDone = null;
@@ -611,20 +619,20 @@ function selectButton() {
     doneGoBack = true;
     console.log("done");
   }
-  buttonDone.mouseOver(function() {
+ /*  buttonDone.mouseOver(function() {
     buttonDone.style("background-color", "#a90059");
     buttonDone.style("background-repeat", "no-repeat");
     buttonDone.style("background-size", "cover");
-  });
+  }); */
   buttonDone.mousePressed(function() {
     currentScreen = "startScreen";
     buttonSuburban.remove();
     buttonCity.remove();
     buttonDone.remove();
   });
-  buttonDone.mouseOut(function() {
+  /* buttonDone.mouseOut(function() {
     buttonDone.style("background-color", "#ec008c");
-  });
+  }); */
 }
 function mapSelection() {
   background(mapSelectBg);
@@ -1821,6 +1829,8 @@ function goBackToStartButton() {
     called = false;
     cityCarSetup();
     suburbanCarSetup();
+    raceSong.stop();
+    calmSong.play();
   }
 }
 
