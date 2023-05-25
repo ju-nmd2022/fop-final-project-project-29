@@ -113,7 +113,7 @@ function startButton() {
   }
   buttonStart = createButton("START");
   buttonStart.size(200, 80);
-  buttonStart.position(windowWidth / 2 - 100, 600);
+  buttonStart.position(windowWidth / 2 - 100, windowHeight / 2 + 200);
   buttonStart.style("font-family", "Verdana");
   buttonStart.style("font-size", "30px");
   buttonStart.style("color: #ffffff");
@@ -159,7 +159,7 @@ function inputBox() {
     inp.remove();
   }
   inp = createInput("");
-  inp.position(480, 480);
+  inp.position(windowWidth / 2 -100, windowHeight / 2 + 50);
   inp.size(200);
   inp.changed(handleEnter);
 }
@@ -175,6 +175,7 @@ function handleEnter() {
   }
 
   // Here add the function when the name gets saved
+
 }
 
 function enterButton() {
@@ -189,7 +190,7 @@ function enterButton() {
   strokeWeight(1);
   textSize(50);
   text("Done", 404, 628);
-  
+
 }
 
 function playersName() {
@@ -209,7 +210,7 @@ function playButton() {
   buttonPlay = createButton("START");
   buttonPlay.size(250, 120);
   buttonPlay.style("borderRadius", "30px");
-  buttonPlay.position(windowWidth / 2 + 200, 320);
+  buttonPlay.position(windowWidth / 2 + 200, windowHeight / 2 - 120);
   buttonPlay.style("font-family", "Verdana");
   buttonPlay.style("font-size", "42px");
   buttonPlay.style("background-color", "#ec008c");
@@ -227,7 +228,7 @@ function carCustomButton() {
   buttonCarCustom = createButton("Customize Car");
   buttonCarCustom.size(250, 60);
   buttonCarCustom.style("borderRadius", "20px");
-  buttonCarCustom.position(windowWidth / 2 + 200, 520);
+  buttonCarCustom.position(windowWidth / 2 + 200, windowHeight / 2 + 150);
   buttonCarCustom.style("font-family", "Verdana");
   buttonCarCustom.style("font-size", "24px");
   buttonCarCustom.style("background-color", "#00C5C5");
@@ -245,7 +246,7 @@ function mapCustomButton() {
   buttonMapCustom = createButton("Change Map");
   buttonMapCustom.size(250, 60);
   buttonMapCustom.style("borderRadius", "20px");
-  buttonMapCustom.position(windowWidth / 2 + 200, 590);
+  buttonMapCustom.position(windowWidth / 2 + 200, windowHeight / 2 + 70);
   buttonMapCustom.style("font-family", "Verdana");
   buttonMapCustom.style("font-size", "24px");
   buttonMapCustom.style("background-color", "#00C5C5");
@@ -323,7 +324,7 @@ function backButton() {
   }
   buttonBack = createButton("BACK");
   buttonBack.size(130, 60);
-  buttonBack.position(windowWidth / 2 - 450, 130);
+  buttonBack.position(windowWidth / 2 - 450, windowHeight / 2 - 330);
   buttonBack.style("font-family", "Verdana");
   buttonBack.style("font-size", "27px");
   buttonBack.style("color: #ffffff");
@@ -517,7 +518,7 @@ function cityMapButton() {
   buttonCity = createButton("Tokyo City");
   buttonCity.size(400, 300);
   buttonCity.style("borderRadius", "30px");
-  buttonCity.position(windowWidth / 2 + 20, 200);
+  buttonCity.position(windowWidth / 2 + 20, windowHeight / 2 - 200);
   buttonCity.style("font-family", "Verdana");
   buttonCity.style("font-size", "42px");
   buttonCity.style("background-color", "#ec008c");
@@ -552,7 +553,7 @@ function suburbanMapButton() {
   buttonSuburban = createButton("Suburbs");
   buttonSuburban.size(400, 300);
   buttonSuburban.style("borderRadius", "30px");
-  buttonSuburban.position(windowWidth / 2 - 420, 200);
+  buttonSuburban.position(windowWidth / 2 - 420, windowHeight / 2 - 200);
   buttonSuburban.style("font-family", "Verdana");
   buttonSuburban.style("font-size", "42px");
   buttonSuburban.style("background-color", "#ec008c");
@@ -588,7 +589,7 @@ function selectButton() {
   }
   buttonDone = createButton("Done");
   buttonDone.style("borderRadius", "30px");
-  buttonDone.position(windowWidth / 2 - 200, 550);
+  buttonDone.position(windowWidth / 2 - 200, windowHeight / 2 + 150);
   buttonDone.style("font-family", "Verdana");
   buttonDone.style("font-size", "42px");
   buttonDone.style("background-color", "#ec008c");
@@ -1192,7 +1193,7 @@ function updateTimer() {
   const minutes = Math.floor(elapsedTime / 60000);
   const seconds = Math.floor((elapsedTime % 60000) / 1000);
   const milliseconds = elapsedTime % 1000;
-  console.log(`Elapsed time: ${minutes}:${pad(seconds, 2)}:${pad(milliseconds, 3)}`);
+  console.log(`Elapsed time: ${minutes}:${pad(seconds, 2)}:${pad(milliseconds, 3)}`, inputText);
   //the following 1 line is conducted by the help of chatGPT
   const formattedTime = `${minutes}:${pad(seconds, 2)}:${pad(milliseconds, 3)}`;
   //console.log(`Elapsed time: ${formattedTime}`);
@@ -1200,7 +1201,7 @@ function updateTimer() {
   // Store elapsed time in localStorage
   localStorage.setItem("elapsedTime", formattedTime);
 }
-//The following 3 lines of code where conducted by the help og ChatGPT
+//The following 3 lines of code where conducted by the help of ChatGPT
 function pad(number, length) {
   return number.toString().padStart(length, "0");
 }
@@ -1211,48 +1212,52 @@ let isGameActive = false;
 
 function cityConditions() {
   isGameActive = true;
-  if (whichBackgroundCity === 1 && 266 < carY && carY < 444 && carX >= 950) {
-    whichBackgroundCity += 1;
-    backgroundImageCity = loadImage("map-city/cityMap2.png");
-    carX = 5;
-  } else if (whichBackgroundCity === 2 && 30 < carY && carY < 211 && carX >= 950) {
-    whichBackgroundCity += 1;
-    backgroundImageCity = loadImage("map-city/cityMap3.png");
-    carX = 5;
-  } else if (whichBackgroundCity === 3 && 355 < carX && carX < 533 && carY >= 712) {
-    whichBackgroundCity += 1;
-    backgroundImageCity = loadImage("map-city/cityMap4.png");
-    carY = -15;
-  } else if (whichBackgroundCity === 4 && 200 < carY && carY < 380 && carX >= 950) {
-    whichBackgroundCity += 1;
-    backgroundImageCity = loadImage("map-city/cityMap5.png");
-    carX = 5;
-  } else if (whichBackgroundCity === 5 && 410 < carX && carX < 588 && carY <= 0) {
-    whichBackgroundCity += 1;
-    backgroundImageCity = loadImage("map-city/cityMap6.png");
-    carY = 900;
-  } else if (whichBackgroundCity === 6 && 410 < carX && carX < 588 && carY <= 0) {
-    whichBackgroundCity += 1;
-    backgroundImageCity = loadImage("map-city/cityMap7.png");
-    carY = 900;
-  } else if (whichBackgroundCity === 7 && 200 < carY && carY < 379 && carX >= 950) {
-    whichBackgroundCity += 1;
-    backgroundImageCity = loadImage("map-city/cityMap8.png");
-    carX = 5;
-  } else if (whichBackgroundCity === 8 && 420 < carX && carX < 598 && carY >= 712) {
-    whichBackgroundCity += 1;
-    backgroundImageCity = loadImage("map-city/cityMap9.png");
-    carY = 5;
-  } else if (whichBackgroundCity === 9 && 253 < carY && carY < 431 && carX >= 950) {
-    whichBackgroundCity += 1;
-    backgroundImageCity = loadImage("map-city/cityMap10.png");
-    carX = 5;
-  } else if (whichBackgroundCity === 10 && 253 < carY && carY < 431 && carX >= 695) {
+   if (whichBackgroundCity === 1 && 266 < carY && carY < 444 && carX >= 950) {
+     whichBackgroundCity += 1;
+     backgroundImageCity = loadImage("map-city/cityMap2.png");
+     carX = 5;
+   } else if (whichBackgroundCity === 2 && 30 < carY && carY < 211 && carX >= 950) {
+     whichBackgroundCity += 1;
+     backgroundImageCity = loadImage("map-city/cityMap3.png");
+     carX = 5;
+   } else if (whichBackgroundCity === 3 && 355 < carX && carX < 533 && carY >= 712) {
+     whichBackgroundCity += 1;
+     backgroundImageCity = loadImage("map-city/cityMap4.png");
+     carY = -15;
+   } else if (whichBackgroundCity === 4 && 200 < carY && carY < 380 && carX >= 950) {
+     whichBackgroundCity += 1;
+     backgroundImageCity = loadImage("map-city/cityMap5.png");
+     carX = 5;
+   } else if (whichBackgroundCity === 5 && 410 < carX && carX < 588 && carY <= 0) {
+     whichBackgroundCity += 1;
+     backgroundImageCity = loadImage("map-city/cityMap6.png");
+     carY = 900;
+   } else if (whichBackgroundCity === 6 && 410 < carX && carX < 588 && carY <= 0) {
+     whichBackgroundCity += 1;
+     backgroundImageCity = loadImage("map-city/cityMap7.png");
+     carY = 900;
+   } else if (whichBackgroundCity === 7 && 200 < carY && carY < 379 && carX >= 950) {
+     whichBackgroundCity += 1;
+     backgroundImageCity = loadImage("map-city/cityMap8.png");
+     carX = 5;
+   } else if (whichBackgroundCity === 8 && 420 < carX && carX < 598 && carY >= 712) {
+     whichBackgroundCity += 1;
+     backgroundImageCity = loadImage("map-city/cityMap9.png");
+     carY = 5;
+   } else if (whichBackgroundCity === 9 && 253 < carY && carY < 431 && carX >= 950) {
+     whichBackgroundCity += 1;
+     backgroundImageCity = loadImage("map-city/cityMap10.png");
+     carX = 5;
+   } else if (whichBackgroundCity === 10 && 253 < carY && carY < 431 && carX >= 695) {
+
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap10.png");
     isGameActive = false;
     currentScreen = "resultScreen";
     setTimeout(stopTimer);
+    //console.log(inputText);
+    addHighScore(inputText, localStorage.getItem("elapsedTime"));
+    console.log(JSON.stringify(highScores[0]));
   }
 }
 
@@ -1262,7 +1267,7 @@ function cityCarSetup() {
   carScale = 0.3;
 }
 
-//the following 7 lines of code were done wiht the help of ChatGPT
+//the following 7 lines of code were done with the help of ChatGPT
 let called = false;
 
 function callOnceCarCity() {
@@ -1467,6 +1472,8 @@ function suburbanConditions() {
   } else if (whichSectionOnMap === 13 && carX > 570 && 203 < carY && carY < 435) {
     currentScreen = "resultScreen";
     setTimeout(stopTimer);
+    addHighScore(inputText, localStorage.getItem("elapsedTime"));
+    console.log(JSON.stringify(highScores[0]));
   }
 }
 
@@ -1676,6 +1683,7 @@ function detectCollision() {
   // Iterate over the pixels within the bounding box
   for (let i = carXMin; i <= carXMax; i++) {
     for (let j = carYMin; j <= carYMax; j++) {
+      // look up exact function ------------------------------------------------------------------------------------------------
       let pixelColor = get(i, j);
 
       // Check if the pixel color is red
@@ -1708,27 +1716,58 @@ function highscore() {
 
   fill(236, 0, 140);
   stroke(236, 0, 140);
-  strokeWeight(0);
-  textSize(30);
+  strokeWeight(1);
+  textSize(20);
   text("1.", 225, 224);
   text("2.", 225, 274);
   text("3.", 225, 324);
   text("4.", 225, 374);
   text("5.", 225, 424);
 
-  text("nameInputValue", 300, 224);
-  text("nameInputValue", 300, 274);
-  text("nameInputValue", 300, 324);
-  text("nameInputValue", 300, 374);
-  text("nameInputValue", 300, 424);
+  highScores = JSON.parse(localStorage.getItem("highScores"));
 
-  text(localStorage.getItem("elapsedTime"), 570, 224);
-  text(localStorage.getItem("elapsedTime"), 570, 274);
-  text(localStorage.getItem("elapsedTime"), 570, 324);
-  text(localStorage.getItem("elapsedTime"), 570, 374);
-  text(localStorage.getItem("elapsedTime"), 570, 424);
+  text((!highScores[0]) ? "no racer" : highScores[0].name, 300, 224);
+  text((!highScores[1]) ? "no racer" : highScores[1].name, 300, 274);
+  text((!highScores[2]) ? "no racer" : highScores[2].name, 300, 324);
+  text((!highScores[3]) ? "no racer" : highScores[3].name, 300, 374);
+  text((!highScores[4]) ? "no racer" : highScores[4].name, 300, 424);
+
+  text((!highScores[0]) ? 0 : highScores[0].score, 570, 224);
+  text((!highScores[1]) ? 0 : highScores[1].score, 570, 274);
+  text((!highScores[2]) ? 0 : highScores[2].score, 570, 324);
+  text((!highScores[3]) ? 0 : highScores[3].score, 570, 374);
+  text((!highScores[4]) ? 0 : highScores[4].score, 570, 424);
   pop();
+  sortHighScore();
 }
+//(!highScores[1]) ? "no racer" : highScores[1].name
+// ? means if statement
+// part before the ? means the condition
+// ! means not existing
+// first part before ":" is the true statement, second part after ":" is the false statement
+
+let highScores = [];
+
+function addHighScore(name, score){
+  console.log("NAME:", name);
+    highScores.push({name: name, score: score});
+    sortHighScore();
+    localStorage.setItem("highScores",JSON.stringify(highScores));
+}
+
+function sortHighScore(){
+    highScores.sort((b,a)=>b.score - a.score);
+}
+
+/* function getTopHighScores(n){
+    return highScores.slice(0,n);
+} */
+
+// addHighScore(inputText, localStorage.getItem("elapsedTime"));
+
+/* const topHighScores = getTopHighScores(1);
+topHighScores.forEach((highScores) => console.log(highScores.name + highScores.score)); */
+
 function retryButton() {
   fill(240);
   stroke(0, 197, 197);
@@ -1772,7 +1811,7 @@ function goBackToStartButton() {
   stroke(236, 0, 140);
   strokeWeight(1);
   textSize(40);
-  text("GO BACK", 530, 624);
+  text("GO BACK", 535, 624);
 
   if (mouseIsPressed & (mouseX >= 500) && mouseX <= 750 && mouseY >= 550 && mouseY <= 670) {
     currentScreen = "startScreen";
@@ -1801,8 +1840,8 @@ function crashBox() {
   fill(236, 0, 140);
   stroke(236, 0, 140);
   strokeWeight(2);
-  textSize(60);
-  text("YOU CRASHED", 255, 344);
+  textSize(50);
+  text("YOU CRASHED", 280, 344);
   pop();
 }
 
