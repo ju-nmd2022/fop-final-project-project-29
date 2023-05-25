@@ -1511,16 +1511,13 @@ function suburbanBoundries() {
     endShape();
     line(619, 556, 621, 711);
     line(0, 399, 260, 425);
-    line(260, 425, 292, 475);
-    line(292, 475, 428, 365);
+    ellipse(510,302, 201);
+    ellipse(390,421,28);
+    ellipse(340,455,28);
     beginShape();
-    vertex(428, 365);
-    bezierVertex(383, 290, 426, 197, 506, 199);
-    bezierVertex(630, 210, 633, 350, 559, 396);
-    vertex(442, 387);
-    vertex(312, 497);
-    vertex(384, 547);
-    vertex(383, 711);
+    vertex(260,425);
+    bezierVertex(286,473,329,523,384,546);
+    vertex(383,712);
     endShape();
   } else if (whichSectionOnMap === 5) {
     line(384, 0, 382, 344);
