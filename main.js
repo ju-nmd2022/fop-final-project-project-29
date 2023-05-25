@@ -1491,7 +1491,7 @@ function suburbanConditions() {
   } else if (whichSectionOnMap === 13 && carX > 570 && 203 < carY && carY < 435) {
     currentScreen = "resultScreen";
     setTimeout(stopTimer);
-    addHighScore(inputText, localStorage.getItem("elapsedTime"));
+    addHighScore(inputText, parseInt(localStorage.getItem("elapsedTime")), localStorage.getItem("formattedTime"));
     console.log(JSON.stringify(highScores[0]));
   }
 }
