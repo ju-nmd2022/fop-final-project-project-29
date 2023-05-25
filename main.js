@@ -176,7 +176,6 @@ let inputText;
 function handleEnter() {
   if (keyCode === 13) {
     inputText = this.value();
-    console.log(inputText);
     enterButton();
     inp.remove();
   }
@@ -200,7 +199,6 @@ function playersName() {
   describtionBox();
   if (inputText && mouseIsPressed && mouseX > 340 && mouseX < 590 && mouseY > 550 && mouseY < 670) {
     currentScreen = "startScreen";
-    console.log("efg");
   }
 }
 
@@ -531,7 +529,6 @@ function cityMapButton() {
   buttonCity.style("border-style", "outset");
   if (mouseIsPressed && mouseX > 130 && mouseX < 527 && mouseY > 230 && mouseY < 525) {
     mapIsChosen = true;
-    console.log("ok");
   }
   buttonCity.mousePressed(function() {
     mapSelected = "city";
@@ -560,7 +557,6 @@ function suburbanMapButton() {
   buttonSuburban.style("border-style", "outset");
   if (mouseIsPressed && mouseX > 660 && mouseX < 1080 && mouseY > 230 && mouseY < 525) {
     mapIsChosen = true;
-    console.log("ok");
   }
   buttonSuburban.mousePressed(function() {
     mapSelected = "suburban";
@@ -1169,7 +1165,6 @@ function updateTimer() {
   const minutes = Math.floor(elapsedTime / 60000);
   const seconds = Math.floor((elapsedTime % 60000) / 1000);
   const milliseconds = elapsedTime % 1000;
-  console.log(`Elapsed time: ${minutes}:${pad(seconds, 2)}:${pad(milliseconds, 3)}`, inputText);
   const formattedTime = `${minutes}:${pad(seconds, 2)}:${pad(milliseconds, 3)}`;
   // Store elapsed time in localStorage
   localStorage.setItem("elapsedTime", elapsedTime);
@@ -1229,9 +1224,7 @@ function cityConditions() {
     isGameActive = false;
     currentScreen = "resultScreen";
     setTimeout(stopTimer);
-    //console.log(inputText);
     addHighScore(inputText, parseInt(localStorage.getItem("elapsedTime")), localStorage.getItem("formattedTime"));
-    console.log(JSON.stringify(highScores[0]));
   }
 }
 
@@ -1449,7 +1442,6 @@ function suburbanConditions() {
     currentScreen = "resultScreen";
     setTimeout(stopTimer);
     addHighScore(inputText, parseInt(localStorage.getItem("elapsedTime")), localStorage.getItem("formattedTime"));
-    console.log(JSON.stringify(highScores[0]));
   }
 }
 
@@ -1667,7 +1659,6 @@ function detectCollision() {
 
       // Check if the pixel color is red
       if (pixelColor[0] === 255 && pixelColor[1] === 255 && pixelColor[2] === 180) {
-        console.log("collision");
         stopTimer();
         return true; // Collision detected
       }
@@ -1703,6 +1694,7 @@ function highscore() {
   text("4.", 225, 374);
   text("5.", 225, 424);
 
+  //The following 1 line of code were made with the help of Garrit Schaap
   highScores = JSON.parse(localStorage.getItem("highScores"));
   sortHighScore();
 
@@ -1728,12 +1720,12 @@ function highscore() {
 
 let highScores = [];
 
+//the following 13 lines were conducted by the help of ChatGPT and Garrit Schaap
 function addHighScore(name, score, formattedScore){
   if (localStorage.highScores === undefined) {
     localStorage.highScores = JSON.stringify([]);
   }
   highScores = JSON.parse(localStorage.getItem("highScores"));
-  console.log("NAME:", name);
     highScores.push({name: name, score: score, formattedScore: formattedScore});
     sortHighScore();
     localStorage.setItem("highScores",JSON.stringify(highScores));
