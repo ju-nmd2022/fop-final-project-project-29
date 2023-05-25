@@ -276,7 +276,11 @@ function changeToMapSelection() {
 }
 
 function startGame() {
-  currentScreen = "playersName";
+  if (mapSelected === "city") {
+    currentScreen = "cityMap";
+  } else if (mapSelected === "suburban") {
+    currentScreen = "suburbanMap";
+  }
 
   buttonCarCustom.remove();
   buttonMapCustom.remove();
