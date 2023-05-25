@@ -13,10 +13,13 @@ function setup() {
     white: color("#e5e5e5"),
     orange: color("#d96d25"),
   };
-  carRotation = PI;
 
-  //input for name
+  carRotation = PI;
+  if (currentScreen === "playersName") {
+    inputBox();
+  }
 }
+
 let preBg;
 let startBg;
 let carStartImg;
@@ -102,7 +105,7 @@ function preload() {
   tokyoCityImg = "url('logo.png')";
 }
 
-let currentScreen = "startScreen";
+let currentScreen = "playersName";
 
 /* content of pre screen */
 let buttonStart = null;
@@ -195,7 +198,9 @@ function changeToCarSelection() {
 
   buttonCarCustom.remove();
   buttonMapCustom.remove();
-  buttonPlay.remove();
+  if (mapSelected) {
+    buttonPlay.remove();
+  }
 }
 
 function changeToMapSelection() {
@@ -203,7 +208,9 @@ function changeToMapSelection() {
 
   buttonCarCustom.remove();
   buttonMapCustom.remove();
-  buttonPlay.remove();
+  if (mapSelected) {
+    buttonPlay.remove();
+  }
 }
 
 function startGame() {
@@ -221,7 +228,9 @@ function startScreen() {
   image(logo, 0, 0, 700, 450);
 
   //play button
-  playButton();
+  if (mapSelected) {
+    playButton();
+  }
   carCustomButton();
   mapCustomButton();
   if (mapSelected) {
@@ -650,9 +659,8 @@ function mapSelection() {
 }
 
 /* content for adding the players name */
-let inp = null;
-let inputValue = "";
-function nameInput() {
+
+function describtionBox() {
   fill(240);
   stroke(0, 197, 197);
   strokeWeight(15);
@@ -664,7 +672,13 @@ function nameInput() {
   strokeWeight(1);
   textSize(55);
   text("What's your name?", 237, 300);
+  textSize(25);
+  text("Hit ENTER to save your name", 320, 370);
+}
 
+let inp = null;
+
+function inputBox() {
   if (inp != null) {
     inp.remove();
   }
@@ -674,14 +688,16 @@ function nameInput() {
   inp.changed(handleEnter);
 }
 
-//the following 5 lines of code were applied with the help of ChatGPT
+//the following 6 lines of code were applied with the help of ChatGPT
 function handleEnter() {
-  // Handle the input value when the enter key is pressed
-  if (inp != null) {
-    inp.remove();
+  if (keyCode === 13) {
+    let inputText = this.value();
+    console.log("Input value:", inputText);
+    enterButton();
   }
-  inputValue = this.value();
-  console.log("Input entered:", inputValue);
+  if (window.event) {
+    window.event.preventDefault();
+  }
   // Here add the function when the name gets saved
 }
 
@@ -699,7 +715,7 @@ function enterButton() {
   text("Done", 404, 628);
 
   if (
-    mouseIsPressed /* also condition they can only continue when they only entered a name */ &&
+    mouseIsPressed &&
     mouseX >= 340 &&
     mouseX <= 340 + 250 &&
     mouseY >= 550 &&
@@ -708,7 +724,6 @@ function enterButton() {
     if (inp != null) {
       inp.remove();
     }
-    inp.mousePressed(handleEnter);
     if (mapSelected === "suburban") {
       currentScreen = "suburbanMap";
     } else if (mapSelected === "city") {
@@ -719,8 +734,8 @@ function enterButton() {
 
 function playersName() {
   setup();
-  nameInput();
-  enterButton();
+  describtionBox();
+  //enterButton();
 }
 
 /* content for the cars that will drive */
