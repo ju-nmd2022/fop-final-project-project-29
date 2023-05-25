@@ -1,4 +1,6 @@
 let carColors;
+let currentScreen = "preScreen";
+let carRotation;
 function setup() {
   window.createCanvas(950, 712);
   frameRate(30);
@@ -11,13 +13,10 @@ function setup() {
     pink: color("#ed11a4"),
     purple: color("#7125ba"),
     white: color("#e5e5e5"),
-    orange: color("#d96d25"),
+    orange: color("#d96d25")
   };
 
   carRotation = PI;
-  if (currentScreen === "playersName") {
-    inputBox();
-  }
 }
 
 let preBg;
@@ -105,8 +104,6 @@ function preload() {
   tokyoCityImg = "url('logo.png')";
 }
 
-let currentScreen = "playersName";
-
 /* content of pre screen */
 let buttonStart = null;
 function startButton() {
@@ -127,8 +124,8 @@ function startButton() {
 }
 
 function changeToStartScreen() {
-  currentScreen = "startScreen";
-
+  currentScreen = "playersName";
+  inputBox();
   buttonStart.remove();
 }
 
@@ -136,6 +133,71 @@ function preScreen() {
   background(preBg);
   startButton();
   buttonStart.mousePressed(changeToStartScreen);
+}
+/* content for adding the players name */
+
+function describtionBox() {
+  fill(240);
+  stroke(0, 197, 197);
+  strokeWeight(15);
+
+  rect(200, 180, 550, 300, 50);
+
+  fill(236, 0, 140);
+  stroke(236, 0, 140);
+  strokeWeight(1);
+  textSize(55);
+  text("What's your name?", 237, 300);
+  textSize(25);
+  text("Hit ENTER to save your name", 320, 370);
+}
+
+let inp = null;
+
+function inputBox() {
+  if (inp != null) {
+    inp.remove();
+  }
+  inp = createInput("");
+  inp.position(480, 480);
+  inp.size(200);
+  inp.changed(handleEnter);
+}
+
+let inputText;
+//the following 6 lines of code were applied with the help of ChatGPT
+function handleEnter() {
+  if (keyCode === 13) {
+    inputText = this.value();
+    console.log(inputText);
+    enterButton();
+    inp.remove();
+  }
+
+  // Here add the function when the name gets saved
+}
+
+function enterButton() {
+  fill(240);
+  stroke(0, 197, 197);
+  strokeWeight(15);
+
+  rect(340, 550, 250, 120, 40);
+
+  fill(236, 0, 140);
+  stroke(236, 0, 140);
+  strokeWeight(1);
+  textSize(50);
+  text("Done", 404, 628);
+  
+}
+
+function playersName() {
+  describtionBox();
+  if (inputText && mouseIsPressed && mouseX > 340 && mouseX < 590 && mouseY > 550 && mouseY < 670) {
+    currentScreen = "startScreen";
+    console.log("efg");
+  }
 }
 
 let buttonPlay = null;
@@ -222,7 +284,7 @@ function startGame() {
 }
 
 function startScreen() {
-  //https://p5js.org/examples/image-background-image.html
+  //The following line of code was adapted from https://p5js.org/examples/image-background-image.html
   background(startBg);
   image(carStartImg, 50, 450, 600, 248);
   image(logo, 0, 0, 700, 450);
@@ -399,112 +461,34 @@ function carSelection() {
   colorBoxes();
   buttonBack.mousePressed(backToStartScreen);
   //section for choosing car
-  if (
-    mouseIsPressed &&
-    mouseX > 695 &&
-    mouseX < 917 &&
-    mouseY > 202 &&
-    mouseY < 296
-  ) {
+  if (mouseIsPressed && mouseX > 695 && mouseX < 917 && mouseY > 202 && mouseY < 296) {
     currentCar = "bmw";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 695 &&
-    mouseY < 917 &&
-    mouseY > 380 &&
-    mouseY < 474
-  ) {
+  } else if (mouseIsPressed && mouseX > 695 && mouseY < 917 && mouseY > 380 && mouseY < 474) {
     currentCar = "rx7";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 695 &&
-    mouseX < 917 &&
-    mouseY > 555 &&
-    mouseY < 649
-  ) {
+  } else if (mouseIsPressed && mouseX > 695 && mouseX < 917 && mouseY > 555 && mouseY < 649) {
     currentCar = "supra";
   }
   selectCar(currentCar);
   //section for choosing color
-  if (
-    mouseIsPressed &&
-    mouseX > 150 &&
-    mouseX < 200 &&
-    mouseY > 530 &&
-    mouseY < 580
-  ) {
+  if (mouseIsPressed && mouseX > 150 && mouseX < 200 && mouseY > 530 && mouseY < 580) {
     currentColor = "red";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 230 &&
-    mouseX < 280 &&
-    mouseY > 530 &&
-    mouseY < 580
-  ) {
+  } else if (mouseIsPressed && mouseX > 230 && mouseX < 280 && mouseY > 530 && mouseY < 580) {
     currentColor = "green";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 310 &&
-    mouseX < 360 &&
-    mouseY > 530 &&
-    mouseY < 580
-  ) {
+  } else if (mouseIsPressed && mouseX > 310 && mouseX < 360 && mouseY > 530 && mouseY < 580) {
     currentColor = "blue";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 390 &&
-    mouseX < 440 &&
-    mouseY > 530 &&
-    mouseY < 580
-  ) {
+  } else if (mouseIsPressed && mouseX > 390 && mouseX < 440 && mouseY > 530 && mouseY < 580) {
     currentColor = "black";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 470 &&
-    mouseX < 520 &&
-    mouseY > 530 &&
-    mouseY < 580
-  ) {
+  } else if (mouseIsPressed && mouseX > 470 && mouseX < 520 && mouseY > 530 && mouseY < 580) {
     currentColor = "yellow";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 150 &&
-    mouseX < 200 &&
-    mouseY > 610 &&
-    mouseY < 660
-  ) {
+  } else if (mouseIsPressed && mouseX > 150 && mouseX < 200 && mouseY > 610 && mouseY < 660) {
     currentColor = "pink";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 230 &&
-    mouseX < 280 &&
-    mouseY > 610 &&
-    mouseY < 660
-  ) {
+  } else if (mouseIsPressed && mouseX > 230 && mouseX < 280 && mouseY > 610 && mouseY < 660) {
     currentColor = "purple";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 310 &&
-    mouseX < 360 &&
-    mouseY > 610 &&
-    mouseY < 660
-  ) {
+  } else if (mouseIsPressed && mouseX > 310 && mouseX < 360 && mouseY > 610 && mouseY < 660) {
     currentColor = "white";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 390 &&
-    mouseX < 440 &&
-    mouseY > 610 &&
-    mouseY < 660
-  ) {
+  } else if (mouseIsPressed && mouseX > 390 && mouseX < 440 && mouseY > 610 && mouseY < 660) {
     currentColor = "orange";
-  } else if (
-    mouseIsPressed &&
-    mouseX > 470 &&
-    mouseX < 520 &&
-    mouseY > 610 &&
-    mouseY < 660
-  ) {
+  } else if (mouseIsPressed && mouseX > 470 && mouseX < 520 && mouseY > 610 && mouseY < 660) {
     selectRandomColor(carColors);
     //the following 2 lines of code were done with the help of ChatGPT
     let randomColor = selectRandomColor(carColors);
@@ -537,27 +521,21 @@ function cityMapButton() {
   buttonCity.style("border-color", "#ffffff");
   buttonCity.style("color", "#ffffff");
   buttonCity.style("border-style", "outset");
-  if (
-    mouseIsPressed &&
-    mouseX > 130 &&
-    mouseX < 527 &&
-    mouseY > 230 &&
-    mouseY < 525
-  ) {
+  if (mouseIsPressed && mouseX > 130 && mouseX < 527 && mouseY > 230 && mouseY < 525) {
     mapIsChosen = true;
     console.log("ok");
   }
-  buttonCity.mouseOver(function () {
+  buttonCity.mouseOver(function() {
     buttonCity.style("background-color", "transparent");
     buttonCity.style("background-image", "url('map-city/cityMap1.png')");
     buttonCity.style("background-repeat", "no-repeat");
     buttonCity.style("background-size", "cover");
   });
-  buttonCity.mousePressed(function () {
+  buttonCity.mousePressed(function() {
     mapSelected = "city";
     //add localstorage function
   });
-  buttonCity.mouseOut(function () {
+  buttonCity.mouseOut(function() {
     buttonCity.style("background-color", "#ec008c");
   });
 }
@@ -580,30 +558,21 @@ function suburbanMapButton() {
   buttonSuburban.style("border-color", "#ffffff");
   buttonSuburban.style("color", "#ffffff");
   buttonSuburban.style("border-style", "outset");
-  if (
-    mouseIsPressed &&
-    mouseX > 660 &&
-    mouseX < 1080 &&
-    mouseY > 230 &&
-    mouseY < 525
-  ) {
+  if (mouseIsPressed && mouseX > 660 && mouseX < 1080 && mouseY > 230 && mouseY < 525) {
     mapIsChosen = true;
     console.log("ok");
   }
-  buttonSuburban.mouseOver(function () {
+  buttonSuburban.mouseOver(function() {
     buttonSuburban.style("background-color", "transparent");
-    buttonSuburban.style(
-      "background-image",
-      "url('suburbanMap/SuburbanMap-1.png')"
-    );
+    buttonSuburban.style("background-image", "url('suburbanMap/SuburbanMap-1.png')");
     buttonSuburban.style("background-repeat", "no-repeat");
     buttonSuburban.style("background-size", "cover");
   });
-  buttonSuburban.mousePressed(function () {
+  buttonSuburban.mousePressed(function() {
     mapSelected = "suburban";
     //add localstorage function
   });
-  buttonSuburban.mouseOut(function () {
+  buttonSuburban.mouseOut(function() {
     buttonSuburban.style("background-color", "#ec008c");
   });
 }
@@ -625,28 +594,22 @@ function selectButton() {
   buttonDone.style("border-color", "#ffffff");
   buttonDone.style("color", "#ffffff");
   buttonDone.style("border-style", "outset");
-  if (
-    mouseIsPressed &&
-    mouseX > 420 &&
-    mouseX < 820 &&
-    mouseY > 680 &&
-    mouseY < 780
-  ) {
+  if (mouseIsPressed && mouseX > 420 && mouseX < 820 && mouseY > 680 && mouseY < 780) {
     doneGoBack = true;
     console.log("done");
   }
-  buttonDone.mouseOver(function () {
+  buttonDone.mouseOver(function() {
     buttonDone.style("background-color", "#a90059");
     buttonDone.style("background-repeat", "no-repeat");
     buttonDone.style("background-size", "cover");
   });
-  buttonDone.mousePressed(function () {
+  buttonDone.mousePressed(function() {
     currentScreen = "startScreen";
     buttonSuburban.remove();
     buttonCity.remove();
     buttonDone.remove();
   });
-  buttonDone.mouseOut(function () {
+  buttonDone.mouseOut(function() {
     buttonDone.style("background-color", "#ec008c");
   });
 }
@@ -658,93 +621,12 @@ function mapSelection() {
   /* if one map is selected - > done button show up */
 }
 
-/* content for adding the players name */
-
-function describtionBox() {
-  fill(240);
-  stroke(0, 197, 197);
-  strokeWeight(15);
-
-  rect(200, 180, 550, 300, 50);
-
-  fill(236, 0, 140);
-  stroke(236, 0, 140);
-  strokeWeight(1);
-  textSize(55);
-  text("What's your name?", 237, 300);
-  textSize(25);
-  text("Hit ENTER to save your name", 320, 370);
-}
-
-let inp = null;
-
-function inputBox() {
-  if (inp != null) {
-    inp.remove();
-  }
-  inp = createInput("");
-  inp.position(480, 480);
-  inp.size(200);
-  inp.changed(handleEnter);
-}
-
-//the following 6 lines of code were applied with the help of ChatGPT
-function handleEnter() {
-  if (keyCode === 13) {
-    let inputText = this.value();
-    console.log("Input value:", inputText);
-    enterButton();
-  }
-  if (window.event) {
-    window.event.preventDefault();
-  }
-  // Here add the function when the name gets saved
-}
-
-function enterButton() {
-  fill(240);
-  stroke(0, 197, 197);
-  strokeWeight(15);
-
-  rect(340, 550, 250, 120, 40);
-
-  fill(236, 0, 140);
-  stroke(236, 0, 140);
-  strokeWeight(1);
-  textSize(50);
-  text("Done", 404, 628);
-
-  if (
-    mouseIsPressed &&
-    mouseX >= 340 &&
-    mouseX <= 340 + 250 &&
-    mouseY >= 550 &&
-    mouseY <= 550 + 120
-  ) {
-    if (inp != null) {
-      inp.remove();
-    }
-    if (mapSelected === "suburban") {
-      currentScreen = "suburbanMap";
-    } else if (mapSelected === "city") {
-      currentScreen = "cityMap";
-    }
-  }
-}
-
-function playersName() {
-  setup();
-  describtionBox();
-  //enterButton();
-}
-
 /* content for the cars that will drive */
 
 let carX = 0;
 let carY = 0;
 let carScale = 0.35;
 let colorSelected = "";
-let carRotation;
 
 function addSelectedColor() {
   if (currentColor === "red") {
@@ -789,23 +671,9 @@ function bmw(carX, carY, carRotation) {
   vertex(130 * carScale, -82 * carScale);
   vertex(154 * carScale, -72 * carScale);
   vertex(178 * carScale, -69 * carScale);
-  bezierVertex(
-    182 * carScale,
-    -66 * carScale,
-    185 * carScale,
-    -65 * carScale,
-    185 * carScale,
-    -57 * carScale
-  );
+  bezierVertex(182 * carScale, -66 * carScale, 185 * carScale, -65 * carScale, 185 * carScale, -57 * carScale);
   vertex(185 * carScale, 55 * carScale);
-  bezierVertex(
-    185 * carScale,
-    63 * carScale,
-    182 * carScale,
-    66 * carScale,
-    178 * carScale,
-    66 * carScale
-  );
+  bezierVertex(185 * carScale, 63 * carScale, 182 * carScale, 66 * carScale, 178 * carScale, 66 * carScale);
   vertex(154 * carScale, 69 * carScale);
   vertex(130 * carScale, 78 * carScale);
   vertex(73 * carScale, 78 * carScale);
@@ -817,14 +685,7 @@ function bmw(carX, carY, carRotation) {
   vertex(-170 * carScale, 65 * carScale);
   vertex(-176 * carScale, 45 * carScale);
   vertex(-180 * carScale, 41 * carScale);
-  bezierVertex(
-    -185 * carScale,
-    20 * carScale,
-    -185 * carScale,
-    -19 * carScale,
-    -180 * carScale,
-    -41 * carScale
-  );
+  bezierVertex(-185 * carScale, 20 * carScale, -185 * carScale, -19 * carScale, -180 * carScale, -41 * carScale);
   endShape();
 
   //Headlights
@@ -850,50 +711,15 @@ function bmw(carX, carY, carRotation) {
   //Hood
   beginShape();
   vertex(129 * carScale, -67 * carScale);
-  bezierVertex(
-    33 * carScale,
-    -70 * carScale,
-    -79 * carScale,
-    -70 * carScale,
-    -151 * carScale,
-    -67 * carScale
-  );
-  bezierVertex(
-    -161 * carScale,
-    -67 * carScale,
-    -164 * carScale,
-    -66 * carScale,
-    -165 * carScale,
-    -56 * carScale
-  );
+  bezierVertex(33 * carScale, -70 * carScale, -79 * carScale, -70 * carScale, -151 * carScale, -67 * carScale);
+  bezierVertex(-161 * carScale, -67 * carScale, -164 * carScale, -66 * carScale, -165 * carScale, -56 * carScale);
   vertex(-170 * carScale, -32 * carScale);
   vertex(-175 * carScale, -28 * carScale);
-  bezierVertex(
-    -177 * carScale,
-    -14 * carScale,
-    -177 * carScale,
-    6 * carScale,
-    -175 * carScale,
-    24 * carScale
-  );
+  bezierVertex(-177 * carScale, -14 * carScale, -177 * carScale, 6 * carScale, -175 * carScale, 24 * carScale);
   vertex(-170 * carScale, 28 * carScale);
   vertex(-165 * carScale, 56 * carScale);
-  bezierVertex(
-    -164 * carScale,
-    62 * carScale,
-    -161 * carScale,
-    63 * carScale,
-    -151 * carScale,
-    63 * carScale
-  );
-  bezierVertex(
-    -79 * carScale,
-    66 * carScale,
-    33 * carScale,
-    66 * carScale,
-    129 * carScale,
-    66 * carScale
-  );
+  bezierVertex(-164 * carScale, 62 * carScale, -161 * carScale, 63 * carScale, -151 * carScale, 63 * carScale);
+  bezierVertex(-79 * carScale, 66 * carScale, 33 * carScale, 66 * carScale, 129 * carScale, 66 * carScale);
   endShape();
 
   //Detail of Hood
@@ -908,14 +734,7 @@ function bmw(carX, carY, carRotation) {
   vertex(181 * carScale, -45 * carScale);
   vertex(185 * carScale, -45 * carScale);
   vertex(185 * carScale, -60 * carScale);
-  bezierVertex(
-    185 * carScale,
-    -66 * carScale,
-    183 * carScale,
-    -66 * carScale,
-    181 * carScale,
-    -67 * carScale
-  );
+  bezierVertex(185 * carScale, -66 * carScale, 183 * carScale, -66 * carScale, 181 * carScale, -67 * carScale);
   endShape();
 
   beginShape();
@@ -923,14 +742,7 @@ function bmw(carX, carY, carRotation) {
   vertex(181 * carScale, 44 * carScale);
   vertex(185 * carScale, 44 * carScale);
   vertex(185 * carScale, 59 * carScale);
-  bezierVertex(
-    185 * carScale,
-    65 * carScale,
-    183 * carScale,
-    65 * carScale,
-    181 * carScale,
-    66 * carScale
-  );
+  bezierVertex(185 * carScale, 65 * carScale, 183 * carScale, 65 * carScale, 181 * carScale, 66 * carScale);
   endShape();
   pop();
 
@@ -938,14 +750,7 @@ function bmw(carX, carY, carRotation) {
   beginShape();
   vertex(168 * carScale, -53 * carScale);
   vertex(190 * carScale, -52 * carScale);
-  bezierVertex(
-    196 * carScale,
-    -27 * carScale,
-    196 * carScale,
-    18 * carScale,
-    190 * carScale,
-    51 * carScale
-  );
+  bezierVertex(196 * carScale, -27 * carScale, 196 * carScale, 18 * carScale, 190 * carScale, 51 * carScale);
   vertex(168 * carScale, 52 * carScale);
   endShape();
 
@@ -954,23 +759,9 @@ function bmw(carX, carY, carRotation) {
   beginShape();
   vertex(-75 * carScale, -59 * carScale);
   vertex(-31 * carScale, -49 * carScale);
-  bezierVertex(
-    -36 * carScale,
-    -24 * carScale,
-    -36 * carScale,
-    19 * carScale,
-    -31 * carScale,
-    45 * carScale
-  );
+  bezierVertex(-36 * carScale, -24 * carScale, -36 * carScale, 19 * carScale, -31 * carScale, 45 * carScale);
   vertex(-75 * carScale, 55 * carScale);
-  bezierVertex(
-    -90 * carScale,
-    35 * carScale,
-    -90 * carScale,
-    -46 * carScale,
-    -75 * carScale,
-    -59 * carScale
-  );
+  bezierVertex(-90 * carScale, 35 * carScale, -90 * carScale, -46 * carScale, -75 * carScale, -59 * carScale);
   endShape();
 
   //long window right
@@ -995,23 +786,9 @@ function bmw(carX, carY, carRotation) {
   beginShape();
   vertex(88 * carScale, -37 * carScale);
   vertex(132 * carScale, -50 * carScale);
-  bezierVertex(
-    146 * carScale,
-    -25 * carScale,
-    146 * carScale,
-    26 * carScale,
-    132 * carScale,
-    46 * carScale
-  );
+  bezierVertex(146 * carScale, -25 * carScale, 146 * carScale, 26 * carScale, 132 * carScale, 46 * carScale);
   vertex(88 * carScale, 33 * carScale);
-  bezierVertex(
-    91 * carScale,
-    23 * carScale,
-    91 * carScale,
-    -28 * carScale,
-    88 * carScale,
-    -37 * carScale
-  );
+  bezierVertex(91 * carScale, 23 * carScale, 91 * carScale, -28 * carScale, 88 * carScale, -37 * carScale);
   endShape();
 
   //mirror right
@@ -1021,22 +798,8 @@ function bmw(carX, carY, carRotation) {
   vertex(-50 * carScale, -70 * carScale);
   vertex(-45 * carScale, -68 * carScale);
   vertex(-43 * carScale, -83 * carScale);
-  bezierVertex(
-    -57 * carScale,
-    -82 * carScale,
-    -59 * carScale,
-    -70 * carScale,
-    -59 * carScale,
-    -63 * carScale
-  );
-  bezierVertex(
-    -59 * carScale,
-    -60 * carScale,
-    -55 * carScale,
-    -58 * carScale,
-    -51 * carScale,
-    -59 * carScale
-  );
+  bezierVertex(-57 * carScale, -82 * carScale, -59 * carScale, -70 * carScale, -59 * carScale, -63 * carScale);
+  bezierVertex(-59 * carScale, -60 * carScale, -55 * carScale, -58 * carScale, -51 * carScale, -59 * carScale);
   endShape();
 
   //mirror left
@@ -1045,22 +808,8 @@ function bmw(carX, carY, carRotation) {
   vertex(-50 * carScale, 66 * carScale);
   vertex(-45 * carScale, 64 * carScale);
   vertex(-43 * carScale, 79 * carScale);
-  bezierVertex(
-    -57 * carScale,
-    78 * carScale,
-    -59 * carScale,
-    66 * carScale,
-    -59 * carScale,
-    59 * carScale
-  );
-  bezierVertex(
-    -59 * carScale,
-    56 * carScale,
-    -55 * carScale,
-    54 * carScale,
-    -51 * carScale,
-    55 * carScale
-  );
+  bezierVertex(-57 * carScale, 78 * carScale, -59 * carScale, 66 * carScale, -59 * carScale, 59 * carScale);
+  bezierVertex(-59 * carScale, 56 * carScale, -55 * carScale, 54 * carScale, -51 * carScale, 55 * carScale);
   endShape();
 }
 function supra(carX, carY, carRotation) {
@@ -1072,313 +821,68 @@ function supra(carX, carY, carRotation) {
   fill(colorSelected);
   strokeWeight(2 * carScale);
   vertex(-215 * carScale, 0 * carScale);
-  bezierVertex(
-    -215 * carScale,
-    -30 * carScale,
-    -210 * carScale,
-    -50 * carScale,
-    -186 * carScale,
-    -70 * carScale
-  );
-  bezierVertex(
-    -185 * carScale,
-    -72 * carScale,
-    -178 * carScale,
-    -73 * carScale,
-    -175 * carScale,
-    -76 * carScale
-  );
-  bezierVertex(
-    -173 * carScale,
-    -78 * carScale,
-    -165 * carScale,
-    -81 * carScale,
-    -157 * carScale,
-    -86 * carScale
-  );
-  bezierVertex(
-    -157 * carScale,
-    -87 * carScale,
-    -151 * carScale,
-    -87 * carScale,
-    -148 * carScale,
-    -88 * carScale
-  );
-  bezierVertex(
-    40 * carScale,
-    -80 * carScale,
-    40 * carScale,
-    -80 * carScale,
-    73 * carScale,
-    -82 * carScale
-  );
-  bezierVertex(
-    73 * carScale,
-    -82 * carScale,
-    103 * carScale,
-    -87 * carScale,
-    123 * carScale,
-    -87 * carScale
-  );
+  bezierVertex(-215 * carScale, -30 * carScale, -210 * carScale, -50 * carScale, -186 * carScale, -70 * carScale);
+  bezierVertex(-185 * carScale, -72 * carScale, -178 * carScale, -73 * carScale, -175 * carScale, -76 * carScale);
+  bezierVertex(-173 * carScale, -78 * carScale, -165 * carScale, -81 * carScale, -157 * carScale, -86 * carScale);
+  bezierVertex(-157 * carScale, -87 * carScale, -151 * carScale, -87 * carScale, -148 * carScale, -88 * carScale);
+  bezierVertex(40 * carScale, -80 * carScale, 40 * carScale, -80 * carScale, 73 * carScale, -82 * carScale);
+  bezierVertex(73 * carScale, -82 * carScale, 103 * carScale, -87 * carScale, 123 * carScale, -87 * carScale);
   vertex(182 * carScale, -65 * carScale);
-  bezierVertex(
-    182 * carScale,
-    -65 * carScale,
-    185 * carScale,
-    -63 * carScale,
-    190 * carScale,
-    -55 * carScale
-  );
-  bezierVertex(
-    210 * carScale,
-    -40 * carScale,
-    210 * carScale,
-    0,
-    210 * carScale,
-    0
-  );
+  bezierVertex(182 * carScale, -65 * carScale, 185 * carScale, -63 * carScale, 190 * carScale, -55 * carScale);
+  bezierVertex(210 * carScale, -40 * carScale, 210 * carScale, 0, 210 * carScale, 0);
   vertex(210 * carScale, 0);
-  bezierVertex(
-    210 * carScale,
-    0,
-    210 * carScale,
-    40 * carScale,
-    190 * carScale,
-    55 * carScale
-  );
-  bezierVertex(
-    190 * carScale,
-    55 * carScale,
-    185 * carScale,
-    63 * carScale,
-    182 * carScale,
-    65 * carScale
-  );
+  bezierVertex(210 * carScale, 0, 210 * carScale, 40 * carScale, 190 * carScale, 55 * carScale);
+  bezierVertex(190 * carScale, 55 * carScale, 185 * carScale, 63 * carScale, 182 * carScale, 65 * carScale);
   vertex(123 * carScale, 87 * carScale);
-  bezierVertex(
-    103 * carScale,
-    87 * carScale,
-    73 * carScale,
-    82 * carScale,
-    73 * carScale,
-    82 * carScale
-  );
-  bezierVertex(
-    40 * carScale,
-    80 * carScale,
-    40 * carScale,
-    80 * carScale,
-    -148 * carScale,
-    90 * carScale
-  );
-  bezierVertex(
-    -148 * carScale,
-    90 * carScale,
-    -159 * carScale,
-    93 * carScale,
-    -171 * carScale,
-    84 * carScale
-  );
-  bezierVertex(
-    -200 * carScale,
-    70 * carScale,
-    -186 * carScale,
-    70 * carScale,
-    -200 * carScale,
-    60 * carScale
-  );
-  bezierVertex(
-    -210 * carScale,
-    50 * carScale,
-    -215 * carScale,
-    30 * carScale,
-    -215 * carScale,
-    0
-  );
+  bezierVertex(103 * carScale, 87 * carScale, 73 * carScale, 82 * carScale, 73 * carScale, 82 * carScale);
+  bezierVertex(40 * carScale, 80 * carScale, 40 * carScale, 80 * carScale, -148 * carScale, 90 * carScale);
+  bezierVertex(-148 * carScale, 90 * carScale, -159 * carScale, 93 * carScale, -171 * carScale, 84 * carScale);
+  bezierVertex(-200 * carScale, 70 * carScale, -186 * carScale, 70 * carScale, -200 * carScale, 60 * carScale);
+  bezierVertex(-210 * carScale, 50 * carScale, -215 * carScale, 30 * carScale, -215 * carScale, 0);
   endShape();
 
   //front window
   beginShape();
   fill(35, 31, 32);
   vertex(-21 * carScale, -50 * carScale);
-  bezierVertex(
-    -25 * carScale,
-    -40 * carScale,
-    -25 * carScale,
-    40 * carScale,
-    -21 * carScale,
-    50 * carScale
-  );
-  bezierVertex(
-    -19 * carScale,
-    56 * carScale,
-    -26 * carScale,
-    59 * carScale,
-    -26 * carScale,
-    60 * carScale
-  );
-  bezierVertex(
-    -77 * carScale,
-    74 * carScale,
-    -77 * carScale,
-    74 * carScale,
-    -77 * carScale,
-    74 * carScale
-  );
-  bezierVertex(
-    -92 * carScale,
-    58 * carScale,
-    -103 * carScale,
-    26 * carScale,
-    -103 * carScale,
-    0
-  );
-  bezierVertex(
-    -103 * carScale,
-    -40 * carScale,
-    -77 * carScale,
-    -70 * carScale,
-    -77 * carScale,
-    -72 * carScale
-  );
+  bezierVertex(-25 * carScale, -40 * carScale, -25 * carScale, 40 * carScale, -21 * carScale, 50 * carScale);
+  bezierVertex(-19 * carScale, 56 * carScale, -26 * carScale, 59 * carScale, -26 * carScale, 60 * carScale);
+  bezierVertex(-77 * carScale, 74 * carScale, -77 * carScale, 74 * carScale, -77 * carScale, 74 * carScale);
+  bezierVertex(-92 * carScale, 58 * carScale, -103 * carScale, 26 * carScale, -103 * carScale, 0);
+  bezierVertex(-103 * carScale, -40 * carScale, -77 * carScale, -70 * carScale, -77 * carScale, -72 * carScale);
   vertex(-26 * carScale, -60 * carScale);
-  bezierVertex(
-    -26 * carScale,
-    -60 * carScale,
-    -19 * carScale,
-    -56 * carScale,
-    -21 * carScale,
-    -50 * carScale
-  );
+  bezierVertex(-26 * carScale, -60 * carScale, -19 * carScale, -56 * carScale, -21 * carScale, -50 * carScale);
   endShape();
 
   //back window
   beginShape();
   vertex(75 * carScale, 0);
   vertex(75 * carScale, 42 * carScale);
-  bezierVertex(
-    76 * carScale,
-    48 * carScale,
-    82 * carScale,
-    49 * carScale,
-    91 * carScale,
-    52 * carScale
-  );
-  bezierVertex(
-    129 * carScale,
-    60 * carScale,
-    129 * carScale,
-    57 * carScale,
-    129 * carScale,
-    58 * carScale
-  );
-  bezierVertex(
-    148 * carScale,
-    52 * carScale,
-    144 * carScale,
-    27 * carScale,
-    146 * carScale,
-    0
-  );
-  bezierVertex(
-    144 * carScale,
-    -27 * carScale,
-    148 * carScale,
-    -52 * carScale,
-    129 * carScale,
-    -58 * carScale
-  );
-  bezierVertex(
-    129 * carScale,
-    -57 * carScale,
-    129 * carScale,
-    -60 * carScale,
-    91 * carScale,
-    -52 * carScale
-  );
-  bezierVertex(
-    82 * carScale,
-    -48 * carScale,
-    76 * carScale,
-    -48 * carScale,
-    75 * carScale,
-    -32 * carScale
-  );
+  bezierVertex(76 * carScale, 48 * carScale, 82 * carScale, 49 * carScale, 91 * carScale, 52 * carScale);
+  bezierVertex(129 * carScale, 60 * carScale, 129 * carScale, 57 * carScale, 129 * carScale, 58 * carScale);
+  bezierVertex(148 * carScale, 52 * carScale, 144 * carScale, 27 * carScale, 146 * carScale, 0);
+  bezierVertex(144 * carScale, -27 * carScale, 148 * carScale, -52 * carScale, 129 * carScale, -58 * carScale);
+  bezierVertex(129 * carScale, -57 * carScale, 129 * carScale, -60 * carScale, 91 * carScale, -52 * carScale);
+  bezierVertex(82 * carScale, -48 * carScale, 76 * carScale, -48 * carScale, 75 * carScale, -32 * carScale);
   vertex(75 * carScale, 0);
   endShape();
 
   //side window right
   beginShape();
   vertex(-66 * carScale, -76 * carScale);
-  bezierVertex(
-    -26 * carScale,
-    -62 * carScale,
-    6 * carScale,
-    -60 * carScale,
-    15 * carScale,
-    -58 * carScale
-  );
-  bezierVertex(
-    52 * carScale,
-    -57 * carScale,
-    54 * carScale,
-    -60 * carScale,
-    75 * carScale,
-    -65 * carScale
-  );
-  bezierVertex(
-    80 * carScale,
-    -67 * carScale,
-    80 * carScale,
-    -69 * carScale,
-    76 * carScale,
-    -72 * carScale
-  );
-  bezierVertex(
-    50 * carScale,
-    -77 * carScale,
-    -12 * carScale,
-    -79 * carScale,
-    -66 * carScale,
-    -76 * carScale
-  );
+  bezierVertex(-26 * carScale, -62 * carScale, 6 * carScale, -60 * carScale, 15 * carScale, -58 * carScale);
+  bezierVertex(52 * carScale, -57 * carScale, 54 * carScale, -60 * carScale, 75 * carScale, -65 * carScale);
+  bezierVertex(80 * carScale, -67 * carScale, 80 * carScale, -69 * carScale, 76 * carScale, -72 * carScale);
+  bezierVertex(50 * carScale, -77 * carScale, -12 * carScale, -79 * carScale, -66 * carScale, -76 * carScale);
   endShape();
 
   //side window left
   beginShape();
   vertex(-66 * carScale, 76 * carScale);
-  bezierVertex(
-    -26 * carScale,
-    62 * carScale,
-    6 * carScale,
-    60 * carScale,
-    15 * carScale,
-    58 * carScale
-  );
-  bezierVertex(
-    52 * carScale,
-    57 * carScale,
-    54 * carScale,
-    60 * carScale,
-    75 * carScale,
-    65 * carScale
-  );
-  bezierVertex(
-    80 * carScale,
-    67 * carScale,
-    80 * carScale,
-    69 * carScale,
-    76 * carScale,
-    72 * carScale
-  );
-  bezierVertex(
-    50 * carScale,
-    77 * carScale,
-    -12 * carScale,
-    79 * carScale,
-    -66 * carScale,
-    76 * carScale
-  );
+  bezierVertex(-26 * carScale, 62 * carScale, 6 * carScale, 60 * carScale, 15 * carScale, 58 * carScale);
+  bezierVertex(52 * carScale, 57 * carScale, 54 * carScale, 60 * carScale, 75 * carScale, 65 * carScale);
+  bezierVertex(80 * carScale, 67 * carScale, 80 * carScale, 69 * carScale, 76 * carScale, 72 * carScale);
+  bezierVertex(50 * carScale, 77 * carScale, -12 * carScale, 79 * carScale, -66 * carScale, 76 * carScale);
   endShape();
 
   //wing
@@ -1399,60 +903,25 @@ function supra(carX, carY, carRotation) {
 
   beginShape();
   vertex(175 * carScale, -51 * carScale);
-  bezierVertex(
-    186 * carScale,
-    -20 * carScale,
-    186 * carScale,
-    20 * carScale,
-    175 * carScale,
-    51 * carScale
-  );
+  bezierVertex(186 * carScale, -20 * carScale, 186 * carScale, 20 * carScale, 175 * carScale, 51 * carScale);
   endShape();
 
   //hood
   beginShape();
   noFill();
   vertex(-77 * carScale, -72 * carScale);
-  bezierVertex(
-    -205 * carScale,
-    -95 * carScale,
-    -205 * carScale,
-    -33 * carScale,
-    -205 * carScale,
-    0
-  );
-  bezierVertex(
-    -205 * carScale,
-    33 * carScale,
-    -205 * carScale,
-    95 * carScale,
-    -77 * carScale,
-    74 * carScale
-  );
+  bezierVertex(-205 * carScale, -95 * carScale, -205 * carScale, -33 * carScale, -205 * carScale, 0);
+  bezierVertex(-205 * carScale, 33 * carScale, -205 * carScale, 95 * carScale, -77 * carScale, 74 * carScale);
   endShape();
 
   beginShape();
   vertex(-104 * carScale, -45 * carScale);
-  bezierVertex(
-    -122 * carScale,
-    -44 * carScale,
-    -170 * carScale,
-    -40 * carScale,
-    -182 * carScale,
-    -36 * carScale
-  );
+  bezierVertex(-122 * carScale, -44 * carScale, -170 * carScale, -40 * carScale, -182 * carScale, -36 * carScale);
   endShape();
 
   beginShape();
   vertex(-104 * carScale, 45 * carScale);
-  bezierVertex(
-    -122 * carScale,
-    44 * carScale,
-    -170 * carScale,
-    40 * carScale,
-    -182 * carScale,
-    36 * carScale
-  );
+  bezierVertex(-122 * carScale, 44 * carScale, -170 * carScale, 40 * carScale, -182 * carScale, 36 * carScale);
   endShape();
 
   beginShape();
@@ -1467,147 +936,49 @@ function supra(carX, carY, carRotation) {
   beginShape();
   fill(255, 242, 215);
   vertex(-181 * carScale, -68 * carScale);
-  bezierVertex(
-    -195 * carScale,
-    -58 * carScale,
-    -201 * carScale,
-    -48 * carScale,
-    -206 * carScale,
-    -36 * carScale
-  );
-  bezierVertex(
-    -207 * carScale,
-    -33 * carScale,
-    -207 * carScale,
-    -25 * carScale,
-    -189 * carScale,
-    -35 * carScale
-  );
-  bezierVertex(
-    -184 * carScale,
-    -46 * carScale,
-    -181 * carScale,
-    -57 * carScale,
-    -179 * carScale,
-    -59 * carScale
-  );
-  bezierVertex(
-    -177 * carScale,
-    -64 * carScale,
-    -178 * carScale,
-    -66 * carScale,
-    -181 * carScale,
-    -68 * carScale
-  );
+  bezierVertex(-195 * carScale, -58 * carScale, -201 * carScale, -48 * carScale, -206 * carScale, -36 * carScale);
+  bezierVertex(-207 * carScale, -33 * carScale, -207 * carScale, -25 * carScale, -189 * carScale, -35 * carScale);
+  bezierVertex(-184 * carScale, -46 * carScale, -181 * carScale, -57 * carScale, -179 * carScale, -59 * carScale);
+  bezierVertex(-177 * carScale, -64 * carScale, -178 * carScale, -66 * carScale, -181 * carScale, -68 * carScale);
   endShape();
 
   beginShape();
   vertex(-181 * carScale, 68 * carScale);
-  bezierVertex(
-    -195 * carScale,
-    58 * carScale,
-    -201 * carScale,
-    48 * carScale,
-    -206 * carScale,
-    36 * carScale
-  );
-  bezierVertex(
-    -207 * carScale,
-    33 * carScale,
-    -203 * carScale,
-    25 * carScale,
-    -189 * carScale,
-    35 * carScale
-  );
-  bezierVertex(
-    -184 * carScale,
-    46 * carScale,
-    -181 * carScale,
-    57 * carScale,
-    -179 * carScale,
-    59 * carScale
-  );
-  bezierVertex(
-    -177 * carScale,
-    64 * carScale,
-    -178 * carScale,
-    64 * carScale,
-    -181 * carScale,
-    68 * carScale
-  );
+  bezierVertex(-195 * carScale, 58 * carScale, -201 * carScale, 48 * carScale, -206 * carScale, 36 * carScale);
+  bezierVertex(-207 * carScale, 33 * carScale, -203 * carScale, 25 * carScale, -189 * carScale, 35 * carScale);
+  bezierVertex(-184 * carScale, 46 * carScale, -181 * carScale, 57 * carScale, -179 * carScale, 59 * carScale);
+  bezierVertex(-177 * carScale, 64 * carScale, -178 * carScale, 64 * carScale, -181 * carScale, 68 * carScale);
   endShape();
 
   //side-mirrors
   beginShape();
   fill(colorSelected);
   vertex(-70 * carScale, -81 * carScale);
-  bezierVertex(
-    -65 * carScale,
-    -78 * carScale,
-    -65 * carScale,
-    -78 * carScale,
-    -62 * carScale,
-    -81 * carScale
-  );
+  bezierVertex(-65 * carScale, -78 * carScale, -65 * carScale, -78 * carScale, -62 * carScale, -81 * carScale);
   vertex(-56 * carScale, -81 * carScale);
   vertex(-48 * carScale, -103 * carScale);
-  bezierVertex(
-    -54 * carScale,
-    -110 * carScale,
-    -65 * carScale,
-    -92 * carScale,
-    -70 * carScale,
-    -81 * carScale
-  );
+  bezierVertex(-54 * carScale, -110 * carScale, -65 * carScale, -92 * carScale, -70 * carScale, -81 * carScale);
   endShape();
 
   beginShape();
   vertex(-70 * carScale, 81 * carScale);
-  bezierVertex(
-    -65 * carScale,
-    78 * carScale,
-    -65 * carScale,
-    78 * carScale,
-    -62 * carScale,
-    81 * carScale
-  );
+  bezierVertex(-65 * carScale, 78 * carScale, -65 * carScale, 78 * carScale, -62 * carScale, 81 * carScale);
   vertex(-56 * carScale, 81 * carScale);
   vertex(-48 * carScale, 103 * carScale);
-  bezierVertex(
-    -54 * carScale,
-    110 * carScale,
-    -65 * carScale,
-    92 * carScale,
-    -70 * carScale,
-    81 * carScale
-  );
+  bezierVertex(-54 * carScale, 110 * carScale, -65 * carScale, 92 * carScale, -70 * carScale, 81 * carScale);
   endShape();
 
   //backdetails
   beginShape();
   noFill();
   vertex(79 * carScale, -77 * carScale);
-  bezierVertex(
-    101 * carScale,
-    -80 * carScale,
-    128 * carScale,
-    -78 * carScale,
-    148 * carScale,
-    -71 * carScale
-  );
+  bezierVertex(101 * carScale, -80 * carScale, 128 * carScale, -78 * carScale, 148 * carScale, -71 * carScale);
   endShape();
 
   beginShape();
   noFill();
   vertex(79 * carScale, 77 * carScale);
-  bezierVertex(
-    101 * carScale,
-    80 * carScale,
-    128 * carScale,
-    78 * carScale,
-    148 * carScale,
-    71 * carScale
-  );
+  bezierVertex(101 * carScale, 80 * carScale, 128 * carScale, 78 * carScale, 148 * carScale, 71 * carScale);
   endShape();
 }
 function rx7(carX, carY, carRotation) {
@@ -1620,150 +991,45 @@ function rx7(carX, carY, carRotation) {
   fill(colorSelected);
   beginShape();
   vertex(-187 * carScale, -67 * carScale);
-  bezierVertex(
-    -173 * carScale,
-    -75 * carScale,
-    -154 * carScale,
-    -80 * carScale,
-    -125 * carScale,
-    -78 * carScale
-  );
-  bezierVertex(
-    -62 * carScale,
-    -72 * carScale,
-    9 * carScale,
-    -70 * carScale,
-    100 * carScale,
-    -75 * carScale
-  );
-  bezierVertex(
-    124 * carScale,
-    -77 * carScale,
-    165 * carScale,
-    -72 * carScale,
-    180 * carScale,
-    -69 * carScale
-  );
-  bezierVertex(
-    192 * carScale,
-    -66 * carScale,
-    194 * carScale,
-    -52 * carScale,
-    194 * carScale,
-    0 * carScale
-  );
+  bezierVertex(-173 * carScale, -75 * carScale, -154 * carScale, -80 * carScale, -125 * carScale, -78 * carScale);
+  bezierVertex(-62 * carScale, -72 * carScale, 9 * carScale, -70 * carScale, 100 * carScale, -75 * carScale);
+  bezierVertex(124 * carScale, -77 * carScale, 165 * carScale, -72 * carScale, 180 * carScale, -69 * carScale);
+  bezierVertex(192 * carScale, -66 * carScale, 194 * carScale, -52 * carScale, 194 * carScale, 0 * carScale);
 
-  bezierVertex(
-    194 * carScale,
-    52 * carScale,
-    192 * carScale,
-    66 * carScale,
-    180 * carScale,
-    69 * carScale
-  );
-  bezierVertex(
-    165 * carScale,
-    72 * carScale,
-    124 * carScale,
-    77 * carScale,
-    100 * carScale,
-    75 * carScale
-  );
-  bezierVertex(
-    9 * carScale,
-    70 * carScale,
-    -62 * carScale,
-    72 * carScale,
-    -125 * carScale,
-    78 * carScale
-  );
-  bezierVertex(
-    -154 * carScale,
-    80 * carScale,
-    -173 * carScale,
-    75 * carScale,
-    -187 * carScale,
-    67 * carScale
-  );
+  bezierVertex(194 * carScale, 52 * carScale, 192 * carScale, 66 * carScale, 180 * carScale, 69 * carScale);
+  bezierVertex(165 * carScale, 72 * carScale, 124 * carScale, 77 * carScale, 100 * carScale, 75 * carScale);
+  bezierVertex(9 * carScale, 70 * carScale, -62 * carScale, 72 * carScale, -125 * carScale, 78 * carScale);
+  bezierVertex(-154 * carScale, 80 * carScale, -173 * carScale, 75 * carScale, -187 * carScale, 67 * carScale);
 
-  bezierVertex(
-    -213 * carScale,
-    25 * carScale,
-    -213 * carScale,
-    -35 * carScale,
-    -187 * carScale,
-    -67 * carScale
-  );
+  bezierVertex(-213 * carScale, 25 * carScale, -213 * carScale, -35 * carScale, -187 * carScale, -67 * carScale);
   endShape();
 
   //mirror right
   beginShape();
   vertex(-68 * carScale, -70 * carScale);
-  bezierVertex(
-    -67 * carScale,
-    -81 * carScale,
-    -60 * carScale,
-    -87 * carScale,
-    -53 * carScale,
-    -91 * carScale
-  );
+  bezierVertex(-67 * carScale, -81 * carScale, -60 * carScale, -87 * carScale, -53 * carScale, -91 * carScale);
   vertex(-57 * carScale, -75 * carScale);
   vertex(-59 * carScale, -75 * carScale);
   vertex(-60 * carScale, -67 * carScale);
-  bezierVertex(
-    -65 * carScale,
-    -68 * carScale,
-    -66 * carScale,
-    -68 * carScale,
-    -68 * carScale,
-    -70 * carScale
-  );
+  bezierVertex(-65 * carScale, -68 * carScale, -66 * carScale, -68 * carScale, -68 * carScale, -70 * carScale);
   endShape();
 
   //mirror left
   beginShape();
   vertex(-68 * carScale, 70 * carScale);
-  bezierVertex(
-    -67 * carScale,
-    81 * carScale,
-    -60 * carScale,
-    87 * carScale,
-    -53 * carScale,
-    91 * carScale
-  );
+  bezierVertex(-67 * carScale, 81 * carScale, -60 * carScale, 87 * carScale, -53 * carScale, 91 * carScale);
   vertex(-57 * carScale, 75 * carScale);
   vertex(-59 * carScale, 75 * carScale);
   vertex(-60 * carScale, 67 * carScale);
-  bezierVertex(
-    -65 * carScale,
-    68 * carScale,
-    -66 * carScale,
-    68 * carScale,
-    -68 * carScale,
-    70 * carScale
-  );
+  bezierVertex(-65 * carScale, 68 * carScale, -66 * carScale, 68 * carScale, -68 * carScale, 70 * carScale);
   endShape();
 
   //spoiler
   beginShape();
   vertex(205 * carScale, -57 * carScale);
-  bezierVertex(
-    210 * carScale,
-    -25 * carScale,
-    210 * carScale,
-    25 * carScale,
-    205 * carScale,
-    57 * carScale
-  );
+  bezierVertex(210 * carScale, -25 * carScale, 210 * carScale, 25 * carScale, 205 * carScale, 57 * carScale);
   vertex(180 * carScale, 57 * carScale);
-  bezierVertex(
-    185 * carScale,
-    25 * carScale,
-    185 * carScale,
-    -25 * carScale,
-    180 * carScale,
-    -57 * carScale
-  );
+  bezierVertex(185 * carScale, 25 * carScale, 185 * carScale, -25 * carScale, 180 * carScale, -57 * carScale);
   vertex(205 * carScale, -57 * carScale);
   endShape();
 
@@ -1806,26 +1072,12 @@ function rx7(carX, carY, carRotation) {
   //details in the back
   beginShape();
   vertex(91 * carScale, 62 * carScale);
-  bezierVertex(
-    119 * carScale,
-    65 * carScale,
-    133 * carScale,
-    65 * carScale,
-    148 * carScale,
-    59 * carScale
-  );
+  bezierVertex(119 * carScale, 65 * carScale, 133 * carScale, 65 * carScale, 148 * carScale, 59 * carScale);
   endShape();
 
   beginShape();
   vertex(91 * carScale, -62 * carScale);
-  bezierVertex(
-    119 * carScale,
-    -65 * carScale,
-    133 * carScale,
-    -65 * carScale,
-    148 * carScale,
-    -59 * carScale
-  );
+  bezierVertex(119 * carScale, -65 * carScale, 133 * carScale, -65 * carScale, 148 * carScale, -59 * carScale);
   endShape();
   pop();
 
@@ -1836,28 +1088,14 @@ function rx7(carX, carY, carRotation) {
   vertex(-155 * carScale, -67 * carScale);
   vertex(-156 * carScale, -42 * carScale);
   vertex(-187 * carScale, -41 * carScale);
-  bezierVertex(
-    -185 * carScale,
-    -65 * carScale,
-    -181 * carScale,
-    -66 * carScale,
-    -155 * carScale,
-    -67 * carScale
-  );
+  bezierVertex(-185 * carScale, -65 * carScale, -181 * carScale, -66 * carScale, -155 * carScale, -67 * carScale);
   endShape();
 
   beginShape();
   vertex(-155 * carScale, 67 * carScale);
   vertex(-156 * carScale, 42 * carScale);
   vertex(-187 * carScale, 41 * carScale);
-  bezierVertex(
-    -185 * carScale,
-    65 * carScale,
-    -181 * carScale,
-    66 * carScale,
-    -155 * carScale,
-    67 * carScale
-  );
+  bezierVertex(-185 * carScale, 65 * carScale, -181 * carScale, 66 * carScale, -155 * carScale, 67 * carScale);
   endShape();
 
   //windshield
@@ -1866,37 +1104,16 @@ function rx7(carX, carY, carRotation) {
   beginShape();
   vertex(-64 * carScale, -63 * carScale);
   vertex(-30 * carScale, -48 * carScale);
-  bezierVertex(
-    -40 * carScale,
-    -17 * carScale,
-    -40 * carScale,
-    17 * carScale,
-    -30 * carScale,
-    48 * carScale
-  );
+  bezierVertex(-40 * carScale, -17 * carScale, -40 * carScale, 17 * carScale, -30 * carScale, 48 * carScale);
   vertex(-64 * carScale, 63 * carScale);
-  bezierVertex(
-    -105 * carScale,
-    45 * carScale,
-    -105 * carScale,
-    -55 * carScale,
-    -64 * carScale,
-    -63 * carScale
-  );
+  bezierVertex(-105 * carScale, 45 * carScale, -105 * carScale, -55 * carScale, -64 * carScale, -63 * carScale);
   endShape();
 
   //window right
   beginShape();
   vertex(-57 * carScale, -65 * carScale);
   vertex(-16 * carScale, -49 * carScale);
-  bezierVertex(
-    32 * carScale,
-    -42 * carScale,
-    45 * carScale,
-    -54 * carScale,
-    57 * carScale,
-    -64 * carScale
-  );
+  bezierVertex(32 * carScale, -42 * carScale, 45 * carScale, -54 * carScale, 57 * carScale, -64 * carScale);
   vertex(-57 * carScale, -65 * carScale);
   endShape();
 
@@ -1904,14 +1121,7 @@ function rx7(carX, carY, carRotation) {
   beginShape();
   vertex(-57 * carScale, 65 * carScale);
   vertex(-16 * carScale, 49 * carScale);
-  bezierVertex(
-    32 * carScale,
-    42 * carScale,
-    45 * carScale,
-    54 * carScale,
-    57 * carScale,
-    64 * carScale
-  );
+  bezierVertex(32 * carScale, 42 * carScale, 45 * carScale, 54 * carScale, 57 * carScale, 64 * carScale);
   vertex(-57 * carScale, 65 * carScale);
   endShape();
 
@@ -1919,14 +1129,7 @@ function rx7(carX, carY, carRotation) {
   beginShape();
   vertex(68 * carScale, -43 * carScale);
   vertex(91 * carScale, -58 * carScale);
-  bezierVertex(
-    165 * carScale,
-    -43 * carScale,
-    165 * carScale,
-    43 * carScale,
-    91 * carScale,
-    58 * carScale
-  );
+  bezierVertex(165 * carScale, -43 * carScale, 165 * carScale, 43 * carScale, 91 * carScale, 58 * carScale);
   vertex(68 * carScale, 43 * carScale);
   vertex(68 * carScale, -43 * carScale);
   endShape();
@@ -1937,14 +1140,7 @@ function rx7(carX, carY, carRotation) {
   beginShape();
   vertex(62 * carScale, -43 * carScale);
   vertex(91 * carScale, -62 * carScale);
-  bezierVertex(
-    172 * carScale,
-    -43 * carScale,
-    172 * carScale,
-    43 * carScale,
-    91 * carScale,
-    62 * carScale
-  );
+  bezierVertex(172 * carScale, -43 * carScale, 172 * carScale, 43 * carScale, 91 * carScale, 62 * carScale);
   vertex(62 * carScale, 43 * carScale);
   vertex(62 * carScale, -43 * carScale);
   endShape();
@@ -1953,49 +1149,21 @@ function rx7(carX, carY, carRotation) {
   //mirror right
   beginShape();
   vertex(-68 * carScale, -70 * carScale);
-  bezierVertex(
-    -67 * carScale,
-    -81 * carScale,
-    -60 * carScale,
-    -87 * carScale,
-    -53 * carScale,
-    -91 * carScale
-  );
+  bezierVertex(-67 * carScale, -81 * carScale, -60 * carScale, -87 * carScale, -53 * carScale, -91 * carScale);
   vertex(-57 * carScale, -75 * carScale);
   vertex(-59 * carScale, -75 * carScale);
   vertex(-60 * carScale, -67 * carScale);
-  bezierVertex(
-    -65 * carScale,
-    -68 * carScale,
-    -66 * carScale,
-    -68 * carScale,
-    -68 * carScale,
-    -70 * carScale
-  );
+  bezierVertex(-65 * carScale, -68 * carScale, -66 * carScale, -68 * carScale, -68 * carScale, -70 * carScale);
   endShape();
 
   //mirror left
   beginShape();
   vertex(-68 * carScale, 70 * carScale);
-  bezierVertex(
-    -67 * carScale,
-    81 * carScale,
-    -60 * carScale,
-    87 * carScale,
-    -53 * carScale,
-    91 * carScale
-  );
+  bezierVertex(-67 * carScale, 81 * carScale, -60 * carScale, 87 * carScale, -53 * carScale, 91 * carScale);
   vertex(-57 * carScale, 75 * carScale);
   vertex(-59 * carScale, 75 * carScale);
   vertex(-60 * carScale, 67 * carScale);
-  bezierVertex(
-    -65 * carScale,
-    68 * carScale,
-    -66 * carScale,
-    68 * carScale,
-    -68 * carScale,
-    70 * carScale
-  );
+  bezierVertex(-65 * carScale, 68 * carScale, -66 * carScale, 68 * carScale, -68 * carScale, 70 * carScale);
   endShape();
 }
 
@@ -2020,15 +1188,13 @@ function updateTimer() {
   const minutes = Math.floor(elapsedTime / 60000);
   const seconds = Math.floor((elapsedTime % 60000) / 1000);
   const milliseconds = elapsedTime % 1000;
-  console.log(
-    `Elapsed time: ${minutes}:${pad(seconds, 2)}:${pad(milliseconds, 3)}`
-  );
+  console.log(`Elapsed time: ${minutes}:${pad(seconds, 2)}:${pad(milliseconds, 3)}`);
   //the following 1 line is conducted by the help of chatGPT
   const formattedTime = `${minutes}:${pad(seconds, 2)}:${pad(milliseconds, 3)}`;
   //console.log(`Elapsed time: ${formattedTime}`);
 
   // Store elapsed time in localStorage
-  localStorage.setItem('elapsedTime', formattedTime);
+  localStorage.setItem("elapsedTime", formattedTime);
 }
 //The following 3 lines of code where conducted by the help og ChatGPT
 function pad(number, length) {
@@ -2045,84 +1211,39 @@ function cityConditions() {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap2.png");
     carX = 5;
-  } else if (
-    whichBackgroundCity === 2 &&
-    30 < carY &&
-    carY < 211 &&
-    carX >= 950
-  ) {
+  } else if (whichBackgroundCity === 2 && 30 < carY && carY < 211 && carX >= 950) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap3.png");
     carX = 5;
-  } else if (
-    whichBackgroundCity === 3 &&
-    355 < carX &&
-    carX < 533 &&
-    carY >= 712
-  ) {
+  } else if (whichBackgroundCity === 3 && 355 < carX && carX < 533 && carY >= 712) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap4.png");
     carY = -15;
-  } else if (
-    whichBackgroundCity === 4 &&
-    200 < carY &&
-    carY < 380 &&
-    carX >= 950
-  ) {
+  } else if (whichBackgroundCity === 4 && 200 < carY && carY < 380 && carX >= 950) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap5.png");
     carX = 5;
-  } else if (
-    whichBackgroundCity === 5 &&
-    410 < carX &&
-    carX < 588 &&
-    carY <= 0
-  ) {
+  } else if (whichBackgroundCity === 5 && 410 < carX && carX < 588 && carY <= 0) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap6.png");
     carY = 900;
-  } else if (
-    whichBackgroundCity === 6 &&
-    410 < carX &&
-    carX < 588 &&
-    carY <= 0
-  ) {
+  } else if (whichBackgroundCity === 6 && 410 < carX && carX < 588 && carY <= 0) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap7.png");
     carY = 900;
-  } else if (
-    whichBackgroundCity === 7 &&
-    200 < carY &&
-    carY < 379 &&
-    carX >= 950
-  ) {
+  } else if (whichBackgroundCity === 7 && 200 < carY && carY < 379 && carX >= 950) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap8.png");
     carX = 5;
-  } else if (
-    whichBackgroundCity === 8 &&
-    420 < carX &&
-    carX < 598 &&
-    carY >= 712
-  ) {
+  } else if (whichBackgroundCity === 8 && 420 < carX && carX < 598 && carY >= 712) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap9.png");
     carY = 5;
-  } else if (
-    whichBackgroundCity === 9 &&
-    253 < carY &&
-    carY < 431 &&
-    carX >= 950
-  ) {
+  } else if (whichBackgroundCity === 9 && 253 < carY && carY < 431 && carX >= 950) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap10.png");
     carX = 5;
-  } else if (
-    whichBackgroundCity === 10 &&
-    253 < carY &&
-    carY < 431 &&
-    carX >= 695
-  ) {
+  } else if (whichBackgroundCity === 10 && 253 < carY && carY < 431 && carX >= 695) {
     whichBackgroundCity += 1;
     backgroundImageCity = loadImage("map-city/cityMap10.png");
     isGameActive = false;
@@ -2272,12 +1393,7 @@ function cityMap() {
   cityConditions();
   startTimer();
   //the following line of code were done with the help of ChatGPT
-  [carX, carY, carRotation, speed] = carControls(
-    carX,
-    carY,
-    carRotation,
-    speed
-  );
+  [carX, carY, carRotation, speed] = carControls(carX, carY, carRotation, speed);
 
   if (currentCar === "bmw") {
     bmw(carX, carY, carRotation);
@@ -2304,30 +1420,15 @@ function suburbanConditions() {
     whichSectionOnMap += 1;
     carY = 712;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-6.png");
-  } else if (
-    whichSectionOnMap === 3 &&
-    carX >= 900 &&
-    carY > 154 &&
-    carY < 399
-  ) {
+  } else if (whichSectionOnMap === 3 && carX >= 900 && carY > 154 && carY < 399) {
     whichSectionOnMap += 1;
     carX = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-7.png");
-  } else if (
-    whichSectionOnMap === 4 &&
-    carY >= 712 &&
-    carX > 383 &&
-    carX < 620
-  ) {
+  } else if (whichSectionOnMap === 4 && carY >= 712 && carX > 383 && carX < 620) {
     whichSectionOnMap += 1;
     carY = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-11.png");
-  } else if (
-    whichSectionOnMap === 5 &&
-    carX >= 900 &&
-    carY > 320 &&
-    carY < 572
-  ) {
+  } else if (whichSectionOnMap === 5 && carX >= 900 && carY > 320 && carY < 572) {
     whichSectionOnMap += 1;
     carX = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-12.png");
@@ -2351,30 +1452,15 @@ function suburbanConditions() {
     whichSectionOnMap += 1;
     carX = 900;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-1.png");
-  } else if (
-    whichSectionOnMap === 11 &&
-    carY >= 712 &&
-    carX > 215 &&
-    carX < 463
-  ) {
+  } else if (whichSectionOnMap === 11 && carY >= 712 && carX > 215 && carX < 463) {
     whichSectionOnMap += 1;
     carY = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-5.png");
-  } else if (
-    whichSectionOnMap === 12 &&
-    carY >= 712 &&
-    carX > 214 &&
-    carX < 463
-  ) {
+  } else if (whichSectionOnMap === 12 && carY >= 712 && carX > 214 && carX < 463) {
     whichSectionOnMap += 1;
     carY = 0;
     backgroundImageSub = loadImage("suburbanMap/SuburbanMap-9.png");
-  } else if (
-    whichSectionOnMap === 13 &&
-    carX > 570 &&
-    203 < carY &&
-    carY < 435
-  ) {
+  } else if (whichSectionOnMap === 13 && carX > 570 && 203 < carY && carY < 435) {
     currentScreen = "resultScreen";
     setTimeout(stopTimer);
   }
@@ -2563,12 +1649,7 @@ function suburbanMap() {
   callOnceCarSuburban();
   startTimer();
   //the following line of code were done with the help of ChatGPT
-  [carX, carY, carRotation, speed] = carControls(
-    carX,
-    carY,
-    carRotation,
-    speed
-  );
+  [carX, carY, carRotation, speed] = carControls(carX, carY, carRotation, speed);
 
   if (currentCar === "bmw") {
     bmw(carX, carY, carRotation);
@@ -2597,11 +1678,7 @@ function detectCollision() {
       let pixelColor = get(i, j);
 
       // Check if the pixel color is red
-      if (
-        pixelColor[0] === 255 &&
-        pixelColor[1] === 255 &&
-        pixelColor[2] === 180
-      ) {
+      if (pixelColor[0] === 255 && pixelColor[1] === 255 && pixelColor[2] === 180) {
         console.log("collision");
         stopTimer();
         return true; // Collision detected
@@ -2644,11 +1721,11 @@ function highscore() {
   text("nameInputValue", 300, 374);
   text("nameInputValue", 300, 424);
 
-  text(localStorage.getItem('elapsedTime'), 570, 224);
-  text(localStorage.getItem('elapsedTime'), 570, 274);
-  text(localStorage.getItem('elapsedTime'), 570, 324);
-  text(localStorage.getItem('elapsedTime'), 570, 374);
-  text(localStorage.getItem('elapsedTime'), 570, 424);
+  text(localStorage.getItem("elapsedTime"), 570, 224);
+  text(localStorage.getItem("elapsedTime"), 570, 274);
+  text(localStorage.getItem("elapsedTime"), 570, 324);
+  text(localStorage.getItem("elapsedTime"), 570, 374);
+  text(localStorage.getItem("elapsedTime"), 570, 424);
   pop();
 }
 function retryButton() {
@@ -2664,12 +1741,7 @@ function retryButton() {
   textSize(40);
   text("RETRY", 257, 624);
 
-  if (
-    mouseIsPressed & (mouseX >= 200) &&
-    mouseX <= 450 &&
-    mouseY >= 550 &&
-    mouseY <= 670
-  ) {
+  if (mouseIsPressed & (mouseX >= 200) && mouseX <= 450 && mouseY >= 550 && mouseY <= 670) {
     if (mapSelected === "suburban") {
       currentScreen = "suburbanMap";
       whichSectionOnMap = 1;
@@ -2701,12 +1773,7 @@ function goBackToStartButton() {
   textSize(40);
   text("GO BACK", 530, 624);
 
-  if (
-    mouseIsPressed & (mouseX >= 500) &&
-    mouseX <= 750 &&
-    mouseY >= 550 &&
-    mouseY <= 670
-  ) {
+  if (mouseIsPressed & (mouseX >= 500) && mouseX <= 750 && mouseY >= 550 && mouseY <= 670) {
     currentScreen = "startScreen";
     carRotation = PI;
     called = false;
