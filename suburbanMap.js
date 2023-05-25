@@ -15,7 +15,7 @@ createCanvas(950, 712);
 
 function preload() {
   // Load the initial background image
-  backgroundImage = loadImage("suburbanMap/SuburbanMap-9.png");
+  backgroundImage = loadImage("suburbanMap/SuburbanMap-9.png"); 
 }
 
 function car(carX, carY, rotation) {
@@ -34,7 +34,7 @@ let speed = 0;
 let acceleration = 0;
 
 let isGameActive = true;
-let whichSectionOnMap = 12;
+let whichSectionOnMap = 4;
 
 //borders to the road
 function suburbanBoundries() {
@@ -77,9 +77,14 @@ function suburbanBoundries() {
     endShape();
     line(619, 556, 621, 711);
     line(0, 399, 260, 425);
-    line(260, 425, 292, 475);
-    line(292, 475, 428, 365);
+    ellipse(510,302, 201);
     beginShape();
+    vertex(260,425);
+    bezierVertex(276,480,325,530,383,548);
+    endShape();
+    /* line(260, 425, 292, 475);
+    line(292, 475, 428, 365); */
+    /* beginShape();
     vertex(428, 365);
     bezierVertex(383, 290, 426, 197, 506, 199);
     bezierVertex(630, 210, 633, 350, 559, 396);
@@ -87,7 +92,7 @@ function suburbanBoundries() {
     vertex(312, 497);
     vertex(384, 547);
     vertex(383, 711);
-    endShape();
+    endShape(); */
   } else if (whichSectionOnMap === 5) {
     line(384, 0, 382, 344);
     beginShape();
@@ -275,7 +280,7 @@ function checkCarPosition() {
 }
 
 function draw() {
-  background(subMapSection12);
+  background(subMapSection4);
   checkCarPosition();
   suburbanBoundries();
   car(carX, carY, rotation);
