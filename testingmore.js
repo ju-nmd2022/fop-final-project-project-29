@@ -73,19 +73,22 @@ function addHighScore(name, score){
 }
 
 function sortHighScore(){
-    highScores.sort((a,b)=>b.score - a.score);
+    highScores.sort((b,a)=>b.score - a.score);
 }
 
 function getTopHighScores(n){
     return highScores.slice(0,n);
 }
 
-addHighScore('nameInput1', 'elapsedTime1');
-addHighScore('nameInput2', 'elapsedTime2');
-addHighScore('nameInput3', 'elapsedTime3');
-addHighScore('nameInput6', 'elapsedTime6');
-addHighScore('nameInput4', 'elapsedTime4');
-addHighScore('nameInput5', 'elapsedTime5');
+
+addHighScore('nameInput2', 0.2);
+addHighScore('nameInput3', 0.3);
+addHighScore('nameInput6', 0.6);
+addHighScore('nameInput4', 0.4);
+addHighScore('nameInput5', 0.5);
+addHighScore('nameInput1', 0.1);
+sortHighScore();
+console.log(highScores);
 
 const topHighScores = getTopHighScores(1);
-topHighScores.forEach((highScores) => console.log(highScores.name));
+topHighScores.forEach((highScores) => console.log(highScores.name + highScores.score));
