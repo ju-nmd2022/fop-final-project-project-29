@@ -1,6 +1,10 @@
 let carColors;
 let currentScreen = "preScreen";
 let carRotation;
+
+let calmSong;
+let raceSong;
+
 function setup() {
   window.createCanvas(950, 712);
   frameRate(30);
@@ -17,6 +21,9 @@ function setup() {
   };
 
   carRotation = PI;
+
+  calmSong = loadSound("sound/calmSong.mp3");
+  raceSong = loadSound("sound/raceSong.mp3");
 }
 
 let preBg;
@@ -133,6 +140,7 @@ function preScreen() {
   background(preBg);
   startButton();
   buttonStart.mousePressed(changeToStartScreen);
+  calmSong.play();
 }
 /* content for adding the players name */
 
@@ -1199,7 +1207,8 @@ function updateTimer() {
   //console.log(`Elapsed time: ${formattedTime}`);
 
   // Store elapsed time in localStorage
-  localStorage.setItem("elapsedTime", formattedTime);
+  localStorage.setItem("elapsedTime", elapsedTime);
+  localStorage.setItem("formattedTime", formattedTime);
 }
 //The following 3 lines of code where conducted by the help of ChatGPT
 function pad(number, length) {
@@ -1256,7 +1265,7 @@ function cityConditions() {
     currentScreen = "resultScreen";
     setTimeout(stopTimer);
     //console.log(inputText);
-    addHighScore(inputText, localStorage.getItem("elapsedTime"));
+    addHighScore(inputText, parseInt(localStorage.getItem("elapsedTime")), localStorage.getItem("formattedTime"));
     console.log(JSON.stringify(highScores[0]));
   }
 }
@@ -1265,6 +1274,9 @@ function cityCarSetup() {
   carX = 70;
   carY = 350;
   carScale = 0.3;
+  whichBackgroundCity = 1;
+  backgroundImageCity = loadImage("map-city/cityMap1.png");
+  carRotation = PI;
 }
 
 //the following 7 lines of code were done with the help of ChatGPT
@@ -1287,9 +1299,8 @@ function carControls(carX, carY, carRotation, speed) {
     if (speed > -16) {
       speed -= 0.2;
     }
-    console.log(speed);
   } else if (keyIsDown(40)) {
-    speed += 1;
+    speed += 0.2;
   } else {
     speed = -0.5;
   }
@@ -1640,6 +1651,9 @@ function suburbanCarSetup() {
   carX = 460;
   carY = 360;
   carScale = 0.35;
+  whichSectionOnMap = 1;
+  backgroundImageSub = loadImage("suburbanMap/SuburbanMap-9.png");
+  carRotation = PI;
 }
 
 //the following 7 lines of code were done wiht the help of ChatGPT
@@ -1724,7 +1738,8 @@ function highscore() {
   text("4.", 225, 374);
   text("5.", 225, 424);
 
-  highScores = JSON.parse(localStorage.getItem("highScores"));
+highScores = JSON.parse(localStorage.getItem("highScores"));
+  sortHighScore();
 
   text((!highScores[0]) ? "no racer" : highScores[0].name, 300, 224);
   text((!highScores[1]) ? "no racer" : highScores[1].name, 300, 274);
@@ -1732,13 +1747,12 @@ function highscore() {
   text((!highScores[3]) ? "no racer" : highScores[3].name, 300, 374);
   text((!highScores[4]) ? "no racer" : highScores[4].name, 300, 424);
 
-  text((!highScores[0]) ? 0 : highScores[0].score, 570, 224);
-  text((!highScores[1]) ? 0 : highScores[1].score, 570, 274);
-  text((!highScores[2]) ? 0 : highScores[2].score, 570, 324);
-  text((!highScores[3]) ? 0 : highScores[3].score, 570, 374);
-  text((!highScores[4]) ? 0 : highScores[4].score, 570, 424);
+  text((!highScores[0]) ? 0 : highScores[0].formattedScore, 570, 224);
+  text((!highScores[1]) ? 0 : highScores[1].formattedScore, 570, 274);
+  text((!highScores[2]) ? 0 : highScores[2].formattedScore, 570, 324);
+  text((!highScores[3]) ? 0 : highScores[3].formattedScore, 570, 374);
+  text((!highScores[4]) ? 0 : highScores[4].formattedScore, 570, 424);
   pop();
-  sortHighScore();
 }
 //(!highScores[1]) ? "no racer" : highScores[1].name
 // ? means if statement
@@ -1748,9 +1762,13 @@ function highscore() {
 
 let highScores = [];
 
-function addHighScore(name, score){
+function addHighScore(name, score, formattedScore){
+  if (localStorage.highScores === undefined) {
+    localStorage.highScores = JSON.stringify([]);
+  }
+  highScores = JSON.parse(localStorage.getItem("highScores"));
   console.log("NAME:", name);
-    highScores.push({name: name, score: score});
+    highScores.push({name: name, score: score, formattedScore: formattedScore});
     sortHighScore();
     localStorage.setItem("highScores",JSON.stringify(highScores));
 }
@@ -1758,15 +1776,6 @@ function addHighScore(name, score){
 function sortHighScore(){
     highScores.sort((b,a)=>b.score - a.score);
 }
-
-/* function getTopHighScores(n){
-    return highScores.slice(0,n);
-} */
-
-// addHighScore(inputText, localStorage.getItem("elapsedTime"));
-
-/* const topHighScores = getTopHighScores(1);
-topHighScores.forEach((highScores) => console.log(highScores.name + highScores.score)); */
 
 function retryButton() {
   fill(240);
@@ -1784,18 +1793,12 @@ function retryButton() {
   if (mouseIsPressed & (mouseX >= 200) && mouseX <= 450 && mouseY >= 550 && mouseY <= 670) {
     if (mapSelected === "suburban") {
       currentScreen = "suburbanMap";
-      whichSectionOnMap = 1;
       suburbanCarSetup();
-      backgroundImageSub = loadImage("suburbanMap/SuburbanMap-9.png");
-      carRotation = PI;
       stopTimer();
       startTimer();
     } else if (mapSelected === "city") {
       currentScreen = "cityMap";
-      whichBackgroundCity = 1;
-      backgroundImageCity = loadImage("map-city/cityMap1.png");
       cityCarSetup();
-      carRotation = PI;
     }
   }
 }
@@ -1815,7 +1818,6 @@ function goBackToStartButton() {
 
   if (mouseIsPressed & (mouseX >= 500) && mouseX <= 750 && mouseY >= 550 && mouseY <= 670) {
     currentScreen = "startScreen";
-    carRotation = PI;
     called = false;
     cityCarSetup();
     suburbanCarSetup();
