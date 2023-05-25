@@ -113,7 +113,7 @@ function startButton() {
   }
   buttonStart = createButton("START");
   buttonStart.size(200, 80);
-  buttonStart.position(windowWidth / 2 - 100, 600);
+  buttonStart.position(windowWidth / 2 - 100, windowHeight / 2 + 200);
   buttonStart.style("font-family", "Verdana");
   buttonStart.style("font-size", "30px");
   buttonStart.style("color: #ffffff");
@@ -159,7 +159,7 @@ function inputBox() {
     inp.remove();
   }
   inp = createInput("");
-  inp.position(480, 480);
+  inp.position(windowWidth / 2 -100, windowHeight / 2 + 50);
   inp.size(200);
   inp.changed(handleEnter);
 }
@@ -209,7 +209,7 @@ function playButton() {
   buttonPlay = createButton("START");
   buttonPlay.size(250, 120);
   buttonPlay.style("borderRadius", "30px");
-  buttonPlay.position(windowWidth / 2 + 200, 320);
+  buttonPlay.position(windowWidth / 2 + 200, windowHeight / 2 - 120);
   buttonPlay.style("font-family", "Verdana");
   buttonPlay.style("font-size", "42px");
   buttonPlay.style("background-color", "#ec008c");
@@ -227,7 +227,7 @@ function carCustomButton() {
   buttonCarCustom = createButton("Customize Car");
   buttonCarCustom.size(250, 60);
   buttonCarCustom.style("borderRadius", "20px");
-  buttonCarCustom.position(windowWidth / 2 + 200, 520);
+  buttonCarCustom.position(windowWidth / 2 + 200, windowHeight / 2 + 150);
   buttonCarCustom.style("font-family", "Verdana");
   buttonCarCustom.style("font-size", "24px");
   buttonCarCustom.style("background-color", "#00C5C5");
@@ -245,7 +245,7 @@ function mapCustomButton() {
   buttonMapCustom = createButton("Change Map");
   buttonMapCustom.size(250, 60);
   buttonMapCustom.style("borderRadius", "20px");
-  buttonMapCustom.position(windowWidth / 2 + 200, 590);
+  buttonMapCustom.position(windowWidth / 2 + 200, windowHeight / 2 + 70);
   buttonMapCustom.style("font-family", "Verdana");
   buttonMapCustom.style("font-size", "24px");
   buttonMapCustom.style("background-color", "#00C5C5");
@@ -323,7 +323,7 @@ function backButton() {
   }
   buttonBack = createButton("BACK");
   buttonBack.size(130, 60);
-  buttonBack.position(windowWidth / 2 - 450, 130);
+  buttonBack.position(windowWidth / 2 - 450, windowHeight / 2 - 330);
   buttonBack.style("font-family", "Verdana");
   buttonBack.style("font-size", "27px");
   buttonBack.style("color: #ffffff");
@@ -517,7 +517,7 @@ function cityMapButton() {
   buttonCity = createButton("Tokyo City");
   buttonCity.size(400, 300);
   buttonCity.style("borderRadius", "30px");
-  buttonCity.position(windowWidth / 2 + 20, 200);
+  buttonCity.position(windowWidth / 2 + 20, windowHeight / 2 - 200);
   buttonCity.style("font-family", "Verdana");
   buttonCity.style("font-size", "42px");
   buttonCity.style("background-color", "#ec008c");
@@ -552,7 +552,7 @@ function suburbanMapButton() {
   buttonSuburban = createButton("Suburbs");
   buttonSuburban.size(400, 300);
   buttonSuburban.style("borderRadius", "30px");
-  buttonSuburban.position(windowWidth / 2 - 420, 200);
+  buttonSuburban.position(windowWidth / 2 - 420, windowHeight / 2 - 200);
   buttonSuburban.style("font-family", "Verdana");
   buttonSuburban.style("font-size", "42px");
   buttonSuburban.style("background-color", "#ec008c");
@@ -588,7 +588,7 @@ function selectButton() {
   }
   buttonDone = createButton("Done");
   buttonDone.style("borderRadius", "30px");
-  buttonDone.position(windowWidth / 2 - 200, 550);
+  buttonDone.position(windowWidth / 2 - 200, windowHeight / 2 + 150);
   buttonDone.style("font-family", "Verdana");
   buttonDone.style("font-size", "42px");
   buttonDone.style("background-color", "#ec008c");
@@ -1711,8 +1711,8 @@ function highscore() {
 
   fill(236, 0, 140);
   stroke(236, 0, 140);
-  strokeWeight(0);
-  textSize(30);
+  strokeWeight(1);
+  textSize(20);
   text("1.", 225, 224);
   text("2.", 225, 274);
   text("3.", 225, 324);
@@ -1775,7 +1775,7 @@ function goBackToStartButton() {
   stroke(236, 0, 140);
   strokeWeight(1);
   textSize(40);
-  text("GO BACK", 530, 624);
+  text("GO BACK", 535, 624);
 
   if (mouseIsPressed & (mouseX >= 500) && mouseX <= 750 && mouseY >= 550 && mouseY <= 670) {
     currentScreen = "startScreen";
@@ -1804,8 +1804,8 @@ function crashBox() {
   fill(236, 0, 140);
   stroke(236, 0, 140);
   strokeWeight(2);
-  textSize(60);
-  text("YOU CRASHED", 255, 344);
+  textSize(50);
+  text("YOU CRASHED", 280, 344);
   pop();
 }
 
