@@ -1,7 +1,6 @@
 let carColors;
 let currentScreen = "preScreen";
 let carRotation;
-
 let calmSong;
 let raceSong;
 
@@ -114,7 +113,7 @@ function preload() {
 /* content of pre screen */
 let buttonStart = null;
 function startButton() {
-  //The following 3 lines of code were made with the help of a teaching assistent
+  //The following 3 lines of code were made with the help of a teaching assistant
   if (buttonStart != null) {
     buttonStart.remove();
   }
@@ -181,9 +180,6 @@ function handleEnter() {
     enterButton();
     inp.remove();
   }
-
-  // Here add the function when the name gets saved
-
 }
 
 function enterButton() {
@@ -198,7 +194,6 @@ function enterButton() {
   strokeWeight(1);
   textSize(50);
   text("Done", 404, 628);
-
 }
 
 function playersName() {
@@ -266,7 +261,6 @@ function mapCustomButton() {
 
 function changeToCarSelection() {
   currentScreen = "carSelection";
-
   buttonCarCustom.remove();
   buttonMapCustom.remove();
   if (mapSelected) {
@@ -276,7 +270,6 @@ function changeToCarSelection() {
 
 function changeToMapSelection() {
   currentScreen = "mapSelection";
-
   buttonCarCustom.remove();
   buttonMapCustom.remove();
   if (mapSelected) {
@@ -290,7 +283,6 @@ function startGame() {
   } else if (mapSelected === "suburban") {
     currentScreen = "suburbanMap";
   }
-
   buttonCarCustom.remove();
   buttonMapCustom.remove();
   buttonPlay.remove();
@@ -317,7 +309,7 @@ function startScreen() {
   buttonMapCustom.mousePressed(changeToMapSelection);
 }
 
-/* content for car slection */
+/* content for car selection */
 
 function headline() {
   fill(255);
@@ -346,7 +338,6 @@ function backButton() {
 
 function backToStartScreen() {
   currentScreen = "startScreen";
-
   buttonBack.remove();
 }
 
@@ -531,7 +522,6 @@ function cityMapButton() {
   buttonCity.position(windowWidth / 2 + 20, windowHeight / 2 - 200);
   buttonCity.style("font-family", "Verdana");
   buttonCity.style("font-size", "42px");
-  //buttonCity.style("background-color", "#ec008c");
   buttonCity.style("background-image", "url('map-city/cityMap1.png')");
   buttonCity.style("background-size","cover");
   buttonCity.style("border-width", "5px");
@@ -543,19 +533,9 @@ function cityMapButton() {
     mapIsChosen = true;
     console.log("ok");
   }
-  /* buttonCity.mouseOver(function() {
-    buttonCity.style("background-color", "transparent");
-    buttonCity.style("background-image", "url('map-city/cityMap1.png')");
-    buttonCity.style("background-repeat", "no-repeat");
-    buttonCity.style("background-size", "cover");
-  }); */
   buttonCity.mousePressed(function() {
     mapSelected = "city";
-    //add localstorage function
   });
-  /* buttonCity.mouseOut(function() {
-    buttonCity.style("background-color", "#ec008c");
-  }); */
 }
 
 let buttonSuburban = null;
@@ -571,7 +551,6 @@ function suburbanMapButton() {
   buttonSuburban.style("font-size", "42px");
   buttonSuburban.style("background-image", "url('suburbanMap/SuburbanMap-7.png')");
   buttonSuburban.style("background-size","cover");
-  //buttonSuburban.style("background-color", "#ec008c");
   buttonSuburban.style("width", "400px");
   buttonSuburban.style("font-weight","bold");
   buttonSuburban.style("height", "300px");
@@ -583,19 +562,9 @@ function suburbanMapButton() {
     mapIsChosen = true;
     console.log("ok");
   }
-  /* buttonSuburban.mouseOver(function() {
-    buttonSuburban.style("background-color", "transparent");
-    buttonSuburban.style("background-image", "url('suburbanMap/SuburbanMap-1.png')");
-    buttonSuburban.style("background-repeat", "no-repeat");
-    buttonSuburban.style("background-size", "cover");
-  }); */
   buttonSuburban.mousePressed(function() {
     mapSelected = "suburban";
-    //add localstorage function
   });
-  /* buttonSuburban.mouseOut(function() {
-    buttonSuburban.style("background-color", "#ec008c");
-  }); */
 }
 
 let buttonDone = null;
@@ -617,22 +586,13 @@ function selectButton() {
   buttonDone.style("border-style", "outset");
   if (mouseIsPressed && mouseX > 420 && mouseX < 820 && mouseY > 680 && mouseY < 780) {
     doneGoBack = true;
-    console.log("done");
   }
- /*  buttonDone.mouseOver(function() {
-    buttonDone.style("background-color", "#a90059");
-    buttonDone.style("background-repeat", "no-repeat");
-    buttonDone.style("background-size", "cover");
-  }); */
   buttonDone.mousePressed(function() {
     currentScreen = "startScreen";
     buttonSuburban.remove();
     buttonCity.remove();
     buttonDone.remove();
   });
-  /* buttonDone.mouseOut(function() {
-    buttonDone.style("background-color", "#ec008c");
-  }); */
 }
 function mapSelection() {
   background(mapSelectBg);
@@ -1205,15 +1165,12 @@ function stopTimer() {
 
 function updateTimer() {
   const elapsedTime = Date.now() - startTime;
-  //The following 4 lines of code where conducted by the help og ChatGPT
+  //The following 5 lines of code where conducted by the help og ChatGPT
   const minutes = Math.floor(elapsedTime / 60000);
   const seconds = Math.floor((elapsedTime % 60000) / 1000);
   const milliseconds = elapsedTime % 1000;
   console.log(`Elapsed time: ${minutes}:${pad(seconds, 2)}:${pad(milliseconds, 3)}`, inputText);
-  //the following 1 line is conducted by the help of chatGPT
   const formattedTime = `${minutes}:${pad(seconds, 2)}:${pad(milliseconds, 3)}`;
-  //console.log(`Elapsed time: ${formattedTime}`);
-
   // Store elapsed time in localStorage
   localStorage.setItem("elapsedTime", elapsedTime);
   localStorage.setItem("formattedTime", formattedTime);
@@ -1664,8 +1621,8 @@ function suburbanCarSetup() {
   carRotation = PI;
 }
 
-//the following 7 lines of code were done wiht the help of ChatGPT
 function callOnceCarSuburban() {
+  //the following 3 lines of code were done with the help of ChatGPT
   if (!called) {
     suburbanCarSetup();
     called = true;
@@ -1746,9 +1703,10 @@ function highscore() {
   text("4.", 225, 374);
   text("5.", 225, 424);
 
-highScores = JSON.parse(localStorage.getItem("highScores"));
+  highScores = JSON.parse(localStorage.getItem("highScores"));
   sortHighScore();
 
+  //The following 11 lines of code were made with the help of a teaching assistant
   text((!highScores[0]) ? "no racer" : highScores[0].name, 300, 224);
   text((!highScores[1]) ? "no racer" : highScores[1].name, 300, 274);
   text((!highScores[2]) ? "no racer" : highScores[2].name, 300, 324);
